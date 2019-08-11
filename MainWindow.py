@@ -11,6 +11,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
 
         # Setting up the menu bar
+        self.menuBar = MenuBar()
         self.setMenuBar(MenuBar())
 
         # Creating the central widget for the window
@@ -21,5 +22,14 @@ class MainWindow(QMainWindow):
         self.layout = QHBoxLayout()
         centralWidget.setLayout(self.layout)
 
+        self.showMaximized()
 
-        self.show()
+    def showFullScreen(self):
+        ''' Override showFullScreen method to hide menuBar '''
+        super().showFullScreen()
+        self.setMenuBar(None)
+
+    def showMaximized(self):
+        ''' Override showMaximized method to show menuBar '''
+        super().showMaximized()
+        self.setMenuBar(self.menuBar)
