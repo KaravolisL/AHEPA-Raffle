@@ -6,34 +6,58 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
-
 class MenuBar(QMenuBar):
     def __init__(self):
         super().__init__()
 
         # Creating Menu
-        fileMenu = self.addMenu("File")
-        editMenu = self.addMenu("Edit")
-        viewMenu = self.addMenu("View")
-        helpMenu = self.addMenu("Help")
+        self.fileMenu = self.addMenu("File")
+        self.editMenu = self.addMenu("Edit")
+        self.viewMenu = self.addMenu("View")
+        self.helpMenu = self.addMenu("Help")
 
-        # Creating fileMenu items
-        fileMenu.addAction("Restart")
-        fileMenu.addAction("Import Ticket Names")
-        fileMenu.addAction("Import Prizes")
+        # Actions for fileMenu
+        self.fileRestartAction = QAction("Restart")
+        self.fileMenu.addAction(self.fileRestartAction)
 
-        # Creating editMenu items
-        editMenu.addAction("Edit Ticket")
-        editMenu.addAction("Edit Prize")
-        editMenu.addAction("Change Background Color")
-        editMenu.addAction("Edit Prize Alert")
+        self.fileImportTicketNamesAction = QAction("Import Ticket Names")
+        self.fileMenu.addAction(self.fileImportTicketNamesAction)
 
-        # Creating viewMenu items
-        viewMenu.addAction("Full Screen")
-        viewMenu.addAction("Maximize")
-        viewMenu.addAction("Ticket Names")
-        viewMenu.addAction("Prizes")
+        self.fileImportPrizesAction = QAction("Import Prizes")
+        self.fileMenu.addAction(self.fileImportPrizesAction)
 
-        # Creating helpMenu items
-        helpMenu.addAction("About")
+        # Action for editMenu
+        self.editTicketAction = QAction("Edit Ticket")
+        self.editMenu.addAction(self.editTicketAction)
+
+        self.editPrizeAction = QAction("Edit Prize")
+        self.editMenu.addAction(self.editPrizeAction)
+
+        self.editChangeBackgroundAction = QAction("Change Background Color")
+        self.editMenu.addAction(self.editChangeBackgroundAction)
+
+        self.editPrizeAlertAction = QAction("Edit Prize Alert")
+        self.editMenu.addAction(self.editPrizeAlertAction)
+
+        # Actions for viewMenu
+        self.viewFullScreenAction = QAction("Full Screen")
+        self.viewMenu.addAction(self.viewFullScreenAction)
+
+        self.viewMaximizedAction = QAction("Maximize")
+        self.viewMaximizedAction.setShortcut('Esc')
+        self.viewMenu.addAction(self.viewMaximizedAction)
+
+        self.viewTicketNamesAction = QAction("Ticket Names")
+        self.viewMenu.addAction(self.viewTicketNamesAction)
+
+        self.viewPrizesAction = QAction("Prizes")
+        self.viewMenu.addAction(self.viewPrizesAction)
+
+        # Actions for helpMenu
+        self.helpAboutAction = QAction("About")
+        self.helpMenu.addAction(helpAboutAction)
+
+    def setResponse(self, action, response):
+        ''' Used by MainWindow to set the response for the actions on the MenuBar '''
+        action.triggered.connect(response)
 
