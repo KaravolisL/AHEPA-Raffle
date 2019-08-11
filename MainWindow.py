@@ -22,7 +22,14 @@ class MainWindow(QMainWindow):
         self.layout = QHBoxLayout()
         centralWidget.setLayout(self.layout)
 
+        # Setting window icon
+        self.setWindowIcon(QIcon('Icon.jpg'))
+
         self.showMaximized()
+
+    def add(self):
+        ''' Method to add a widget to the central widget's layout '''
+        pass
 
     def showFullScreen(self):
         ''' Override showFullScreen method to hide menuBar '''
