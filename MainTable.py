@@ -13,6 +13,7 @@ class MainTable(QGridLayout):
         # Create 2D array of cells with corresponding ids
         self.cells = [[Cell(str(i+j), i+j) for i in range(0, 15)] for j in range(1, 256, 15)]
 
+        # Adding cells to the layout
         for i in range(0, 15):
             for j in range(0, 15):
                 self.addWidget(self.cells[i][j], i, j)

@@ -15,12 +15,18 @@ class Header(QHBoxLayout):
         self.ticketsDrawnCell = Cell("Tickets Drawn: 0", -2)
         self.lastTicketDrawnCell = Cell("Last Ticket Drawn: ", -1)
 
+        # Make list of cells to simplify operations
+        self.cells = [self.ticketsRemainingCell, self.ticketsDrawnCell, self.lastTicketDrawnCell]
+
         # DEBUG
         self.ticketsRemainingCell.setBackgroundColor("blue")
         self.ticketsDrawnCell.setBackgroundColor("yellow")
         self.lastTicketDrawnCell.setBackgroundColor("green")
 
-        # Add cells to the layout
-        self.addWidget(self.ticketsRemainingCell)
-        self.addWidget(self.ticketsDrawnCell)
-        self.addWidget(self.lastTicketDrawnCell)
+        for cell in self.cells:
+            # Restricting size
+            # TODO: Dynamic sizing
+            cell.setMaximumHeight(100)
+
+            # Add cells to the layout
+            self.addWidget(cell)

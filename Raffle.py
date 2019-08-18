@@ -23,4 +23,7 @@ if __name__ == '__main__':
     window.addLayout(Header())
     window.addLayout(MainTable())
 
+    # Show the window maximized
+    window.showMaximized()
+
     app.exec_()

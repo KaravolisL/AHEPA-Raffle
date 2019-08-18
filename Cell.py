@@ -24,6 +24,11 @@ class Cell(QLabel):
     def getId(self, id):
         return self.id
 
+    def mousePressEvent(self, QMouseEvent):
+        ''' Method to handle a cell being clicked '''
+        if (self.isVisible() and self.id > 0):
+            self.setVisible(False)
+
     def setBackgroundColor(self, color):
         ''' DEBUG '''
         self.setStyleSheet("QLabel {background-color: " + str(color) + ";}")
