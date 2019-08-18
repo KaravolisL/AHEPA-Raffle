@@ -9,6 +9,8 @@ from MenuBar import MenuBar
 def debugPrint(s = "Hello"):
     print(s)
 
+HEADER_MAINTABLE_SPACING = 3
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -23,6 +25,8 @@ class MainWindow(QMainWindow):
         # Setting the layout
         self.layout = QVBoxLayout()
         centralWidget.setLayout(self.layout)
+        self.layout.setSpacing(HEADER_MAINTABLE_SPACING)
+        centralWidget.layout().setContentsMargins(1,1,1,1)
 
         # Setting window icon
         self.setWindowIcon(QIcon('Icon.jpg'))

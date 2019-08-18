@@ -1,2 +1,8 @@
+
+
 class RaffleList:
-    pass
+    fullList = []
+    drawnList = []
+
+    def __init__(self):
+        pass
