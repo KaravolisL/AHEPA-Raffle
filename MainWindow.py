@@ -21,18 +21,19 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(centralWidget)
 
         # Setting the layout
-        self.layout = QHBoxLayout()
+        self.layout = QVBoxLayout()
         centralWidget.setLayout(self.layout)
 
         # Setting window icon
         self.setWindowIcon(QIcon('Icon.jpg'))
 
-        # Show the window maximized
-        self.showMaximized()
-
-    def add(self):
+    def addWidget(self, widget):
         ''' Method to add a widget to the central widget's layout '''
-        pass
+        self.layout.addWidget(widget)
+
+    def addLayout(self, layout):
+        ''' Method to add a layout to the main window's layout '''
+        self.layout.addLayout(layout)
 
     def createMenuBar(self):
         ''' Creates a MenuBar instance and sets the actions '''
@@ -46,6 +47,7 @@ class MainWindow(QMainWindow):
         ''' Override keyPressEvent to handle Esc pressed '''
         if e.key() == Qt.Key_Escape:
             self.showMaximized()
+        # TODO: Investigate blink upon full screen exit
 
     def showFullScreen(self):
         ''' Override showFullScreen method to hide menuBar '''
