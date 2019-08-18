@@ -21,9 +21,9 @@ class Cell(QLabel):
     def setId(self, id):
         self.id = id
 
+    def getId(self, id):
+        return self.id
+
     def setBackgroundColor(self, color):
         ''' DEBUG '''
         self.setStyleSheet("QLabel {background-color: " + str(color) + ";}")
-    
-    def getId(self, id):
-        return self.id

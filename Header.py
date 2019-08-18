@@ -10,15 +10,17 @@ class Header(QHBoxLayout):
     def __init__(self):
         super().__init__()
         
-        # Make cell
-        self.ticketsRemainingCell = Cell("Tickets Remaining: 255", -3)
-        self.ticketsRemainingCell.setBackgroundColor("blue")
-        self.addWidget(self.ticketsRemainingCell)
-
+        # Make cells
+        self.ticketsRemainingCell = Cell("Tickets Remaining: 225", -3)
         self.ticketsDrawnCell = Cell("Tickets Drawn: 0", -2)
-        self.ticketsDrawnCell.setBackgroundColor("yellow")
-        self.addWidget(self.ticketsDrawnCell)
-
         self.lastTicketDrawnCell = Cell("Last Ticket Drawn: ", -1)
+
+        # DEBUG
+        self.ticketsRemainingCell.setBackgroundColor("blue")
+        self.ticketsDrawnCell.setBackgroundColor("yellow")
         self.lastTicketDrawnCell.setBackgroundColor("green")
+
+        # Add cells to the layout
+        self.addWidget(self.ticketsRemainingCell)
+        self.addWidget(self.ticketsDrawnCell)
         self.addWidget(self.lastTicketDrawnCell)

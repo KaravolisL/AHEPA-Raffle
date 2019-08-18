@@ -9,13 +9,7 @@ from datetime import datetime
 
 from MainWindow import MainWindow
 from Header import Header
-from Cell import Cell
-
-
-
-
-
-
+from MainTable import MainTable
 
 
 
@@ -27,6 +21,6 @@ if __name__ == '__main__':
     # Construct MainWindow and its contents
     window = MainWindow()
     window.addLayout(Header())
-    # window.add(Grid())
+    window.addLayout(MainTable())
 
     app.exec_()
