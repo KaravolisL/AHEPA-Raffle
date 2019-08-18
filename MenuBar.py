@@ -55,7 +55,7 @@ class MenuBar(QMenuBar):
 
         # Actions for helpMenu
         self.helpAboutAction = QAction("About")
-        self.helpMenu.addAction(helpAboutAction)
+        self.helpMenu.addAction(self.helpAboutAction)
 
     def setResponse(self, action, response):
         ''' Used by MainWindow to set the response for the actions on the MenuBar '''

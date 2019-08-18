@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(centralWidget)
 
         # Setting the layout
-        self.layout = QHBoxLayout()
+        self.layout = QVBoxLayout()
         centralWidget.setLayout(self.layout)
 
         # Setting window icon
@@ -30,9 +30,13 @@ class MainWindow(QMainWindow):
         # Show the window maximized
         self.showMaximized()
 
-    def add(self):
+    def addWidget(self, widget):
         ''' Method to add a widget to the central widget's layout '''
-        pass
+        self.layout.addWidget(widget)
+
+    def addLayout(self, layout):
+        '''    '''
+        self.layout.addLayout(layout)
 
     def createMenuBar(self):
         ''' Creates a MenuBar instance and sets the actions '''
