@@ -17,7 +17,6 @@ class MainTable(QGridLayout):
         # Adding cells to the layout
         for i in range(0, 15):
             for j in range(0, 15):
-                print(str(self.cells[i][j]))
                 self.addWidget(self.cells[i][j], i, j)
 
         # Set spacing

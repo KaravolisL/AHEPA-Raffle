@@ -24,16 +24,19 @@ class Cell(QLabel):
 
         # DEBUG
         self.setStyleSheet("QLabel {background-color: red;}")
-    
-    def __initWithTicket__(cls, ticket):
-        ''' Contructor to create Cell from Ticket instance'''
-        return Cell(ticket.name, ticket.number)
 
     def setId(self, id):
         self.id = id
 
     def getId(self):
         return self.id
+
+    def setText(self, text):
+        ''' Override setText method to include id for main table cells '''
+        if (self.isInHeader()):
+            super().setText(self.text)
+        else:
+            super().setText(str(self.id) + "\n" + self.text)
 
     def getText(self):
         return self.text
@@ -43,9 +46,13 @@ class Cell(QLabel):
 
     def mousePressEvent(self, QMouseEvent):
         ''' Method to handle a cell being clicked '''
-        if (self.isVisible() and self.id > 0):
+        if (self.isVisible() and not self.isInHeader()):
             self.setVisible(False)
 
     def setBackgroundColor(self, color):
         ''' DEBUG '''
         self.setStyleSheet("QLabel {background-color: " + str(color) + ";}")
+
+    def isInHeader(self):
+        ''' Convenience method to distinguish header cells from main table cells '''
+        return self.id < 0
