@@ -104,4 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # Save Files
-.txt
+*.txt
