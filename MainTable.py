@@ -5,7 +5,7 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 from Cell import Cell
-from RaffleList import RaffleList
+import RaffleList
 
 class MainTable(QGridLayout):
     def __init__(self):

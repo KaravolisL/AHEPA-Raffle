@@ -4,6 +4,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
+import RaffleList
+
 class Cell(QLabel):
     def __init__(self, text = None, id = 0, ticket = None):
         super().__init__()
@@ -18,7 +20,8 @@ class Cell(QLabel):
         self.setText(self.text)
 
         # Set sizing
-        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.sizePolicy().setRetainSizeWhenHidden(True)
         self.setAlignment(Qt.AlignCenter)
         self.setWordWrap(True)
 
@@ -48,6 +51,7 @@ class Cell(QLabel):
         ''' Method to handle a cell being clicked '''
         if (self.isVisible() and not self.isInHeader()):
             self.setVisible(False)
+            RaffleList.add(RaffleList.correlate(self))
 
     def setBackgroundColor(self, color):
         ''' DEBUG '''

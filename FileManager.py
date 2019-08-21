@@ -1,6 +1,6 @@
 # TODO: Add support for csv/excel files
 
-from RaffleList import RaffleList
+import RaffleList
 from Ticket import Ticket
 
 def readTickets(file):
