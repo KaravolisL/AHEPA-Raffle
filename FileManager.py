@@ -13,3 +13,14 @@ def readTickets(file):
 
 def restoreProgress():
     pass
+
+def saveProgress(file = None):
+    if (file is None):
+        saveFile = open("saveFile.txt", "w")
+        for ticket in RaffleList.drawnList:
+            saveFile.write(str(ticket))
+        saveFile.close()
+    else:
+        # Hook to add save feature
+        pass
+        

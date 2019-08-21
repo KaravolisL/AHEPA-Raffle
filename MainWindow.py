@@ -5,6 +5,7 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 from MenuBar import MenuBar
+from FileManager import saveProgress
 
 def debugPrint(s = "Hello"):
     print(s)
@@ -62,3 +63,6 @@ class MainWindow(QMainWindow):
         ''' Override showMaximized method to show menuBar '''
         super().showMaximized()
         self.setMenuBar(self.createMenuBar())
+
+    def closeEvent(self, e):
+        saveProgress()

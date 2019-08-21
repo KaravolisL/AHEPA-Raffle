@@ -5,7 +5,7 @@ class Ticket:
         self.numberDrawn = 0
 
     def __str__(self):
-        return self.name
+        return str(self.number) + " " + self.name
 
     def setNumber(self, number):
         assert(number < 226 and number > 0)
