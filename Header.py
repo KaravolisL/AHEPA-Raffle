@@ -6,9 +6,16 @@ from PyQt5.QtMultimediaWidgets import *
 
 from Cell import Cell
 
+# TODO: Make into singleton
+# TODO: Add updateHeader method
+
 class Header(QHBoxLayout):
+    instance = None
     def __init__(self):
         super().__init__()
+
+        # Assert to enforce singleton class
+        assert(Header.instance is None)
         
         # Make cells
         self.ticketsRemainingCell = Cell("Tickets Remaining: 225", -3)
@@ -30,3 +37,9 @@ class Header(QHBoxLayout):
 
             # Add cells to the layout
             self.addWidget(cell)
+
+    def getInstance():
+        if (Header.instance is None):
+            return Header()
+        else:
+            return Header.instance

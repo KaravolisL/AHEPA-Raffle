@@ -5,7 +5,6 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 import RaffleList
-
 class Cell(QLabel):
     def __init__(self, text = None, id = 0, ticket = None):
         super().__init__()
@@ -51,7 +50,12 @@ class Cell(QLabel):
         ''' Method to handle a cell being clicked '''
         if (self.isVisible() and not self.isInHeader()):
             self.setVisible(False)
-            RaffleList.add(RaffleList.correlate(self))
+            RaffleList.add(self)
+            # TODO: Update header
+        if (self.id == -3): # Undo button
+            RaffleList.remove(self)
+            print(RaffleList)
+            # TODO: update header
 
     def setBackgroundColor(self, color):
         ''' DEBUG '''

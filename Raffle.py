@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     # Construct MainWindow and its contents
     window = MainWindow()
-    window.addLayout(Header())
+    window.addLayout(Header.getInstance())
     window.addLayout(MainTable())
 
     # Show the window maximized

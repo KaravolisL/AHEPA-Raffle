@@ -1,3 +1,4 @@
+from Cell import Cell
 
 ''' Contains the list of names read from "ticketNames.txt" on start up 
 or from a file provided by the user '''
@@ -10,15 +11,19 @@ def hasRaffleStarted():
     ''' Convenience method to determine whether drawnList is empty or not '''
     return len(drawnList) != 0
 
-def add(ticket):
+def add(input):
     ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
-    drawnList.append(ticket)
-    ticket.setNumberDrawn(len(drawnList))
+    if (type(input) is Cell):
+        input = correlate(input)
+    drawnList.append(input)
+    input.setNumberDrawn(len(drawnList))
 
-def remove(ticket):
+def remove(input):
     ''' Method to remove a ticket from the drawnList and update the ticket's number drawn field '''
-    drawnList.remove(ticket)
-    ticket.setNumberDrawn(0)
+    if (type(input) is Cell):
+        input = correlate(input)
+    input.setNumberDrawn(0)
+    return drawnList.remove(input)
 
 def correlate(cell):
     ''' Method to correlate a cell with it's ticket in the fullList '''
