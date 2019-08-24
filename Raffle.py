@@ -11,8 +11,7 @@ from datetime import datetime
 
 # Local libraries
 from MainWindow import MainWindow
-from Header import Header
-from MainTable import MainTable
+from Layouts import Header, MainTable
 from FileManager import *
 
 if __name__ == '__main__':
@@ -25,7 +24,7 @@ if __name__ == '__main__':
     # Construct MainWindow and its contents
     window = MainWindow()
     window.addLayout(Header.getInstance())
-    window.addLayout(MainTable())
+    window.addLayout(MainTable.getInstance())
 
     # Show the window maximized
     window.showMaximized()
