@@ -31,10 +31,20 @@ class Header(QHBoxLayout):
         for cell in self.cells:
             # Restricting size
             # TODO: Dynamic sizing
-            cell.setMaximumHeight(100)
+            cell.setFixedHeight(100)
 
-            # Add cells to the layout
-            self.addWidget(cell)
+        # Creating stack layout for text box and first cell
+        stackedLayout = QStackedLayout()
+        self.ticketsRemainingCell.setLayout(stackedLayout)
+        # stackedLayout.addWidget(self.ticketsRemainingCell)
+        # stackedLayout.addWidget(self.TextBox.getInstance())
+        stackedLayout.setStackingMode(QStackedLayout.StackAll)
+        # stackedLayout.setSizeConstraint(QLayout.SetFixedSize)
+        
+        # Add cells/layout to the parent layout
+        self.addLayout(stackedLayout)
+        self.addWidget(self.ticketsDrawnCell)
+        self.addWidget(self.lastTicketDrawnCell)
 
     def updateHeader(self, info):
         self.ticketsRemainingCell.setText("Tickets Remaining: " + str(info[0]))
@@ -45,6 +55,25 @@ class Header(QHBoxLayout):
         if (Header.instance is None):
             Header.instance = Header()
         return Header.instance
+
+    class TextBox(QLineEdit):
+        instance = None
+        def __init__(self):
+            super().__init__()
+
+            # Assert to enforce singleton class
+            assert(Header.instance == None), "Attempt to create another instance"
+
+            # Make background of lineEdit transparent
+            self.setStyleSheet("QLineEdit {background-color: transparent;}")
+
+            # TODO: Dynamic sizing
+            self.setMaximumHeight(100)
+
+        def getInstance():
+            if (Header.TextBox.instance is None):
+                Header.TextBox.instance = Header.TextBox()
+            return Header.TextBox.instance
 
 class MainTable(QGridLayout):
     instance = None
@@ -117,7 +146,7 @@ class Cell(QLabel):
     def mousePressEvent(self, QMouseEvent):
         ''' Method to handle a cell being clicked '''
         if (self.isVisible() and not self.isInHeader()):
-            self.setVisible(False)
+            self.setVisible(False) # TODO: Investigate difference between setVisible and setHidden
             RaffleList.add(self)
             Header.getInstance().updateHeader(RaffleList.getHeaderInfo())
         if (self.id == -3 and RaffleList.hasRaffleStarted()): # Undo button
