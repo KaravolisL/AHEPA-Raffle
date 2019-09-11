@@ -1,49 +1,49 @@
-from Layouts import Cell
-from Ticket import Ticket
-from Layouts import MainTable
-from GlobalConstants import NUMBER_OF_TICKETS
+# from Layouts import Cell
+# from Ticket import Ticket
+# from Layouts import MainTable
+# from GlobalConstants import NUMBER_OF_TICKETS
 
-''' Contains the list of names read from "ticketNames.txt" on start up 
-or from a file provided by the user '''
-fullList = []
+# ''' Contains the list of names read from "ticketNames.txt" on start up 
+# or from a file provided by the user '''
+# fullList = []
 
-''' Contains the tickets in the order they are drawn in the raffle '''
-drawnList = []
+# ''' Contains the tickets in the order they are drawn in the raffle '''
+# drawnList = []
 
-def hasRaffleStarted():
-    ''' Convenience method to determine whether drawnList is empty or not '''
-    return len(drawnList) != 0
+# def hasRaffleStarted():
+#     ''' Convenience method to determine whether drawnList is empty or not '''
+#     return len(drawnList) != 0
 
-def add(input):
-    ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
-    if (type(input) is Cell):
-        input = swap(input)
-    drawnList.append(input)
-    input.setNumberDrawn(len(drawnList))
+# def add(input):
+#     ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
+#     if (type(input) is Cell):
+#         input = swap(input)
+#     drawnList.append(input)
+#     input.setNumberDrawn(len(drawnList))
 
-def remove(input):
-    ''' Method to remove a ticket from the drawnList and update the ticket's number drawn field '''
-    if (type(input) is Cell):
-        input = swap(input)
-    input.setNumberDrawn(0)
-    return drawnList.pop(drawnList.index(input))
+# def remove(input):
+#     ''' Method to remove a ticket from the drawnList and update the ticket's number drawn field '''
+#     if (type(input) is Cell):
+#         input = swap(input)
+#     input.setNumberDrawn(0)
+#     return drawnList.pop(drawnList.index(input))
 
-def removeTail():
-    ''' Method to remove the tail of the drawnList. Removes a Ticket but swaps it to return a Cell '''
-    return swap(remove(drawnList[-1]))
-    # TODO: Add error checking 
+# def removeTail():
+#     ''' Method to remove the tail of the drawnList. Removes a Ticket but swaps it to return a Cell '''
+#     return swap(remove(drawnList[-1]))
+#     # TODO: Add error checking 
 
-def swap(input):
-    ''' Method to swap a cell to a ticket or vice versa with it's ticket in the fullList '''
-    if (type(input) is Cell):
-        return fullList[input.getId() - 1]
-    if (type(input) is Ticket):
-        return MainTable.getInstance().getCell(input.getNumber())
-    assert(False), "Invalid input type"
+# def swap(input):
+#     ''' Method to swap a cell to a ticket or vice versa with it's ticket in the fullList '''
+#     if (type(input) is Cell):
+#         return fullList[input.getId() - 1]
+#     if (type(input) is Ticket):
+#         return MainTable.getInstance().getCell(input.getNumber())
+#     assert(False), "Invalid input type"
 
-def getHeaderInfo():
-    ''' Method to return a list containing the three numbers for the header '''
-    ticketsRemaining = NUMBER_OF_TICKETS - len(drawnList)
-    ticketsDrawn = len(drawnList)
-    lastTicket = 0 if not hasRaffleStarted() else drawnList[-1].getNumber()
-    return [ticketsRemaining, ticketsDrawn, lastTicket]
+# def getHeaderInfo():
+#     ''' Method to return a list containing the three numbers for the header '''
+#     ticketsRemaining = NUMBER_OF_TICKETS - len(drawnList)
+#     ticketsDrawn = len(drawnList)
+#     lastTicket = 0 if not hasRaffleStarted() else drawnList[-1].getNumber()
+#     return [ticketsRemaining, ticketsDrawn, lastTicket]

@@ -19,8 +19,8 @@ class View(QWidget):
         self.mainTable = View.MainTable()
         self.header = View.Header()
         self.layout = QVBoxLayout()
-        self.layout.setSpacing(10)
-        self.layout.setContentsMargins(0,0,0,0)
+        self.layout.setSpacing(0)
+        self.layout.setContentsMargins(0, 0, 0, 0)
 
         # Add widgets to the layout
         self.layout.addWidget(self.header)
@@ -99,10 +99,8 @@ class View(QWidget):
             self.ticketsDrawnCell.setBackgroundColor("yellow")
             self.lastTicketDrawnCell.setBackgroundColor("green")
 
-            for cell in self.cells:
-                # Restricting size
-                # TODO: Dynamic sizing
-                cell.setFixedHeight(100)
+            # Restricting size
+            self.setMaxHeight(120)
 
             # Preferred size for horizontal and fixed maximum height
             self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
@@ -140,6 +138,11 @@ class View(QWidget):
                 View.Header.instance = View.Header()
             return View.Header.instance
 
+        def setMaxHeight(self, height):
+            for cell in self.cells:
+                cell.setFixedHeight(height)
+            self.textBox.setFixedHeight(height)
+
         class TextBox(QLineEdit):
             instance = None
             def __init__(self):
@@ -150,9 +153,6 @@ class View(QWidget):
 
                 # Make background of lineEdit transparent
                 self.setStyleSheet("QLineEdit {background-color: purple;}")
-
-                # TODO: Dynamic sizing
-                self.setMaximumHeight(100)
 
             def getInstance():
                 if (View.Header.TextBox.instance is None):

@@ -11,7 +11,6 @@ from datetime import datetime
 
 # Local libraries
 from MainWindow import MainWindow
-from Layouts import Header, MainTable
 from FileManager import *
 
 from Controller import Controller
