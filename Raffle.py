@@ -14,17 +14,22 @@ from MainWindow import MainWindow
 from Layouts import Header, MainTable
 from FileManager import *
 
+from Controller import Controller
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
 
     # Restore saved progress
-    readTickets("ticketNames.txt")
+    # readTickets("ticketNames.txt")
 
     # Construct MainWindow and its contents
     window = MainWindow()
-    window.addLayout(Header.getInstance())
-    window.addLayout(MainTable.getInstance())
+    # window.addLayout(Header.getInstance())
+    # window.addLayout(MainTable.getInstance())
+
+    # Initialize view and model
+    Controller.initialize()
 
     # Show the window maximized
     window.showMaximized()

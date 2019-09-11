@@ -6,6 +6,7 @@ from PyQt5.QtMultimediaWidgets import *
 
 from MenuBar import MenuBar
 from FileManager import saveProgress
+from View import View
 
 def debugPrint(s = "Hello"):
     print(s)
@@ -20,14 +21,14 @@ class MainWindow(QMainWindow):
         self.setMenuBar(self.createMenuBar())
 
         # Creating the central widget for the window
-        centralWidget = QWidget()
+        centralWidget = View()
         self.setCentralWidget(centralWidget)
 
         # Setting the layout
         self.layout = QVBoxLayout()
-        centralWidget.setLayout(self.layout)
-        self.layout.setSpacing(HEADER_MAINTABLE_SPACING)
-        centralWidget.layout().setContentsMargins(1,1,1,1)
+        # centralWidget.setLayout(self.layout)
+        # self.layout.setSpacing(HEADER_MAINTABLE_SPACING)
+        # centralWidget.layout().setContentsMargins(1,1,1,1)
 
         # Setting window icon
         self.setWindowIcon(QIcon('Icon.jpg'))
