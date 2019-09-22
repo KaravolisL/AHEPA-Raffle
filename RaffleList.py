@@ -1,18 +1,24 @@
-# from Layouts import Cell
-# from Ticket import Ticket
-# from Layouts import MainTable
-# from GlobalConstants import NUMBER_OF_TICKETS
+import Controller
+from Ticket import Ticket
+from GlobalConstants import NUMBER_OF_TICKETS
 
-# ''' Contains the list of names read from "ticketNames.txt" on start up 
-# or from a file provided by the user '''
-# fullList = []
+''' Contains the list of tickets read from "ticketNames.txt" on start up 
+or from a file provided by the user '''
+fullList = []
 
-# ''' Contains the tickets in the order they are drawn in the raffle '''
-# drawnList = []
+''' Contains the tickets in the order they are drawn in the raffle '''
+drawnList = []
 
-# def hasRaffleStarted():
-#     ''' Convenience method to determine whether drawnList is empty or not '''
-#     return len(drawnList) != 0
+def hasRaffleStarted():
+    ''' Convenience method to determine whether drawnList is empty or not '''
+    return len(drawnList) != 0
+
+def fullListInit(names):
+    ''' Clears fullList then fills it with Tickets made using names provided '''
+    fullList.clear()
+    for i in range(0, 225):
+        fullList.append(Ticket(names[i], i+1))
+    Controller.Controller.notifyTicketNameChange(fullList)
 
 # def add(input):
 #     ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
@@ -41,9 +47,9 @@
 #         return MainTable.getInstance().getCell(input.getNumber())
 #     assert(False), "Invalid input type"
 
-# def getHeaderInfo():
-#     ''' Method to return a list containing the three numbers for the header '''
-#     ticketsRemaining = NUMBER_OF_TICKETS - len(drawnList)
-#     ticketsDrawn = len(drawnList)
-#     lastTicket = 0 if not hasRaffleStarted() else drawnList[-1].getNumber()
-#     return [ticketsRemaining, ticketsDrawn, lastTicket]
+def getHeaderInfo():
+    ''' Method to return a list containing the three numbers for the header '''
+    ticketsRemaining = NUMBER_OF_TICKETS - len(drawnList)
+    ticketsDrawn = len(drawnList)
+    lastTicket = 0 if not hasRaffleStarted() else drawnList[-1].getNumber()
+    return [ticketsRemaining, ticketsDrawn, lastTicket]

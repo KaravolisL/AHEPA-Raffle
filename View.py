@@ -5,7 +5,8 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 from math import floor
-from Controller import Controller
+import Controller
+from MenuBar import MenuBar
 
 class View(QWidget):
     instance = None
@@ -29,6 +30,7 @@ class View(QWidget):
         # Set Layout to widget
         self.setLayout(self.layout)
 
+    @staticmethod
     def getInstance():
         if (View.instance is None):
             View.instance = View()
@@ -39,6 +41,16 @@ class View(QWidget):
 
     def updateHeader(self, info):
         pass
+
+    def updateCell(self, text, id):
+        # print(text)
+        # print(str(id))
+        # self.mainTable.getCell(2).setText('Herro')
+        # print(self.mainTable.getCell(id).getText())
+        self.mainTable.getCell(id).setText(text)
+
+    def getMainTable(self):
+        return self.mainTable
     
     class MainTable(QWidget):
         instance = None
@@ -48,8 +60,8 @@ class View(QWidget):
             # Assert to enforce singleton class
             assert(View.MainTable.instance == None), "Attempt to create another instance"
 
-            # Create 2D array of blank cells, cells will be initialized by Controller.initialize
-            self.cells = [[View.Cell() for i in range(0, 15)] for j in range(1, 226, 15)]
+            # Create 2D array of blank cells, cells will be initialized by Controller initialize
+            self.cells = [[View.Cell(id = j+i) for i in range(0, 15)] for j in range(1, 226, 15)]
 
             # Create and set layout
             self.layout = QGridLayout()
@@ -67,6 +79,7 @@ class View(QWidget):
             # Set spacing
             self.layout.setSpacing(1)
 
+        @staticmethod
         def getInstance():
             if (View.MainTable.instance is None):
                 View.MainTable.instance = View.MainTable()
@@ -133,6 +146,7 @@ class View(QWidget):
             self.layout.addWidget(middleWrapper)
             self.layout.addWidget(rightWrapper)
 
+        @staticmethod
         def getInstance():
             if (View.Header.instance is None):
                 View.Header.instance = View.Header()
@@ -152,21 +166,23 @@ class View(QWidget):
                 assert(View.Header.TextBox.instance == None), "Attempt to create another instance"
 
                 # Make background of lineEdit transparent
-                self.setStyleSheet("QLineEdit {background-color: purple;}")
+                self.setStyleSheet("QLineEdit {background-color: purple; color: transparent;}")
 
+            @staticmethod
             def getInstance():
                 if (View.Header.TextBox.instance is None):
                     View.Header.TextBox.instance = View.Header.TextBox()
                 return View.Header.TextBox.instance
 
     class Cell(QLabel):
-        def __init__(self, text = 'None', id = 0):
+        def __init__(self, text = '', id = 0):
             super().__init__()
 
             # Set text and id
             self.text = text
             self.id = id
-            self.setText(self.text)
+            self.test = 0
+            self.setText(text)
 
             # Set sizing
             self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
@@ -174,8 +190,12 @@ class View(QWidget):
             self.setAlignment(Qt.AlignCenter)
             self.setWordWrap(True)
 
+            # Members for background and text color
+            self.backgroundColor = 'red'
+            self.textColor = 'black'
+
             # DEBUG
-            self.setStyleSheet("QLabel {background-color: red;}")
+            self.setBackgroundColor('red')
         
         def setId(self, id):
             self.id = id
@@ -185,10 +205,12 @@ class View(QWidget):
 
         def setText(self, text):
             ''' Override setText method to include id for main table cells '''
+            self.text = text
             if (self.isInHeader()):
                 super().setText(text)
             else:
-                super().setText(str(self.id) + "\n" + self.text)
+                super().setText(str(self.id) + "\n" + str(text))
+            return self.getText()
 
         def getText(self):
             return self.text
@@ -198,12 +220,73 @@ class View(QWidget):
 
         def mousePressEvent(self, QMouseEvent):
             ''' Method to handle a cell being clicked '''
-            Controller.notifyCellRemoved(self.id)
+            if (not self.isInHeader()):
+                Controller.Controller.notifyCellRemoved(self)
+                self.setBackgroundColor('transparent')
+                self.setTextColor('transparent')
 
         def setBackgroundColor(self, color):
-            ''' DEBUG '''
-            self.setStyleSheet("QLabel {background-color: " + str(color) + ";}")
+            ''' Method to set background color of cell '''
+            self.backgroundColor = str(color)
+            self.setStyleSheet("QLabel {background-color: " + self.backgroundColor + ";color: " + self.textColor + ";}")
+
+        def setTextColor(self, color):
+            ''' Method to set text color of cell '''
+            self.textColor = str(color)
+            self.setStyleSheet("QLabel {background-color: " + self.backgroundColor + ";color: " + self.textColor + ";}")
+
+        def setVisible(self, bool):
+            ''' Override method so visibility correlates to transparency '''
+            if (bool):
+                # Implement to complete undo button feature
+                pass
+            else:
+                self.setBackgroundColor('transparent')
+                self.setTextColor('transparent')
 
         def isInHeader(self):
             ''' Convenience method to distinguish header cells from main table cells '''
             return self.id < 0
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+
+        # Setting up the menu bar
+        self.setMenuBar(self.createMenuBar())
+
+        # Creating the central widget for the window
+        centralWidget = View()
+        self.setCentralWidget(centralWidget)
+
+        # Setting window icon
+        self.setWindowIcon(QIcon('Icon.jpg'))
+
+    def createMenuBar(self):
+        ''' Creates a MenuBar instance and sets the actions '''
+        menuBar = MenuBar()
+        menuBar.setResponse(menuBar.viewFullScreenAction, self.showFullScreen)
+        menuBar.setResponse(menuBar.viewMaximizedAction, self.showMaximized)
+        # TODO: Set remaining responses
+        return menuBar
+
+    def keyPressEvent(self, e):
+        ''' Override keyPressEvent to handle Esc pressed '''
+        if e.key() == Qt.Key_Escape:
+            self.showMaximized()
+        # TODO: Investigate blink upon full screen exit
+
+    def showFullScreen(self):
+        ''' Override showFullScreen method to hide menuBar '''
+        super().showFullScreen()
+        self.setMenuBar(None)
+
+    def showMaximized(self):
+        ''' Override showMaximized method to show menuBar '''
+        super().showMaximized()
+        self.setMenuBar(self.createMenuBar())
+
+    def closeEvent(self, e):
+        # TODO: Go through Controller
+        # saveProgress()
+        pass

@@ -10,10 +10,8 @@ import sys
 from datetime import datetime
 
 # Local libraries
-from MainWindow import MainWindow
-from FileManager import *
-
-from Controller import Controller
+import View
+import Controller
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -23,14 +21,16 @@ if __name__ == '__main__':
     # readTickets("ticketNames.txt")
 
     # Construct MainWindow and its contents
-    window = MainWindow()
-    # window.addLayout(Header.getInstance())
-    # window.addLayout(MainTable.getInstance())
+    window = View.MainWindow()
 
     # Initialize view and model
-    Controller.initialize()
+    Controller.Controller.initialize()
+
+    # Controller.Controller.test('test')
 
     # Show the window maximized
     window.showMaximized()
+
+    # View.View.getInstance().mainTable.getInstance().getCell(2).setText('fsdfsf')
 
     app.exec_()
