@@ -47,14 +47,6 @@ class View(QWidget):
         pass
 
     def updateCell(self, text, id):
-        print(text)
-        # print(str(id))
-        # print(self.mainTable.getCell(2))
-        # self.mainTable.cells[0][0].setText('fsdfs')
-        # print(cell.text)
-        # cell.setBackgroundColor('blue')
-        # print(self.mainTable.getCell(id).getText())
-        # self.mainTable.getCell(id).setText(text)
         self.getMainTable().updateCell(text, id)
 
     def getMainTable(self):
@@ -100,7 +92,6 @@ class View(QWidget):
             return self.cells[floor((id-1)/15)][(id-1)%15]
 
         def updateCell(self, text, id):
-            print('setting text of cell ' + str(id) + ' with text ' + text)
             self.getCell(id).setText(text)
 
     class Header(QWidget):
