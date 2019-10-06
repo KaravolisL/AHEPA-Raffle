@@ -20,6 +20,17 @@ def fullListInit(names):
         fullList.append(Ticket(names[i], i+1))
     Controller.Controller.notifyTicketNameChange(fullList)
 
+def getLastTicketDrawn():
+    ''' Method to get the last ticket drawn '''
+    return None if not hasRaffleStarted() else drawnList[-1]
+
+def appendTicket(cellNumber):
+    ''' Method to add a ticket from the fullList to the end of the drawnList given it's number '''
+    drawnList.append(fullList[cellNumber-1])
+
+def pop():
+    drawnList.pop()
+
 # def add(input):
 #     ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
 #     if (type(input) is Cell):
@@ -51,5 +62,5 @@ def getHeaderInfo():
     ''' Method to return a list containing the three numbers for the header '''
     ticketsRemaining = NUMBER_OF_TICKETS - len(drawnList)
     ticketsDrawn = len(drawnList)
-    lastTicket = 0 if not hasRaffleStarted() else drawnList[-1].getNumber()
+    lastTicket = 0 if getLastTicketDrawn() is None else getLastTicketDrawn().getNumber()
     return [ticketsRemaining, ticketsDrawn, lastTicket]

@@ -16,6 +16,9 @@ class View(QWidget):
         # Assert to enforce singleton class
         assert(View.instance == None), "Attempt to create another instance"
 
+        # Define instance variable
+        View.instance = self
+
         # Create subwidgets and layout
         self.mainTable = View.MainTable()
         self.header = View.Header()
@@ -36,18 +39,23 @@ class View(QWidget):
             View.instance = View()
         return View.instance
 
-    def setCellVisibility(self, id):
-        pass
+    def setCellTransparent(self, id, bool):
+        print(self.getMainTable().getCell(id))
+        self.getMainTable().getCell(id).setTransparent(bool)
 
     def updateHeader(self, info):
         pass
 
     def updateCell(self, text, id):
-        # print(text)
+        print(text)
         # print(str(id))
-        # self.mainTable.getCell(2).setText('Herro')
+        # print(self.mainTable.getCell(2))
+        # self.mainTable.cells[0][0].setText('fsdfs')
+        # print(cell.text)
+        # cell.setBackgroundColor('blue')
         # print(self.mainTable.getCell(id).getText())
-        self.mainTable.getCell(id).setText(text)
+        # self.mainTable.getCell(id).setText(text)
+        self.getMainTable().updateCell(text, id)
 
     def getMainTable(self):
         return self.mainTable
@@ -59,6 +67,9 @@ class View(QWidget):
 
             # Assert to enforce singleton class
             assert(View.MainTable.instance == None), "Attempt to create another instance"
+
+            # Define instance variable
+            View.MainTable.instance = self
 
             # Create 2D array of blank cells, cells will be initialized by Controller initialize
             self.cells = [[View.Cell(id = j+i) for i in range(0, 15)] for j in range(1, 226, 15)]
@@ -88,6 +99,10 @@ class View(QWidget):
         def getCell(self, id):
             return self.cells[floor((id-1)/15)][(id-1)%15]
 
+        def updateCell(self, text, id):
+            print('setting text of cell ' + str(id) + ' with text ' + text)
+            self.getCell(id).setText(text)
+
     class Header(QWidget):
         instance = None
         def __init__(self):
@@ -95,6 +110,9 @@ class View(QWidget):
 
             # Assert to enforce singleton class
             assert(View.Header.instance == None), "Attempt to create another instance"
+
+            # Define singleton instance
+            View.Header.instance = self
 
             # Make cells
             self.ticketsRemainingCell = View.Cell("Tickets Remaining: 225", -1)
@@ -175,7 +193,7 @@ class View(QWidget):
                 return View.Header.TextBox.instance
 
     class Cell(QLabel):
-        def __init__(self, text = '', id = 0):
+        def __init__(self, text = None, id = 0):
             super().__init__()
 
             # Set text and id
@@ -222,35 +240,44 @@ class View(QWidget):
             ''' Method to handle a cell being clicked '''
             if (not self.isInHeader()):
                 Controller.Controller.notifyCellRemoved(self)
-                self.setBackgroundColor('transparent')
-                self.setTextColor('transparent')
+                self.setTransparent(True)
+            elif (self.getId() == -3):
+                # Implement undo button feature here
+                print('Undo button clicked')
+                Controller.Controller.notifyUndoClicked()
 
-        def setBackgroundColor(self, color):
+        def setBackgroundColor(self, color = 'red'): # Update with raffle background color
             ''' Method to set background color of cell '''
             self.backgroundColor = str(color)
             self.setStyleSheet("QLabel {background-color: " + self.backgroundColor + ";color: " + self.textColor + ";}")
 
-        def setTextColor(self, color):
+        def setTextColor(self, color = 'black'): # Update with raffle text color
             ''' Method to set text color of cell '''
             self.textColor = str(color)
             self.setStyleSheet("QLabel {background-color: " + self.backgroundColor + ";color: " + self.textColor + ";}")
 
-        def setVisible(self, bool):
-            ''' Override method so visibility correlates to transparency '''
+        def setTransparent(self, bool):
+            ''' Method to make cells transparent or not '''
             if (bool):
-                # Implement to complete undo button feature
-                pass
+                self.setStyleSheet("QLabel {background-color: transparent;color: transparent;}")
             else:
-                self.setBackgroundColor('transparent')
-                self.setTextColor('transparent')
+                self.setTextColor()
+                self.setBackgroundColor()
 
         def isInHeader(self):
             ''' Convenience method to distinguish header cells from main table cells '''
             return self.id < 0
 
 class MainWindow(QMainWindow):
+    instance = None
     def __init__(self):
         super(MainWindow, self).__init__()
+
+        # Assert to enforce singleton class
+        assert(MainWindow.instance == None), "Attempt to create another instance"
+
+        # Define instance variable
+        MainWindow.instance = self
 
         # Setting up the menu bar
         self.setMenuBar(self.createMenuBar())
@@ -274,7 +301,6 @@ class MainWindow(QMainWindow):
         ''' Override keyPressEvent to handle Esc pressed '''
         if e.key() == Qt.Key_Escape:
             self.showMaximized()
-        # TODO: Investigate blink upon full screen exit
 
     def showFullScreen(self):
         ''' Override showFullScreen method to hide menuBar '''

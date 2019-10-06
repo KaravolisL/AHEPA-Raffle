@@ -11,6 +11,9 @@ import View
 class Controller:
     @staticmethod
     def notifyCellRemoved(cell):
+        RaffleList.appendTicket(cell.getId())
+
+        # Test shit
         print("Cell #" + str(cell.getId()) + " has been removed.\n")
         cell.setText("clicked")
 
@@ -26,13 +29,12 @@ class Controller:
 
     @staticmethod
     def notifyTicketNameChange(tickets):
-        # for ticket in tickets:
-            # View.View.getInstance().updateCell(ticket.getName(), ticket.getNumber())
-        View.View.getInstance().updateCell('dfasdfas', 11)
-        View.View.getInstance().getMainTable().getCell(-1).setText('made it here')
-        print('Here')
-        print(View.View.getInstance().getMainTable().getCell(11).text)
+        for ticket in tickets:
+            View.View.getInstance().updateCell(ticket.getName(), ticket.getNumber())
 
-    def test(text):
-        View.View.getInstance().updateCell(text, 0)
-        View.View.getInstance().mainTable.getCell(0).update()
+    @staticmethod
+    def notifyUndoClicked():
+        # Add update header
+        lastTicketDrawn = RaffleList.getLastTicketDrawn()
+        View.View.getInstance().setCellTransparent(lastTicketDrawn.getNumber(), False)
+        RaffleList.pop()
