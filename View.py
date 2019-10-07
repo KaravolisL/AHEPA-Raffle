@@ -40,17 +40,22 @@ class View(QWidget):
         return View.instance
 
     def setCellTransparent(self, id, bool):
-        print(self.getMainTable().getCell(id))
+        ''' Sets a given cell transparent or visible '''
         self.getMainTable().getCell(id).setTransparent(bool)
 
     def updateHeader(self, info):
-        pass
+        ''' Updates header given fields in info '''
+        self.getHeader().updateHeader(info)
 
     def updateCell(self, text, id):
+        ''' Updates a given cell using the given new text '''
         self.getMainTable().updateCell(text, id)
 
     def getMainTable(self):
         return self.mainTable
+
+    def getHeader(self):
+        return self.header
     
     class MainTable(QWidget):
         instance = None
@@ -96,6 +101,7 @@ class View(QWidget):
 
     class Header(QWidget):
         instance = None
+        HEADER_TEXTS = ['Tickets Remaining: ', 'Tickets Drawn: ', 'Tickets Drawn: ']
         def __init__(self):
             super().__init__()
 
@@ -165,6 +171,11 @@ class View(QWidget):
             for cell in self.cells:
                 cell.setFixedHeight(height)
             self.textBox.setFixedHeight(height)
+
+        def updateHeader(self, info):
+            ''' Updates information in the header '''
+            for cell, text, num in zip(self.cells, self.HEADER_TEXTS, info):
+                cell.setText(str(text) + str(num))
 
         class TextBox(QLineEdit):
             instance = None

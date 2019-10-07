@@ -11,11 +11,11 @@ import View
 class Controller:
     @staticmethod
     def notifyCellRemoved(cell):
+        # Add removed cell to RaffleList
         RaffleList.appendTicket(cell.getId())
 
-        # Test shit
-        print("Cell #" + str(cell.getId()) + " has been removed.\n")
-        cell.setText("clicked")
+        # Update header
+        View.View.getInstance().updateHeader(RaffleList.getHeaderInfo())
 
     @staticmethod
     def initialize():
@@ -34,7 +34,13 @@ class Controller:
 
     @staticmethod
     def notifyUndoClicked():
-        # Add update header
+        # Get last ticket drawn
         lastTicketDrawn = RaffleList.getLastTicketDrawn()
-        View.View.getInstance().setCellTransparent(lastTicketDrawn.getNumber(), False)
-        RaffleList.pop()
+
+        # Replace ticket if raffle has started
+        if (lastTicketDrawn != None):
+            View.View.getInstance().setCellTransparent(lastTicketDrawn.getNumber(), False)
+            RaffleList.pop()
+
+            # Update header
+            View.View.getInstance().updateHeader(RaffleList.getHeaderInfo())
