@@ -7,6 +7,7 @@ from PyQt5.QtMultimediaWidgets import *
 from math import floor
 import Controller
 from MenuBar import MenuBar
+from Validator import Validator
 
 class View(QWidget):
     instance = None
@@ -188,11 +189,31 @@ class View(QWidget):
                 # Make background of lineEdit transparent
                 self.setStyleSheet("QLineEdit {background-color: purple; color: transparent;}")
 
+                # Set echo mode
+                # self.setEchoMode(QLineEdit.NoEcho)
+
+                # Set max length
+                self.setMaxLength(3)
+                self.setReadOnly(True)
+
             @staticmethod
             def getInstance():
                 if (View.Header.TextBox.instance is None):
                     View.Header.TextBox.instance = View.Header.TextBox()
                 return View.Header.TextBox.instance
+
+            def keyPressEvent(self, e):
+                self.setReadOnly(False)
+                if e.key() != Qt.Key_Return:
+                    super().keyPressEvent(e)
+                else:
+                    validator = Validator()
+                    if validator.validate(self.text()):
+                        cellToRemove = View.getInstance().getMainTable().getCell(int(self.text()))
+                        Controller.Controller.notifyCellRemoved(cellToRemove)
+                        cellToRemove.setTransparent(True)
+                    self.clear()
+                self.setReadOnly(True)
 
     class Cell(QLabel):
         def __init__(self, text = None, id = 0):

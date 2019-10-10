@@ -11,6 +11,10 @@ import View
 class Controller:
     @staticmethod
     def notifyCellRemoved(cell):
+        # Check if cell has already been removed
+        if (not RaffleList.hasTicketBeenPulled(cell.getId())):
+            return
+        
         # Add removed cell to RaffleList
         RaffleList.appendTicket(cell.getId())
 

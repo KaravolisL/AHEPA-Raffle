@@ -29,7 +29,13 @@ def appendTicket(cellNumber):
     drawnList.append(fullList[cellNumber-1])
 
 def pop():
+    ''' Pops the last ticket off of the drawnList '''
     drawnList.pop()
+
+def hasTicketBeenPulled(cellNumber):
+    ''' Checks if a ticket is in the drawnList '''
+    return not fullList[cellNumber-1] in drawnList
+
 
 # def add(input):
 #     ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
