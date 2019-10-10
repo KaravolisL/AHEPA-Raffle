@@ -2,10 +2,15 @@
 
 def readNames(file):
     names = []
-    namesFile = open(file, 'r')
-    for i in range(0, 225):
-        names.append(namesFile.readline())
-    namesFile.close()
+    try:
+        namesFile = open(file, 'r')
+        for i in range(0, 225):
+            names.append(namesFile.readline())
+        namesFile.close()
+    except:
+        print('ticketNames.txt not found')
+        for i in range(0, 225):
+            names.append('')
     return names
 
 # def readTickets(file):

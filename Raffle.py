@@ -23,14 +23,10 @@ if __name__ == '__main__':
     # Construct MainWindow and its contents
     window = View.MainWindow()
 
-    # Initialize view and model
-    Controller.Controller.initialize()
-
-    # Controller.Controller.test('test')
-
     # Show the window maximized
     window.showMaximized()
 
-    # View.View.getInstance().mainTable.getInstance().getCell(2).setText('fsdfsf')
+    # Initialize view and model
+    Controller.Controller.initialize()
 
     app.exec_()
