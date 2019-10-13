@@ -312,6 +312,14 @@ class MainWindow(QMainWindow):
         # Setting window icon
         self.setWindowIcon(QIcon('Icon.jpg'))
 
+        self.popup = None
+
+    @staticmethod
+    def getInstance():
+        if (MainWindow.instance is None):
+            MainWindow.instance = MainWindow()
+        return MainWindow.instance
+
     def createMenuBar(self):
         ''' Creates a MenuBar instance and sets the actions '''
         menuBar = MenuBar()
