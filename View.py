@@ -102,7 +102,7 @@ class View(QWidget):
 
     class Header(QWidget):
         instance = None
-        HEADER_TEXTS = ['Tickets Remaining: ', 'Tickets Drawn: ', 'Tickets Drawn: ']
+        HEADER_TEXTS = ['Tickets Remaining: ', 'Tickets Drawn: ', 'Last Ticket Drawn: ']
         def __init__(self):
             super().__init__()
 
@@ -210,7 +210,7 @@ class View(QWidget):
                     validator = Validator()
                     if validator.validate(self.text()):
                         cellToRemove = View.getInstance().getMainTable().getCell(int(self.text()))
-                        Controller.Controller.notifyCellRemoved(cellToRemove)
+                        Controller.Controller.notifyCellRemoved(cellToRemove.getId())
                         cellToRemove.setTransparent(True)
                     self.clear()
                 self.setReadOnly(True)
@@ -262,7 +262,7 @@ class View(QWidget):
         def mousePressEvent(self, QMouseEvent):
             ''' Method to handle a cell being clicked '''
             if (not self.isInHeader()):
-                Controller.Controller.notifyCellRemoved(self)
+                Controller.Controller.notifyCellRemoved(self.getId())
                 self.setTransparent(True)
             elif (self.getId() == -3):
                 # Implement undo button feature here

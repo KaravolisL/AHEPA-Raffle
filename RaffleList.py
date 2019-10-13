@@ -29,40 +29,16 @@ def appendTicket(cellNumber):
     drawnList.append(fullList[cellNumber-1])
 
 def pop():
-    ''' Pops the last ticket off of the drawnList '''
-    drawnList.pop()
+    ''' 
+    Pops the last ticket off of the drawnList 
+    :returns: Last ticket drawn
+    :rtype: Ticket
+    '''
+    return drawnList.pop() if hasRaffleStarted() else None
 
 def hasTicketBeenPulled(cellNumber):
     ''' Checks if a ticket is in the drawnList '''
     return not fullList[cellNumber-1] in drawnList
-
-
-# def add(input):
-#     ''' Method to add a ticket to the drawnList and update the ticket's number drawn field '''
-#     if (type(input) is Cell):
-#         input = swap(input)
-#     drawnList.append(input)
-#     input.setNumberDrawn(len(drawnList))
-
-# def remove(input):
-#     ''' Method to remove a ticket from the drawnList and update the ticket's number drawn field '''
-#     if (type(input) is Cell):
-#         input = swap(input)
-#     input.setNumberDrawn(0)
-#     return drawnList.pop(drawnList.index(input))
-
-# def removeTail():
-#     ''' Method to remove the tail of the drawnList. Removes a Ticket but swaps it to return a Cell '''
-#     return swap(remove(drawnList[-1]))
-#     # TODO: Add error checking 
-
-# def swap(input):
-#     ''' Method to swap a cell to a ticket or vice versa with it's ticket in the fullList '''
-#     if (type(input) is Cell):
-#         return fullList[input.getId() - 1]
-#     if (type(input) is Ticket):
-#         return MainTable.getInstance().getCell(input.getNumber())
-#     assert(False), "Invalid input type"
 
 def getHeaderInfo():
     ''' Method to return a list containing the three numbers for the header '''

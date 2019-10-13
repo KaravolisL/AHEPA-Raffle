@@ -25,12 +25,11 @@ if __name__ == '__main__':
 
     # Initialize view and model
     Controller.Controller.initialize()
-
-    # Controller.Controller.test('test')
-
+    
     # Show the window maximized
     window.showMaximized()
 
-    # View.View.getInstance().mainTable.getInstance().getCell(2).setText('fsdfsf')
-
     app.exec_()
+
+    print("Raffle exited. Saving progress...")
+    Controller.Controller.saveProgress()
