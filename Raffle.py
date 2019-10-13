@@ -23,10 +23,13 @@ if __name__ == '__main__':
     # Construct MainWindow and its contents
     window = View.MainWindow()
 
+    # Initialize view and model
+    Controller.Controller.initialize()
+    
     # Show the window maximized
     window.showMaximized()
 
-    # Initialize view and model
-    Controller.Controller.initialize()
-
     app.exec_()
+
+    print("Raffle exited. Saving progress...")
+    Controller.Controller.saveProgress()
