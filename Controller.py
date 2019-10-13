@@ -10,6 +10,30 @@ import View
 
 class Controller:
     @staticmethod
+    def initialize():
+        """
+        This method will be called once upon startup of the program. It has the following responsibilites:
+        1. Read names from ticketNames.txt
+        2. Initialize the fullList of tickets in RaffleList
+        3. RestoreProgress from the saveFile
+        4. Create the mainWindow and set it to maximized
+        """
+        print("Raffle initializing...")
+        
+        # Read names from ticketNames file
+        names = FileManager.readTicketNames("ticketNames.txt")
+
+        # Initialize the fullList using the names. Controller will be notified of name change
+        RaffleList.fullListInit(names)
+
+        # Restore progress using save file
+        Controller.restoreProgress("saveFile.txt")
+
+        # Construct MainWindow and its contents
+        window = View.MainWindow()
+        window.showMaximized()
+
+    @staticmethod
     def notifyCellRemoved(id):
         """
         This method is called to handle the model's actions when a cell is removed. It's 
@@ -26,25 +50,6 @@ class Controller:
 
         # Update header
         View.View.getInstance().updateHeader(RaffleList.getHeaderInfo())
-
-    @staticmethod
-    def initialize():
-        """
-        This method will be called once upon startup of the program. It has the following responsibilites:
-        1. Read names from ticketNames.txt
-        2. Initialize the fullList of tickets in RaffleList
-        3. RestoreProgress from the saveFile
-        """
-        print("Raffle initializing...")
-        
-        # Read names from ticketNames file
-        names = FileManager.readTicketNames("ticketNames.txt")
-
-        # Initialize the fullList using the names. Controller will be notified of name change
-        RaffleList.fullListInit(names)
-
-        # Restore progress using save file
-        Controller.restoreProgress("saveFile.txt")
 
     @staticmethod
     def notifyTicketNameChange(tickets):
@@ -91,3 +96,12 @@ class Controller:
         for id in removedTicketIds:
             Controller.notifyCellRemoved(id)
             View.View.getInstance().setCellTransparent(id, True)
+
+    @staticmethod
+    def restartRaffle():
+        """
+        This method is called when the user clicks the restart option. It replaces all the tickets drawn 
+        and resets the header.
+        """
+        while (RaffleList.hasRaffleStarted() is not False):
+            Controller.notifyUndoClicked()

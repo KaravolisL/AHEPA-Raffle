@@ -190,7 +190,7 @@ class View(QWidget):
                 self.setStyleSheet("QLineEdit {background-color: purple; color: transparent;}")
 
                 # Set echo mode
-                # self.setEchoMode(QLineEdit.NoEcho)
+                self.setEchoMode(QLineEdit.NoEcho)
 
                 # Set max length
                 self.setMaxLength(3)
@@ -306,7 +306,7 @@ class MainWindow(QMainWindow):
         self.setMenuBar(self.createMenuBar())
 
         # Creating the central widget for the window
-        centralWidget = View()
+        centralWidget = View.getInstance()
         self.setCentralWidget(centralWidget)
 
         # Setting window icon
@@ -317,6 +317,7 @@ class MainWindow(QMainWindow):
         menuBar = MenuBar()
         menuBar.setResponse(menuBar.viewFullScreenAction, self.showFullScreen)
         menuBar.setResponse(menuBar.viewMaximizedAction, self.showMaximized)
+        menuBar.setResponse(menuBar.fileRestartAction, Controller.Controller.restartRaffle)
         # TODO: Set remaining responses
         return menuBar
 
@@ -336,6 +337,8 @@ class MainWindow(QMainWindow):
         self.setMenuBar(self.createMenuBar())
 
     def closeEvent(self, e):
-        # TODO: Go through Controller
-        # saveProgress()
-        pass
+        """
+        Occurs when the main window is closed. Calls the Controller's save progress method.
+        """
+        print("Raffle exited. Saving progress...")
+        Controller.Controller.saveProgress()
