@@ -4,14 +4,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> d4a4fce54bcdaa62a7af68e2dac182c83b8d5e1f
 class PopupBase(QDialog):
     def __init__(self):
         super().__init__()
