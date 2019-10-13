@@ -8,6 +8,8 @@ import FileManager
 import RaffleList
 import View
 
+from Windows.PopupBase import PopupBase
+
 class Controller:
     @staticmethod
     def initialize():
@@ -103,5 +105,6 @@ class Controller:
         This method is called when the user clicks the restart option. It replaces all the tickets drawn 
         and resets the header.
         """
+        View.MainWindow.getInstance().popup = PopupBase()
         while (RaffleList.hasRaffleStarted() is not False):
             Controller.notifyUndoClicked()
