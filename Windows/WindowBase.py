@@ -4,24 +4,19 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
-class PopupBase(QDialog):
+class WindowBase(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Test')
-        self.setGeometry(100,100,100,100)
+
+        self.setSize()
 
         # Create and set layout
         self.layout = QGridLayout()
         self.setLayout(self.layout)
 
-        self.layout.addWidget(QLabel('TestTestTest'), 0 ,0)
-        self.layout.setColumnStretch(0, 2)
-        self.layout.addWidget(QPushButton('Confirm'), 1, 0)
-        self.layout.addWidget(QPushButton('Cancel'), 1, 1)
+        self.makeLayout()
 
         self.center()
-        self.show()
-
 
     def center(self):
         """
@@ -32,3 +27,16 @@ class PopupBase(QDialog):
         centerPoint = QApplication.desktop().screenGeometry(screen).center()
         frameGm.moveCenter(centerPoint)
         self.move(frameGm.topLeft())
+
+    def setSize(self):
+        """
+        Sizes window to be half of screen width and height
+        """
+        screen = QApplication.primaryScreen()
+        size = screen.size()
+        screenWidth = size.width()
+        screenHeight = size.height()
+        self.setGeometry(0, 0, screenWidth/2, screenHeight/2)
+
+    def makeLayout(self):
+        raise NotImplementedError

@@ -1,16 +1,4 @@
-
-from View import setPopup
-from Windows.PopupBase import PopupBase
-
-class WindowManager():
-    def __init__(self):
-        pass
-    
-    def makeWindow(self, windowType):
-        window = WindowRepository.getInstance().getWindow(windowType)
-        setPopup(window)
-
-
+from Windows.RestartWarning import RestartWarning
 
 class WindowRepository():
     instance = None
@@ -23,7 +11,7 @@ class WindowRepository():
         self.instance = self
 
         self.windowList = {
-            'restartWarning': PopupBase(),
+            'restartWarning': RestartWarning(),
         }
 
     @classmethod
