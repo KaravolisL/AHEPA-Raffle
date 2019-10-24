@@ -7,9 +7,13 @@ from PyQt5.QtMultimediaWidgets import *
 from Windows.WindowBase import WindowBase
 
 class AlertBase(WindowBase):
-    def __init__(self):
+    def __init__(self, text):
         super().__init__()
+        self.setWindowTitle('Warning!!')
         self.setWindowModality(Qt.ApplicationModal)
+        self.text = text
+        self.makeLayout()
+        self.setWindowFlags(Qt.WindowCloseButtonHint)
 
     def setSize(self):
         """
@@ -22,18 +26,31 @@ class AlertBase(WindowBase):
         self.setGeometry(0, 0, screenWidth/6, screenHeight/7)
 
     def makeLayout(self):
+        """
+        Creates the two buttons and label using text defined by subclass
+        """
         self.confirmButton = QPushButton('Confirm')
         self.confirmButton.clicked.connect(self.confirmationEvent)
-        self.layout.addWidget(QLabel('TestTestTest'), 0 ,0)
-        self.layout.setColumnStretch(0, 2)
+
+        self.cancelButton = QPushButton('Cancel')
+        self.cancelButton.clicked.connect(self.cancelEvent)
+
+        self.label = QLabel(self.text)
+        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setFont(QFont("Arial", 11))
+
+        self.layout.addWidget(self.label, 0 ,0, 1, 2)
         self.layout.addWidget(self.confirmButton, 1, 0)
-        self.layout.addWidget(QPushButton('Cancel'), 1, 1)
+        self.layout.addWidget(self.cancelButton, 1, 1)
 
     def confirmationEvent(self):
         raise NotImplementedError
 
-    def rejectEvent(self):
-        raise NotImplementedError
+    def cancelEvent(self):
+        """
+        Nothing will be done if cancel button is hit
+        """
+        self.close()
 
     def closeEvent(self, e):
         raise NotImplementedError

@@ -8,15 +8,16 @@ class WindowBase(QWidget):
     def __init__(self):
         super().__init__()
 
+        # Set size and center
         self.setSize()
+        self.center()
 
         # Create and set layout
         self.layout = QGridLayout()
         self.setLayout(self.layout)
 
-        self.makeLayout()
-
-        self.center()
+        # Setting window icon
+        self.setWindowIcon(QIcon('Icon.jpg'))
 
     def center(self):
         """
