@@ -1,3 +1,5 @@
+# TODO: Modularize this file
+
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -8,7 +10,7 @@ from math import floor
 import Controller
 from MenuBar import MenuBar
 from Validator import Validator
-
+from Windows.WindowRepository import WindowRepository
 class View(QWidget):
     instance = None
     def __init__(self):
@@ -190,7 +192,7 @@ class View(QWidget):
                 self.setStyleSheet("QLineEdit {background-color: purple; color: transparent;}")
 
                 # Set echo mode
-                # self.setEchoMode(QLineEdit.NoEcho)
+                self.setEchoMode(QLineEdit.NoEcho)
 
                 # Set max length
                 self.setMaxLength(3)
@@ -210,7 +212,7 @@ class View(QWidget):
                     validator = Validator()
                     if validator.validate(self.text()):
                         cellToRemove = View.getInstance().getMainTable().getCell(int(self.text()))
-                        Controller.Controller.notifyCellRemoved(cellToRemove.getId())
+                        Controller.notifyCellRemoved(cellToRemove.getId())
                         cellToRemove.setTransparent(True)
                     self.clear()
                 self.setReadOnly(True)
@@ -262,12 +264,12 @@ class View(QWidget):
         def mousePressEvent(self, QMouseEvent):
             ''' Method to handle a cell being clicked '''
             if (not self.isInHeader()):
-                Controller.Controller.notifyCellRemoved(self.getId())
+                Controller.notifyCellRemoved(self.getId())
                 self.setTransparent(True)
             elif (self.getId() == -3):
                 # Implement undo button feature here
                 print('Undo button clicked')
-                Controller.Controller.notifyUndoClicked()
+                Controller.notifyUndoClicked()
 
         def setBackgroundColor(self, color = 'red'): # Update with raffle background color
             ''' Method to set background color of cell '''
@@ -306,17 +308,26 @@ class MainWindow(QMainWindow):
         self.setMenuBar(self.createMenuBar())
 
         # Creating the central widget for the window
-        centralWidget = View()
+        centralWidget = View.getInstance()
         self.setCentralWidget(centralWidget)
 
         # Setting window icon
         self.setWindowIcon(QIcon('Icon.jpg'))
+
+        self.popup = None
+
+    @staticmethod
+    def getInstance():
+        if (MainWindow.instance is None):
+            MainWindow.instance = MainWindow()
+        return MainWindow.instance
 
     def createMenuBar(self):
         ''' Creates a MenuBar instance and sets the actions '''
         menuBar = MenuBar()
         menuBar.setResponse(menuBar.viewFullScreenAction, self.showFullScreen)
         menuBar.setResponse(menuBar.viewMaximizedAction, self.showMaximized)
+        menuBar.setResponse(menuBar.fileRestartAction, lambda: setWindow('restartWarning'))
         # TODO: Set remaining responses
         return menuBar
 
@@ -336,6 +347,13 @@ class MainWindow(QMainWindow):
         self.setMenuBar(self.createMenuBar())
 
     def closeEvent(self, e):
-        # TODO: Go through Controller
-        # saveProgress()
-        pass
+        """
+        Occurs when the main window is closed. Calls the Controller's save progress method.
+        """
+        print("Raffle exited. Saving progress...")
+        Controller.saveProgress()
+
+def setWindow(windowType):
+    window = WindowRepository.getInstance().getWindow(windowType)
+    MainWindow.getInstance().window = window
+    window.show()
