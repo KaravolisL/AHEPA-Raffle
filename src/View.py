@@ -312,7 +312,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(centralWidget)
 
         # Setting window icon
-        self.setWindowIcon(QIcon('Icon.jpg'))
+        self.setWindowIcon(QIcon(r'..\images\Icon.jpg'))
 
         self.popup = None
 
