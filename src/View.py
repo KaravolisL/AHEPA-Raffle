@@ -328,6 +328,7 @@ class MainWindow(QMainWindow):
         menuBar.setResponse(menuBar.viewFullScreenAction, self.showFullScreen)
         menuBar.setResponse(menuBar.viewMaximizedAction, self.showMaximized)
         menuBar.setResponse(menuBar.fileRestartAction, lambda: setWindow('restartWarning'))
+        menuBar.setResponse(menuBar.fileImportTicketNamesAction, lambda: setWindow('importWindow'))
         # TODO: Set remaining responses
         return menuBar
 
