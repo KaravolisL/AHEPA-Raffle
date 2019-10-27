@@ -1,5 +1,6 @@
 from Windows.RestartWarning import RestartWarning
-from Windows.ImportWindow import ImportWindow
+from Windows.ImportTicketsWindow import ImportTicketsWindow
+from Windows.ImportPrizesWindow import ImportPrizesWindow
 
 class WindowRepository():
     instance = None
@@ -13,7 +14,8 @@ class WindowRepository():
 
         self.windowList = {
             'restartWarning': RestartWarning(),
-            'importWindow': ImportWindow(),
+            'importWindow': ImportTicketsWindow(),
+            'importPrizeWindow': ImportPrizesWindow(),
         }
 
     @classmethod
