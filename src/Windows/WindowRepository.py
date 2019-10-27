@@ -22,5 +22,5 @@ class WindowRepository():
 
     def getWindow(self, windowType):
         window = self.windowList.get(windowType, None)
-        assert(window != None)
+        assert(window != None), 'Window type not supported'
         return window
