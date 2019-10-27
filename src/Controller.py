@@ -1,5 +1,3 @@
-# TODO: Make class instance based
-
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -78,9 +76,13 @@ def notifyUndoClicked():
 
 def saveProgress():
     """
-    This method is a passthru to the FileManager's save progress function.
+    This method saves the progress of the raffle as well as any updates to the ticket names
     """
     FileManager.saveProgress(RaffleList.drawnList)
+    ticketNamesFile = open('ticketNames.txt', 'r+')
+    ticketNamesFile.truncate(0)
+    for ticket in RaffleList.fullList:
+        ticketNamesFile.write(ticket.getName())
 
 def restoreProgress(file):
     """

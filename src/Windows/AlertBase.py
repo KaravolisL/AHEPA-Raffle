@@ -53,4 +53,4 @@ class AlertBase(WindowBase):
         self.close()
 
     def closeEvent(self, e):
-        raise NotImplementedError
+        pass

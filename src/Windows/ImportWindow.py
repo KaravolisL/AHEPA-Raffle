@@ -14,8 +14,10 @@ class ImportWindow(QWidget):
 
 
     def show(self):
-        fname = QFileDialog.getOpenFileName(self, 'Open File', '', ('Text Files (*.txt)'))
+        fname = QFileDialog.getOpenFileName(self, 'Open File', '', ('Text Files (*.txt)'))[0]
         print(fname)
-        self.warning = ImportWarningWindow()
+        if fname == '':
+            return
+        self.warning = ImportWarningWindow(fname)
         self.warning.show()
 
