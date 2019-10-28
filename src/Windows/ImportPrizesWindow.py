@@ -26,9 +26,10 @@ class ImportPrizesWindow(QWidget):
 class ImportWarningWindow(AlertBase):
     def __init__(self, fname):
         self.fname = fname
-        self.text = 'Fill in later'
+        self.text = 'Importing prizes will cause all\n prizes to be overwritten.'
         super().__init__(self.text)
 
     def confirmationEvent(self):
+        # TODO: Read from file and update prize list
         self.close()
 

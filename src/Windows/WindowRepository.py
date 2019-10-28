@@ -14,8 +14,8 @@ class WindowRepository():
 
         self.windowList = {
             'restartWarning': RestartWarning(),
-            'importWindow': ImportTicketsWindow(),
-            'importPrizeWindow': ImportPrizesWindow(),
+            'importTicketsWindow': ImportTicketsWindow(),
+            'importPrizesWindow': ImportPrizesWindow(),
         }
 
     @classmethod

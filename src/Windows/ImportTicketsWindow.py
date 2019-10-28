@@ -25,7 +25,7 @@ class ImportTicketsWindow(QWidget):
 class ImportWarningWindow(AlertBase):
     def __init__(self, fname):
         self.fname = fname
-        self.text = 'Fill in later'
+        self.text = 'Importing tickets will cause all progress\n to be lost and ticket names to be overwritten.'
         super().__init__(self.text)
 
     def confirmationEvent(self):
