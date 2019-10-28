@@ -1,4 +1,6 @@
 from Windows.RestartWarning import RestartWarning
+from Windows.ImportTicketsWindow import ImportTicketsWindow
+from Windows.ImportPrizesWindow import ImportPrizesWindow
 
 class WindowRepository():
     instance = None
@@ -12,6 +14,8 @@ class WindowRepository():
 
         self.windowList = {
             'restartWarning': RestartWarning(),
+            'importTicketsWindow': ImportTicketsWindow(),
+            'importPrizesWindow': ImportPrizesWindow(),
         }
 
     @classmethod
@@ -20,5 +24,5 @@ class WindowRepository():
 
     def getWindow(self, windowType):
         window = self.windowList.get(windowType, None)
-        assert(window != None)
+        assert(window != None), 'Window type not supported'
         return window
