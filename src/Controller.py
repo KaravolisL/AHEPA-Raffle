@@ -7,15 +7,16 @@ from PyQt5.QtMultimediaWidgets import *
 import FileManager
 import RaffleList
 from ViewApi import *
-from Prizes.PrizeApi import initializePrizeList
+import Prizes.PrizeApi as PrizeApi
 
 def initialize():
     """
     This method will be called once upon startup of the program. It has the following responsibilites:
     1. Read names from ticketNames.txt
     2. Initialize the fullList of tickets in RaffleList
-    3. RestoreProgress from the saveFile
-    4. Create the mainWindow and set it to maximized
+    3. Initialize the Prize list
+    4. RestoreProgress from the saveFile
+    5. Create the mainWindow and set it to maximized
     """
     print("Raffle initializing...")
     
@@ -26,10 +27,10 @@ def initialize():
     RaffleList.fullListInit(names)
 
     # Initialize the prize list
-    initializePrizeList()
+    PrizeApi.initializePrizeList()
 
     # Restore progress using save file
-    Controller.restoreProgress("saveFile.txt")
+    restoreProgress("saveFile.txt")
 
     # Construct MainWindow and its contents
     window = getMainWindow()
@@ -41,6 +42,7 @@ def notifyCellRemoved(id):
     responsibilties are as follows:
     1. Add the id the the drawnList in RaffleList
     2. Update the header using the new information
+    3. Execute prize check
     """
     # Check if cell has already been removed
     if (not RaffleList.hasTicketBeenPulled(id)):
@@ -51,6 +53,9 @@ def notifyCellRemoved(id):
 
     # Update header
     updateHeader(RaffleList.getHeaderInfo())
+
+    # Check if next ticket will be a prize ticket
+    PrizeApi.prizeCheck(id)
 
 def notifyTicketNameChange(tickets):
     """
@@ -95,7 +100,7 @@ def restoreProgress(file):
     """
     removedTicketIds = FileManager.readSaveFile(file)
     for id in removedTicketIds:
-        Controller.notifyCellRemoved(id)
+        notifyCellRemoved(id)
         setCellTransparent(id, True)
 
 def restartRaffle():
@@ -104,4 +109,4 @@ def restartRaffle():
     and resets the header.
     """
     while (RaffleList.hasRaffleStarted() is not False):
-        Controller.notifyUndoClicked()
+        notifyUndoClicked()
