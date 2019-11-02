@@ -7,6 +7,7 @@ from PyQt5.QtMultimediaWidgets import *
 import FileManager
 import RaffleList
 from ViewApi import *
+from Prizes.PrizeApi import initializePrizeList
 
 def initialize():
     """
@@ -23,6 +24,9 @@ def initialize():
 
     # Initialize the fullList using the names. Controller will be notified of name change
     RaffleList.fullListInit(names)
+
+    # Initialize the prize list
+    initializePrizeList()
 
     # Restore progress using save file
     Controller.restoreProgress("saveFile.txt")

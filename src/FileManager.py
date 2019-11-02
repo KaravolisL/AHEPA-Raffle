@@ -19,6 +19,24 @@ def readTicketNames(file = 'ticketNames.txt'):
         namesFile.close()
     return names
 
+def readPrizes(file = 'prizeInfo.txt'):
+    """
+    Reads prize info from a given file and returns Prizes in a list.
+    Catches exception for nonexistent file.
+    :param str file: File from which to read
+    """
+    prizes = {}
+    try:
+        prizeFile = open(file, 'r')
+    except:
+        print('{} not found'.format(file))
+    else:
+        for line in prizeFile:
+            number, desc = line.split(' ')
+            prizes[number] = desc.strip('\n')
+        prizeFile.close()
+    return prizes
+
 def readSaveFile(file = 'saveFile.txt'):
     """
     Read the ids stored in a save file. Exceptions are caught for nonexistent
