@@ -20,3 +20,6 @@ class Ticket:
     def setNumberDrawn(self, numberDrawn):
         assert(numberDrawn < 226 and numberDrawn >= 0)
         self.numberDrawn = numberDrawn
+
+    def isDrawn(self):
+        return self.numberDrawn != 0

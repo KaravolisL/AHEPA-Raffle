@@ -1,3 +1,5 @@
+# TODO: Modify Ticket class to include a drawn boolean then remove drawnList
+
 import Controller
 from Ticket import Ticket
 from GlobalConstants import NUMBER_OF_TICKETS
