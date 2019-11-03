@@ -13,9 +13,10 @@ def initialize():
     """
     This method will be called once upon startup of the program. It has the following responsibilites:
     1. Initialize the TicketList
-    2. Initialize the PrizeList
-    3. RestoreProgress from the saveFile
+    2. RestoreProgress from the saveFile
+    3. Initialize the PrizeList
     4. Create the mainWindow and set it to maximized
+    Note: Initialize PrizeList after restoring progess to prevent PrizeAlerts
     """
     print("Raffle initializing...")
 
@@ -26,11 +27,11 @@ def initialize():
     ticketList.initialize()
     notifyTicketNameChange(ticketList.ticketList)
 
-    # Initialize the prize list
-    PrizeApi.initializePrizeList()
-
     # Restore progress using save file
     restoreProgress("saveFile.txt")
+
+    # Initialize the prize list
+    PrizeApi.initializePrizeList()
 
     # Construct MainWindow and its contents
     window = getMainWindow()
@@ -59,8 +60,8 @@ def notifyCellRemoved(id):
 
     # Check if next ticket will be a prize ticket
     if PrizeApi.prizeCheck(ticketList.numOfTicketsDrawn):
-        print("PrizeAlert")
-        pass
+        print("Displaying prizeAlert")
+        PrizeApi.displayPrizeAlert(ticketList.numOfTicketsDrawn)
 
 def notifyTicketNameChange(tickets):
     """

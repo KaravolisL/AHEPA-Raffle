@@ -16,6 +16,7 @@ class WindowRepository():
             'restartWarning': RestartWarning(),
             'importTicketsWindow': ImportTicketsWindow(),
             'importPrizesWindow': ImportPrizesWindow(),
+            'prizeAlertWindow': RestartWarning(), # TODO: Change this
         }
 
     @classmethod

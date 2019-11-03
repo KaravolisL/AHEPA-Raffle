@@ -4,6 +4,7 @@ from FileManager import readPrizes
 class PrizeList():
     instance = None
     prizeList = []
+    alert = None
 
     def __init__(self):
 
@@ -46,6 +47,12 @@ class PrizeList():
                     (prize.number < nextPrize.number)):
                     nextPrize = prize
         return nextPrize
+
+    def setAlert(self, alert):
+        print("Showing Alert")
+        assert(self.alert == None) # TODO: Is this needed?
+        self.alert = alert
+        self.alert.show()
 
 
     
