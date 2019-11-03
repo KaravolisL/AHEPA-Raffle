@@ -8,9 +8,9 @@ class WindowRepository():
 
     def __init__(self):
 
-        assert(self.instance == None) # Assert to ensure singleton
+        assert(WindowRepository.instance == None) # Assert to ensure singleton
 
-        self.instance = self
+        WindowRepository.instance = self
 
         self.windowList = {
             'restartWarning': RestartWarning(),

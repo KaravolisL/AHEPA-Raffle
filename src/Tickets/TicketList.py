@@ -8,7 +8,7 @@ class TicketList():
 
     def __init__(self):
 
-        assert(self.instance == None) # Assert to ensure singleton
+        assert(TicketList.instance == None) # Assert to ensure singleton
         TicketList.instance = self
         self.numOfTicketsDrawn = 0
 
