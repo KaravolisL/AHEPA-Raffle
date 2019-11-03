@@ -5,9 +5,6 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 from Windows.AlertBase import AlertBase
-import Controller
-import FileManager
-import RaffleList
 
 class ImportPrizesWindow(QWidget):
     def __init__(self):

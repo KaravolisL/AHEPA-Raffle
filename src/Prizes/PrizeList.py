@@ -8,7 +8,7 @@ class PrizeList():
     def __init__(self):
 
         assert(self.instance == None) # Assert to ensure singleton
-        self.instance = self
+        PrizeList.instance = self
 
     @staticmethod
     def getInstance():

@@ -1,6 +1,5 @@
-from Ticket import Ticket
+from Tickets.Ticket import Ticket
 from FileManager import readTicketNames
-from Controller import notifyTicketNameChange
 from GlobalConstants import NUMBER_OF_TICKETS
 
 class TicketList():
@@ -10,8 +9,7 @@ class TicketList():
     def __init__(self):
 
         assert(self.instance == None) # Assert to ensure singleton
-        
-        self.instance = self
+        TicketList.instance = self
         self.numOfTicketsDrawn = 0
 
     @staticmethod
@@ -27,7 +25,17 @@ class TicketList():
         ticketNames = readTicketNames()
         for i in range(0, 225):
             self.ticketList.append(Ticket(ticketNames[i], i+1))
-        notifyTicketNameChange(self.ticketList)
+
+    def reinitialize(self, file):
+        """
+        Reinitializes the ticket list using names from a given file
+        :param str file: File from which to get ticket names
+        """
+        self.ticketList.clear()
+        self.numOfTicketsDrawn = 0
+        ticketNames = readTicketNames(file)
+        for i in range(0, 225):
+            self.ticketList.append(Ticket(ticketNames[i], i+1))
 
     def hasRaffleStarted(self):
         """
@@ -35,9 +43,7 @@ class TicketList():
         :returns: Whether any tickets have been drawn
         :rtype: bool
         """
-        for ticket in self.ticketList:
-            if ticket.isDrawn():
-                return True
+        return self.numOfTicketsDrawn != 0
     
     def getLastTicketDrawn(self):
         """
@@ -45,14 +51,12 @@ class TicketList():
         :returns: Returns the last ticket drawn
         :rtype: Ticket
         """
-        lastTicket = None
-        for ticket in self.ticketList:
-            if ticket.isDrawn():
-                if lastTicket == None:
-                    lastTicket = ticket
-                elif (ticket.numberDrawn > lastTicket.numberDrawn):
-                    lastTicket = ticket
-        return lastTicket
+        if self.numOfTicketsDrawn != 0:
+            for ticket in self.ticketList:
+                if ticket.numberDrawn == self.numOfTicketsDrawn:
+                    return ticket
+        else:
+            return None
 
     def removeTicket(self, ticketNumber):
         """ 
@@ -60,7 +64,7 @@ class TicketList():
         :param int ticketNumber: Number of ticket to remove
         """
         self.ticketList[ticketNumber - 1].numberDrawn = self.numOfTicketsDrawn + 1
-        self.numOfTicketsDrawn = self.numOfTicketsDrawn + 1
+        self.numOfTicketsDrawn += 1
 
     def replaceTicket(self):
         """
@@ -71,7 +75,7 @@ class TicketList():
         lastTicket = self.getLastTicketDrawn()
         if lastTicket != None:
             self.ticketList[lastTicket.number - 1].numberDrawn = 0
-            self.numOfTicketsDrawn = self.numOfTicketsDrawn - 1
+            self.numOfTicketsDrawn -= 1
         return lastTicket
 
     def hasTicketBeenDrawn(self, ticketNumber):
@@ -81,7 +85,7 @@ class TicketList():
         :returns: Whether ticket has been drawn or not
         :rtype: bool
         """
-        return self.ticketList[ticketNumber - 1].numberDrawn != 0
+        return self.ticketList[ticketNumber - 1].isDrawn()
 
     def getHeaderInfo(self):
         """
@@ -92,3 +96,15 @@ class TicketList():
         ticketsRemaining = NUMBER_OF_TICKETS - self.numOfTicketsDrawn
         lastTicket = 0 if self.getLastTicketDrawn() is None else self.getLastTicketDrawn().number
         return [ticketsRemaining, self.numOfTicketsDrawn, lastTicket]
+
+    def getDrawnTickets(self):
+        """
+        Obtains a list of tickets that have been drawn
+        :returns: List of tickets that were drawn
+        :rtype: list
+        """
+        drawnTickets = []
+        for ticket in self.ticketList:
+            if ticket.isDrawn():
+                drawnTickets.append(ticket)
+        return drawnTickets
