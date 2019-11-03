@@ -32,8 +32,8 @@ def readPrizes(file = 'prizeInfo.txt'):
         print('{} not found'.format(file))
     else:
         for line in prizeFile:
-            number, desc = line.split(' ')
-            prizes[number] = desc.strip('\n')
+            number, desc = line.split(' ', 1)
+            prizes[int(number)] = desc.strip('\n')
         prizeFile.close()
     return prizes
 

@@ -44,18 +44,23 @@ def notifyCellRemoved(id):
     2. Update the header using the new information
     3. Execute prize check
     """
+    # Get the TicketList instance
+    ticketList = TicketList.getInstance()
+
     # Check if cell has already been removed
-    if (TicketList.getInstance().hasTicketBeenDrawn(id)):
+    if (ticketList.hasTicketBeenDrawn(id)):
         return
     
     # Add removed cell to RaffleList
-    TicketList.getInstance().removeTicket(id)
+    ticketList.removeTicket(id)
 
     # Update header
-    updateHeader(TicketList.getInstance().getHeaderInfo())
+    updateHeader(ticketList.getHeaderInfo())
 
     # Check if next ticket will be a prize ticket
-    PrizeApi.prizeCheck(id)
+    if PrizeApi.prizeCheck(ticketList.numOfTicketsDrawn):
+        print("PrizeAlert")
+        pass
 
 def notifyTicketNameChange(tickets):
     """

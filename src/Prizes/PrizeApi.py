@@ -6,9 +6,12 @@ def initializePrizeList():
     """
     PrizeList.getInstance().initialize()
 
-def prizeCheck(ticketId):
+def prizeCheck(numOfTicketsDrawn):
     """
     
-    :param int ticketId: id of the ticket just removed
+    :param int numOfTicketsDrawn: Number of tickets drawn
+    :returns: Whether a prize exists for the next ticket
+    :rtype: bool
     """
-    pass
+    nextPrize = PrizeList.getInstance().getNextPrize(numOfTicketsDrawn)
+    return (nextPrize != None) and (numOfTicketsDrawn == nextPrize.number - 1)
