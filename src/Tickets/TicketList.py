@@ -16,6 +16,7 @@ class TicketList():
     def getInstance():
         return TicketList.instance if TicketList.instance != None else TicketList()
 
+    # TODO: Combine initialize methods
     def initialize(self):
         """
         Initializes the ticket list

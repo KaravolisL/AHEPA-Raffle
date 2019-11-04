@@ -39,7 +39,7 @@ class AlertBase(WindowBase):
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(QFont("Arial", 11))
 
-        self.layout.addWidget(self.label, 0 ,0, 1, 2)
+        self.layout.addWidget(self.label, 0 , 0, 1, 2)
         self.layout.addWidget(self.confirmButton, 1, 0)
         self.layout.addWidget(self.cancelButton, 1, 1)
 

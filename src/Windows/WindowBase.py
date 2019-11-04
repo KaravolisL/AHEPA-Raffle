@@ -31,13 +31,13 @@ class WindowBase(QWidget):
 
     def setSize(self):
         """
-        Sizes window to be half of screen width and height
+        Sizes window to be 1/1.5 width and height
         """
         screen = QApplication.primaryScreen()
         size = screen.size()
         screenWidth = size.width()
         screenHeight = size.height()
-        self.setGeometry(0, 0, screenWidth/2, screenHeight/2)
+        self.setGeometry(0, 0, screenWidth/1.5, screenHeight/1.5)
 
     def makeLayout(self):
         raise NotImplementedError
