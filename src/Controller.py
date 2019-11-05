@@ -5,27 +5,33 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 import FileManager
-import RaffleList
+from Tickets.TicketList import TicketList
 from ViewApi import *
+import Prizes.PrizeApi as PrizeApi
 
 def initialize():
     """
     This method will be called once upon startup of the program. It has the following responsibilites:
-    1. Read names from ticketNames.txt
-    2. Initialize the fullList of tickets in RaffleList
-    3. RestoreProgress from the saveFile
+    1. Initialize the TicketList
+    2. RestoreProgress from the saveFile
+    3. Initialize the PrizeList
     4. Create the mainWindow and set it to maximized
+    Note: Initialize PrizeList after restoring progess to prevent PrizeAlerts
     """
     print("Raffle initializing...")
-    
-    # Read names from ticketNames file
-    names = FileManager.readTicketNames("ticketNames.txt")
 
-    # Initialize the fullList using the names. Controller will be notified of name change
-    RaffleList.fullListInit(names)
+    # Get the TicketList instance
+    ticketList = TicketList.getInstance()
+
+    # Initialize the TicketList 
+    ticketList.initialize()
+    notifyTicketNameChange(ticketList.ticketList)
 
     # Restore progress using save file
-    Controller.restoreProgress("saveFile.txt")
+    restoreProgress("saveFile.txt")
+
+    # Initialize the prize list
+    PrizeApi.initializePrizeList()
 
     # Construct MainWindow and its contents
     window = getMainWindow()
@@ -35,18 +41,27 @@ def notifyCellRemoved(id):
     """
     This method is called to handle the model's actions when a cell is removed. It's 
     responsibilties are as follows:
-    1. Add the id the the drawnList in RaffleList
+    1. Remove the ticket from the TicketList
     2. Update the header using the new information
+    3. Execute prize check
     """
+    # Get the TicketList instance
+    ticketList = TicketList.getInstance()
+
     # Check if cell has already been removed
-    if (not RaffleList.hasTicketBeenPulled(id)):
+    if (ticketList.hasTicketBeenDrawn(id)):
         return
     
     # Add removed cell to RaffleList
-    RaffleList.appendTicket(id)
+    ticketList.removeTicket(id)
 
     # Update header
-    updateHeader(RaffleList.getHeaderInfo())
+    updateHeader(ticketList.getHeaderInfo())
+
+    # Check if next ticket will be a prize ticket
+    if PrizeApi.prizeCheck(ticketList.numOfTicketsDrawn):
+        print("Displaying prizeAlert")
+        PrizeApi.displayPrizeAlert(ticketList.numOfTicketsDrawn)
 
 def notifyTicketNameChange(tickets):
     """
@@ -60,28 +75,28 @@ def notifyTicketNameChange(tickets):
 def notifyUndoClicked():
     """
     This method is called when the undo button is clicked. It's responsibilites are as follows:
-    1. Pop the last ticket drawn from the RaffleList
+    1. Replace the ticket in the TicketList
     2. Make corresponding cell visible
     3. Update the header with new information 
     """
     # Get last ticket drawn
-    lastTicketDrawn = RaffleList.pop()
+    lastTicketDrawn = TicketList.getInstance().replaceTicket()
 
     # Replace ticket if raffle has started
     if (lastTicketDrawn != None):
         setCellTransparent(lastTicketDrawn.getNumber(), False)
 
         # Update header
-        updateHeader(RaffleList.getHeaderInfo())
+        updateHeader(TicketList.getInstance().getHeaderInfo())
 
 def saveProgress():
     """
     This method saves the progress of the raffle as well as any updates to the ticket names
     """
-    FileManager.saveProgress(RaffleList.drawnList)
+    FileManager.saveProgress(TicketList.getInstance().getDrawnTickets())
     ticketNamesFile = open('ticketNames.txt', 'r+')
     ticketNamesFile.truncate(0)
-    for ticket in RaffleList.fullList:
+    for ticket in TicketList.getInstance().ticketList:
         ticketNamesFile.write(ticket.getName())
 
 def restoreProgress(file):
@@ -91,7 +106,7 @@ def restoreProgress(file):
     """
     removedTicketIds = FileManager.readSaveFile(file)
     for id in removedTicketIds:
-        Controller.notifyCellRemoved(id)
+        notifyCellRemoved(id)
         setCellTransparent(id, True)
 
 def restartRaffle():
@@ -99,5 +114,5 @@ def restartRaffle():
     This method is called when the user clicks the restart option. It replaces all the tickets drawn 
     and resets the header.
     """
-    while (RaffleList.hasRaffleStarted() is not False):
-        Controller.notifyUndoClicked()
+    while (TicketList.getInstance().hasRaffleStarted() is not False):
+        notifyUndoClicked()

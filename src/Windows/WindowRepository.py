@@ -1,6 +1,7 @@
 from Windows.RestartWarning import RestartWarning
 from Windows.ImportTicketsWindow import ImportTicketsWindow
 from Windows.ImportPrizesWindow import ImportPrizesWindow
+from Windows.PrizeAlert import PrizeAlert
 
 class WindowRepository():
     instance = None
@@ -8,14 +9,15 @@ class WindowRepository():
 
     def __init__(self):
 
-        assert(self.instance == None) # Assert to ensure singleton
+        assert(WindowRepository.instance == None) # Assert to ensure singleton
 
-        self.instance = self
+        WindowRepository.instance = self
 
         self.windowList = {
             'restartWarning': RestartWarning(),
             'importTicketsWindow': ImportTicketsWindow(),
             'importPrizesWindow': ImportPrizesWindow(),
+            'prizeAlertWindow': PrizeAlert(),
         }
 
     @classmethod
