@@ -48,10 +48,15 @@ class PrizeList():
                     nextPrize = prize
         return nextPrize
 
-    def setAlert(self, alert):
+    def setAlert(self, alert, numOfTicketsDrawn):
+        """
+        Attaches the given alert to the PrizeList, sets it's prize, and displays it
+        :param PrizeAlert alert: alert to attach
+        :param int numOfTicketsDrawn: current number of tickets drawn
+        """
         print("Showing Alert")
-        assert(self.alert == None) # TODO: Is this needed?
         self.alert = alert
+        self.alert.setPrize(self.getNextPrize(numOfTicketsDrawn))
         self.alert.show()
 
 

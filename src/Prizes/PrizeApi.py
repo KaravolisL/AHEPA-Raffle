@@ -23,4 +23,4 @@ def displayPrizeAlert(numOfTicketsDrawn):
     :param int numOfTicketsDrawn: Number of tickets drawn
     """
     alert = WindowRepository.getInstance().getWindow('prizeAlertWindow')
-    PrizeList.getInstance().setAlert(alert)
+    PrizeList.getInstance().setAlert(alert, numOfTicketsDrawn)
