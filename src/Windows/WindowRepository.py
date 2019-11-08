@@ -2,6 +2,7 @@ from Windows.RestartWarning import RestartWarning
 from Windows.ImportTicketsWindow import ImportTicketsWindow
 from Windows.ImportPrizesWindow import ImportPrizesWindow
 from Windows.PrizeAlert import PrizeAlert
+from Windows.EditTicketWindow import EditTicketWindow
 
 class WindowRepository():
     instance = None
@@ -18,6 +19,7 @@ class WindowRepository():
             'importTicketsWindow': ImportTicketsWindow(),
             'importPrizesWindow': ImportPrizesWindow(),
             'prizeAlertWindow': PrizeAlert(),
+            'editTicketWindow': EditTicketWindow(),
         }
 
     @classmethod
