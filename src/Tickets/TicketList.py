@@ -119,3 +119,12 @@ class TicketList():
         """
         assert(number > 0 and number < 226)
         return self.ticketList[number - 1]
+
+    def setTicketName(self, number, newName):
+        """
+        Changes the name of the ticket with the give number
+        :param int number: Number of the ticket
+        :param str newName: New name for the ticket
+        """
+        assert(number > 0 and number < 226)
+        self.ticketList[number -1].name = newName
