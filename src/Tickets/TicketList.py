@@ -40,12 +40,12 @@ class TicketList():
 
     def hasRaffleStarted(self):
         """
-        Convenience method to determine whether ticketList is empty or not 
+        Convenience method to determine whether ticketList is empty or not
         :returns: Whether any tickets have been drawn
         :rtype: bool
         """
         return self.numOfTicketsDrawn != 0
-    
+
     def getLastTicketDrawn(self):
         """
         Iterates the list and compares each ticket's numberDrawn field
@@ -60,7 +60,7 @@ class TicketList():
             return None
 
     def removeTicket(self, ticketNumber):
-        """ 
+        """
         Sets the given tickets numberDrawn field and increments numOfTicketsDrawn
         :param int ticketNumber: Number of ticket to remove
         """
@@ -109,3 +109,13 @@ class TicketList():
             if ticket.isDrawn():
                 drawnTickets.append(ticket)
         return drawnTickets
+
+    def getTicket(self, number):
+        """
+        Gets a ticket from the ticketList given a number
+        :param int number: number of ticket
+        :returns: ticket with given number
+        :rtype: Ticket
+        """
+        assert(number > 0 and number < 226)
+        return self.ticketList[number - 1]
