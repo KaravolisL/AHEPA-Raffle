@@ -17,5 +17,5 @@ def validateTicketName(string):
     """
 
     """
-    pass
+    return True
 
