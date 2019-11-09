@@ -31,6 +31,7 @@ class AlertBase(WindowBase):
         """
         self.confirmButton = QPushButton('Confirm')
         self.confirmButton.clicked.connect(self.confirmationEvent)
+        self.confirmButton.setDefault(True)
 
         self.cancelButton = QPushButton('Cancel')
         self.cancelButton.clicked.connect(self.cancelEvent)
@@ -52,5 +53,10 @@ class AlertBase(WindowBase):
         """
         self.close()
 
-    def closeEvent(self, e):
-        pass
+    def keyPressEvent(self, event):
+        """
+        Connects the enter key to confirmationEvent
+        :param QKeyEvent event: Key that is pressed
+        """
+        if event.key() in (Qt.Key_Enter, Qt.Key_Return):
+            self.confirmationEvent()
