@@ -34,5 +34,6 @@ class ImportWarningWindow(AlertBase):
         """
         Controller.restartRaffle()
         TicketList.getInstance().reinitialize(self.fname)
-        Controller.notifyTicketNameChange(TicketList.getInstance().ticketList)
+        for ticket in TicketList.getInstance().ticketList:
+            Controller.notifyTicketNameChange(ticket)
         self.close()

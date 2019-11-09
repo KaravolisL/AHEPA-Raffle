@@ -5,7 +5,7 @@ class Ticket:
         self.numberDrawn = 0
 
     def __str__(self):
-        return str(self.number) + " " + self.name
+        return self.name
 
     def getName(self):
         return self.name

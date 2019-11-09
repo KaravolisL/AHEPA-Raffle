@@ -23,9 +23,10 @@ def initialize():
     # Get the TicketList instance
     ticketList = TicketList.getInstance()
 
-    # Initialize the TicketList 
+    # Initialize the TicketList
     ticketList.initialize()
-    notifyTicketNameChange(ticketList.ticketList)
+    for ticket in ticketList.ticketList:
+        notifyTicketNameChange(ticket)
 
     # Restore progress using save file
     restoreProgress("saveFile.txt")
@@ -39,7 +40,7 @@ def initialize():
 
 def notifyCellRemoved(id):
     """
-    This method is called to handle the model's actions when a cell is removed. It's 
+    This method is called to handle the model's actions when a cell is removed. It's
     responsibilties are as follows:
     1. Remove the ticket from the TicketList
     2. Update the header using the new information
@@ -51,7 +52,7 @@ def notifyCellRemoved(id):
     # Check if cell has already been removed
     if (ticketList.hasTicketBeenDrawn(id)):
         return
-    
+
     # Add removed cell to RaffleList
     ticketList.removeTicket(id)
 
@@ -63,21 +64,20 @@ def notifyCellRemoved(id):
         print("Displaying prizeAlert")
         PrizeApi.displayPrizeAlert(ticketList.numOfTicketsDrawn)
 
-def notifyTicketNameChange(tickets):
+def notifyTicketNameChange(ticket):
     """
-    This method is called when a ticket's name was changed either during initialization or by the 
+    This method is called when a ticket's name was changed either during initialization or by the
     user at runtime.
-    :param list tickets: List of tickets whose names were changed
+    :param Ticket ticket: ticket whose names were changed
     """
-    for ticket in tickets:
-        updateCell(ticket.getName(), ticket.getNumber())
+    updateCell(ticket.getName(), ticket.getNumber())
 
 def notifyUndoClicked():
     """
     This method is called when the undo button is clicked. It's responsibilites are as follows:
     1. Replace the ticket in the TicketList
     2. Make corresponding cell visible
-    3. Update the header with new information 
+    3. Update the header with new information
     """
     # Get last ticket drawn
     lastTicketDrawn = TicketList.getInstance().replaceTicket()
@@ -111,7 +111,7 @@ def restoreProgress(file):
 
 def restartRaffle():
     """
-    This method is called when the user clicks the restart option. It replaces all the tickets drawn 
+    This method is called when the user clicks the restart option. It replaces all the tickets drawn
     and resets the header.
     """
     while (TicketList.getInstance().hasRaffleStarted() is not False):

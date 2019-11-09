@@ -9,7 +9,7 @@ from PyQt5.QtMultimediaWidgets import *
 from math import floor
 import Controller
 from MenuBar import MenuBar
-from Validator import Validator
+from Utils.Validators import validateTicketNumber
 from Windows.WindowRepository import WindowRepository
 class View(QWidget):
     instance = None
@@ -59,7 +59,7 @@ class View(QWidget):
 
     def getHeader(self):
         return self.header
-    
+
     class MainTable(QWidget):
         instance = None
         def __init__(self):
@@ -119,7 +119,7 @@ class View(QWidget):
             self.ticketsDrawnCell = View.Cell("Tickets Drawn: 0", -2)
             self.lastTicketDrawnCell = View.Cell("Last Ticket Drawn: ", -3)
 
-            # Make text box 
+            # Make text box
             self.textBox = View.Header.TextBox()
 
             # Make list of cells to simplify operations
@@ -209,8 +209,7 @@ class View(QWidget):
                 if e.key() != Qt.Key_Return:
                     super().keyPressEvent(e)
                 else:
-                    validator = Validator()
-                    if validator.validate(self.text()):
+                    if validateTicketNumber(self.text()):
                         cellToRemove = View.getInstance().getMainTable().getCell(int(self.text()))
                         Controller.notifyCellRemoved(cellToRemove.getId())
                         cellToRemove.setTransparent(True)
@@ -239,7 +238,7 @@ class View(QWidget):
 
             # DEBUG
             self.setBackgroundColor('red')
-        
+
         def setId(self, id):
             self.id = id
 
@@ -330,6 +329,7 @@ class MainWindow(QMainWindow):
         menuBar.setResponse(menuBar.fileRestartAction, lambda: setWindow('restartWarning'))
         menuBar.setResponse(menuBar.fileImportTicketNamesAction, lambda: setWindow('importTicketsWindow'))
         menuBar.setResponse(menuBar.fileImportPrizesAction, lambda: setWindow('importPrizesWindow'))
+        menuBar.setResponse(menuBar.editTicketAction, lambda: setWindow('editTicketWindow'))
         # TODO: Set remaining responses
         return menuBar
 
