@@ -21,13 +21,13 @@ class EditTicketWindow(WindowBase):
 
     def setSize(self):
         """
-        Sizes window to be one third width and height
+        Sizes window to be one fifth width and height
         """
         screen = QApplication.primaryScreen()
         size = screen.size()
         screenWidth = size.width()
         screenHeight = size.height()
-        self.setGeometry(0, 0, screenWidth/3, screenHeight/3)
+        self.setGeometry(0, 0, screenWidth/5, screenHeight/5)
 
     def makeLayout(self):
         """
@@ -38,9 +38,6 @@ class EditTicketWindow(WindowBase):
         # self.ticketNumberLabel.setFont()
         self.ticketNumberLineEdit = QLineEdit()
 
-        self.currentNameLabel = QLabel('Current Name: ')
-        self.currentName = QLabel('')
-
         self.ticketNameLabel = QLabel('Ticket Name: ')
         self.ticketNameLabel.setAlignment(Qt.AlignCenter)
         # self.ticketNameLabel.setFont()
@@ -48,17 +45,16 @@ class EditTicketWindow(WindowBase):
 
         self.confirmButton = QPushButton('Change Name')
         self.confirmButton.clicked.connect(self.changeNameEvent)
+        self.confirmButton.setDefault(True)
         self.cancelButton = QPushButton('Cancel')
         self.cancelButton.clicked.connect(self.cancelEvent)
 
         self.layout.addWidget(self.ticketNumberLabel, 0, 0)
         self.layout.addWidget(self.ticketNumberLineEdit, 0, 1)
-        self.layout.addWidget(self.currentNameLabel, 1, 0)
-        self.layout.addWidget(self.currentName, 1, 1)
-        self.layout.addWidget(self.ticketNameLabel, 2, 0)
-        self.layout.addWidget(self.ticketNameLineEdit, 2, 1)
-        self.layout.addWidget(self.confirmButton, 3, 0)
-        self.layout.addWidget(self.cancelButton, 3, 1)
+        self.layout.addWidget(self.ticketNameLabel, 1, 0)
+        self.layout.addWidget(self.ticketNameLineEdit, 1, 1)
+        self.layout.addWidget(self.confirmButton, 2, 0)
+        self.layout.addWidget(self.cancelButton, 2, 1)
 
     def initLineEdits(self):
         """
@@ -75,14 +71,14 @@ class EditTicketWindow(WindowBase):
         numberEnteredAsStr = self.ticketNumberLineEdit.text()
         if validateTicketNumber(numberEnteredAsStr):
             self.numberEntered = int(numberEnteredAsStr)
-            self.currentName.setText(str(TicketList.getInstance().getTicket(self.numberEntered)))
+            self.ticketNameLineEdit.setText(str(TicketList.getInstance().getTicket(self.numberEntered)))
         else:
             self.numberEntered = 0
-            self.currentName.clear()
+            self.ticketNameLineEdit.clear()
 
     def changeNameEvent(self):
         """
-
+        Validates the entered name and notifies it's name has changed
         """
         if self.numberEntered == 0:
             return
@@ -90,11 +86,18 @@ class EditTicketWindow(WindowBase):
         newName = self.ticketNameLineEdit.text()
         if validateTicketName(newName):
             TicketList.getInstance().setTicketName(self.numberEntered, newName)
-            self.ticketNumberEntered()
             Controller.notifyTicketNameChange(TicketList.getInstance().getTicket(self.numberEntered))
         else:
-            # TODO: Is there anything to do here?
+            # User tried entering an invalid ticket name
             pass
+
+    def keyPressEvent(self, event):
+        """
+        Connects the enter key to changeNameEvent
+        :param QKeyEvent event: Key that was pressed
+        """
+        if event.key() == Qt.Key_Return:
+            self.changeNameEvent()
 
     def cancelEvent(self):
         """
