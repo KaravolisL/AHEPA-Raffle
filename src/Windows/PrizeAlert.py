@@ -37,7 +37,7 @@ class PrizeAlert(WindowBase):
         Displays the prize's info in the alert
         :param Prize prize: prize for which the alert is
         """
-        self.desc.setText(prize.statement)
+        self.desc.setText(prize.description)
 
     def mousePressEvent(self, QMouseEvent):
         self.close()

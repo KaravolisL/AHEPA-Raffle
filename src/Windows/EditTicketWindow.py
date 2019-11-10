@@ -96,7 +96,7 @@ class EditTicketWindow(WindowBase):
         Connects the enter key to changeNameEvent
         :param QKeyEvent event: Key that was pressed
         """
-        if event.key() == Qt.Key_Return:
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
             self.changeNameEvent()
 
     def cancelEvent(self):
