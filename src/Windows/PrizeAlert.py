@@ -19,10 +19,6 @@ class PrizeAlert(WindowBase):
         self.setWindowFlags(Qt.CustomizeWindowHint)
         self.makeLayout()
 
-        # Start a timer for closing the PrizeAlert
-        self.delayThread = Timer(PrizeAlert.DELAY, self.close)
-        self.delayThread.start()
-
     def makeLayout(self):
         """
         Adds and styles the description to the alert
@@ -44,3 +40,9 @@ class PrizeAlert(WindowBase):
 
     def keyPressEvent(self, e):
         self.close()
+
+    def show(self):
+        super().show()
+         # Start a timer for closing the PrizeAlert
+        self.delayThread = Timer(PrizeAlert.DELAY, self.close)
+        self.delayThread.start()
