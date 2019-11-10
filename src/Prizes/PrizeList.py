@@ -27,7 +27,7 @@ class PrizeList():
         :returns: Prize in PrizeList with given number, None if one is not found
         :rtype: Prize
         """
-        for prize in prizeList:
+        for prize in self.prizeList:
             if prize.number == number:
                 return prize
         return None
