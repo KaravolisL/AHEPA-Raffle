@@ -3,6 +3,7 @@ from Windows.ImportTicketsWindow import ImportTicketsWindow
 from Windows.ImportPrizesWindow import ImportPrizesWindow
 from Windows.PrizeAlert import PrizeAlert
 from Windows.EditTicketWindow import EditTicketWindow
+from Windows.EditPrizeWindow import EditPrizeWindow
 
 class WindowRepository():
     instance = None
@@ -20,6 +21,7 @@ class WindowRepository():
             'importPrizesWindow': ImportPrizesWindow(),
             'prizeAlertWindow': PrizeAlert(),
             'editTicketWindow': EditTicketWindow(),
+            'editPrizeWindow': EditPrizeWindow(),
         }
 
     @classmethod
