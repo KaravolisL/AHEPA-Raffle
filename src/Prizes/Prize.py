@@ -1,7 +1,7 @@
 class Prize:
-    def __init__(self, number, statement = None):
+    def __init__(self, number, description = None):
         self.number = number
-        self.statement = statement
+        self.description = description
 
     def __str__(self):
-        return str(self.number) + " " + self.statement
+        return str(self.number) + " " + self.description

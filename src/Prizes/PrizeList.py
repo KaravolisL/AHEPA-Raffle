@@ -20,6 +20,15 @@ class PrizeList():
         for prize in prizeDict:
             self.prizeList.append(Prize(prize, prizeDict[prize]))
 
+    def remove(self, prizeNumber):
+        """
+        Removes a Prize from the list
+        :param int prizeNumber: number of the prize to remove
+        """
+        for prize in self.prizeList:
+            if prizeNumber == prize.number:
+                self.prizeList.remove(prize)
+
     def getPrizeFromNumber(self, number):
         """
         Looks for a prize associated with a given number
@@ -27,7 +36,7 @@ class PrizeList():
         :returns: Prize in PrizeList with given number, None if one is not found
         :rtype: Prize
         """
-        for prize in prizeList:
+        for prize in self.prizeList:
             if prize.number == number:
                 return prize
         return None
