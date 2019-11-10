@@ -5,7 +5,7 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 from Windows.WindowBase import WindowBase
-from Prizes.PrizeApi import getAssociatedPrize
+from Prizes.PrizeApi import getAssociatedPrize, setPrizeDescription, deletePrize, addPrize
 from Utils.Validators import validatePrizeName, validatePrizeNumber
 import Controller
 
@@ -43,12 +43,12 @@ class EditPrizeWindow(WindowBase):
         self.prizeDescLineEdit = QLineEdit()
 
         self.changeButton = QPushButton('Change Description')
-        self.changeButton.clicked.connect(self.changeDescEvent)
+        self.changeButton.clicked.connect(lambda: self.actionEvent('change'))
         self.changeButton.setDefault(True)
         self.deleteButton = QPushButton('Delete Prize')
-        self.deleteButton.clicked.connect(self.deleteEvent)
+        self.deleteButton.clicked.connect(lambda: self.actionEvent('delete'))
         self.addButton = QPushButton('Add Prize')
-        self.addButton.clicked.connect(self.addEvent)
+        self.addButton.clicked.connect(lambda: self.actionEvent('add'))
         self.addButton.setDefault(True)
         self.cancelButton = QPushButton('Cancel')
         self.cancelButton.clicked.connect(self.cancelEvent)
@@ -79,15 +79,16 @@ class EditPrizeWindow(WindowBase):
         Switches the confirm button to be either add or change
         :param str action: Either 'add' or 'change/delete'
         """
-        assert(action == 'add' or action == 'change/delete')
         if action == 'add':
             self.addButton.show()
             self.changeButton.hide()
             self.deleteButton.hide()
-        else:
+        elif action == 'change/delete':
             self.addButton.hide()
             self.changeButton.show()
             self.deleteButton.show()
+        else:
+            assert(False), 'Argument not supported'
 
     def prizeNumberEntered(self):
         """
@@ -110,26 +111,28 @@ class EditPrizeWindow(WindowBase):
             self.setButtons('change/delete')
             self.prizeDescLineEdit.setText(currentPrize.description)
 
-    def changeDescEvent(self):
+    def actionEvent(self, event):
         """
-        Validates the entered name and notifies it's name has changed
+        Performs actions whenever either add, delete, or change are pressed
+        :param str event: Specific event's action to be performed
         """
         if self.numberEntered == 0:
             return
 
-        newName = self.prizeDescLineEdit.text()
-        if validatePrizeName(newName):
-            PrizeList.getInstance().setPrizeName(self.numberEntered, newName)
-            Controller.notifyPrizeNameChange(PrizeList.getInstance().getPrize(self.numberEntered))
-        else:
-            # User tried entering an invalid prize name
+        desc = self.prizeDescLineEdit.text()
+        if not validatePrizeName(desc):
+            # User entered invalid prize name
             pass
 
-    def deleteEvent(self):
-        pass
-
-    def addEvent(self):
-        pass
+        if event == 'change':
+            setPrizeDescription(self.numberEntered, desc)
+        elif event == 'add':
+            addPrize(self.numberEntered, desc)
+        elif event == 'delete':
+            deletePrize(self.numberEntered)
+            self.prizeDescLineEdit.clear()
+        else:
+            assert(False), 'Argument not supported'
 
     def keyPressEvent(self, event):
         """
