@@ -19,3 +19,15 @@ def validateTicketName(string):
     """
     return True
 
+def validatePrizeNumber(string):
+    """
+    Same validation as validateTicketNumber
+    """
+    return validateTicketNumber(string)
+
+def validatePrizeName(string):
+    """
+
+    """
+    return True
+
