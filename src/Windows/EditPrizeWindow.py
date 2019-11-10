@@ -131,6 +131,7 @@ class EditPrizeWindow(WindowBase):
         elif event == 'delete':
             deletePrize(self.numberEntered)
             self.prizeDescLineEdit.clear()
+            self.setButtons('add')
         else:
             assert(False), 'Argument not supported'
 
