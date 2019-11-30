@@ -128,6 +128,7 @@ class EditPrizeWindow(WindowBase):
             setPrizeDescription(self.numberEntered, desc)
         elif event == 'add':
             addPrize(self.numberEntered, desc)
+            self.setButtons('change/delete')
         elif event == 'delete':
             deletePrize(self.numberEntered)
             self.prizeDescLineEdit.clear()
