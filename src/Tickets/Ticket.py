@@ -23,3 +23,6 @@ class Ticket:
 
     def isDrawn(self):
         return self.numberDrawn != 0
+
+    def getAttributes(self):
+        return {'name': self.name, 'id': str(self.number)}

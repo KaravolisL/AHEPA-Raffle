@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
-import FileManager
+import FileManager.FileManager as FileManager
 from Tickets.TicketList import TicketList
 from ViewApi import *
 import Prizes.PrizeApi as PrizeApi
@@ -91,21 +91,28 @@ def notifyUndoClicked():
 
 def saveProgress():
     """
-    This method saves the progress of the raffle as well as any updates to the ticket names
+    This method is responsible for the following steps:
+    1. Save progress made in the raffle
+    2. Overwrite ticket names to save any changes
+    3. Overwrite prizes to save any changes
     """
     FileManager.saveProgress(TicketList.getInstance().getDrawnTickets())
-    ticketNamesFile = open('ticketNames.txt', 'r+')
-    ticketNamesFile.truncate(0)
-    for ticket in TicketList.getInstance().ticketList:
-        ticketNamesFile.write(ticket.getName())
+    FileManager.writePrizes(PrizeApi.getList())
+    FileManager.writeTickets(TicketList.getInstance().ticketList)
+    # ticketNamesFile = open('ticketNames.txt', 'r+')
+    # ticketNamesFile.truncate(0)
+    # for ticket in TicketList.getInstance().ticketList:
+    #     ticketNamesFile.write(ticket.getName())
 
 def restoreProgress(file):
     """
     This method uses a given file to update the Raffle to that given point.
     :param str file: File from which to restore progress
     """
-    removedTicketIds = FileManager.readSaveFile(file)
-    for id in removedTicketIds:
+    removedTickets = FileManager.readSaveFile()
+    if len(removedTickets) == 0:
+        return
+    for id in [ticket.getNumber() for ticket in removedTickets]:
         notifyCellRemoved(id)
         setCellTransparent(id, True)
 

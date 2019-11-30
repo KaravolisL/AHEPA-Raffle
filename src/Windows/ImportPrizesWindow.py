@@ -5,6 +5,7 @@ from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
 from Windows.AlertBase import AlertBase
+from FileManager.FileManager import importPrizeNames
 
 class ImportPrizesWindow(QWidget):
     def __init__(self):
@@ -27,6 +28,7 @@ class ImportWarningWindow(AlertBase):
         super().__init__(self.text)
 
     def confirmationEvent(self):
-        # TODO: Read from file and update prize list
+        prizes = importPrizeNames(self.fname)
+        # TODO: Do something with these prizes
         self.close()
 

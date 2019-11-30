@@ -1,5 +1,5 @@
 from Prizes.Prize import Prize
-from FileManager import readPrizes
+from FileManager.FileManager import readPrizes
 
 class PrizeList():
     instance = None

@@ -1,0 +1,128 @@
+import xml.etree.ElementTree as ET
+from Tickets.Ticket import Ticket # TODO: Work to get rid of this dependency
+
+file = r'FileManager/data.xml'
+
+def fileChecker(func):
+    def func_wrapper(*args):
+        try:
+            return func(*args)
+        except:
+            # TODO: Add a popup to alert the user of corrupted file
+            print(func.__name__)
+            print('Exception caught')
+            createDefault()
+            # Return an empty list since the file was corrupted
+            if func.__name__ != '__init__':
+                return []
+    return func_wrapper
+
+class DataParser():
+
+    @fileChecker
+    def __init__(self):
+        self.tree = ET.parse(file)
+        self.root = self.tree.getroot() # <data>
+
+    @fileChecker
+    def readTickets(self):
+        """
+        Reads ticket names from data.xml and returns them in a list
+
+        :returns: List of names for all tickets
+        :rtype: list
+        """
+        names = []
+        for ticket in self.root.findall('.//ticket'):
+            names.append(ticket.get('name'))
+        return names
+
+    @fileChecker
+    def writeTickets(self, names):
+        """
+        Clears all tickets from the data file and writes new ones. Uses the order
+        of the names for the ids
+        :param list names: list of names of tickets
+        """
+        tickets = self.root.find('.//tickets')
+        tickets.clear()
+        for i in range(0, len(names)):
+            attribs = {'name': names[i], 'id': str(i+1)}
+            ET.SubElement(tickets, 'ticket', attribs)
+        self.tree.write(file)
+
+    @fileChecker
+    def writeSaveData(self, tickets):
+        """
+        Writes a list of tickets to the save data section of data.xml
+        :param list tickets: List of drawn tickets to be saved
+        """
+        saveData = self.root.find('.//saveData')
+        saveData.clear()
+        for ticket in tickets:
+            ET.SubElement(saveData, 'ticket', ticket.getAttributes())
+        self.tree.write(file)
+
+    @fileChecker
+    def readSaveData(self):
+        """
+        Reads the list of tickets from the save data section of data.xml
+        :returns: List of tickets from save data
+        :rtype: list
+        """
+        saveData = self.root.find('.//saveData')
+        tickets = []
+        for ticket in saveData.findall('.//ticket'):
+            name = ticket.get('name')
+            id = ticket.get('id')
+            tickets.append(Ticket(name, int(id)))
+        return tickets
+
+    @fileChecker
+    def readPrizes(self):
+        """
+        Reads the prizes from the prizeInfo section of data.xml
+        :returns: prizes in the form of a dictionary
+        :rtype: dict
+        """
+        prizeInfo = self.root.find('.//prizeInfo')
+        prizes = {}
+        for prize in prizeInfo.findall('.//prize'):
+            number = prize.get('number')
+            description = prize.get('description')
+            prizes.update({int(number) : description})
+        return prizes
+
+    @fileChecker
+    def writePrizes(self, prizes):
+        """
+        Clears current prize info section and writes given prizes
+        :param list prizes: List of prizes represented as dictionaries
+        """
+        prizeInfo = self.root.find('.//prizeInfo')
+        prizeInfo.clear()
+        for prize in prizes:
+            ET.SubElement(prizeInfo, 'prize', prize.getAttributes())
+        if len(prizes) != 0:
+            self.tree.write(file)
+
+def createDefault():
+    """
+    In the case of a corrupted data file, this function will create a default
+    blank one.
+    """
+    data = ET.Element('data')
+    preferences = ET.SubElement(data, 'preferences')
+    header = ET.SubElement(preferences, 'header')
+    mainTable = ET.SubElement(preferences, 'mainTable')
+    prizeAlert = ET.SubElement(preferences, 'prizeAlert')
+    tickets = ET.SubElement(data, 'tickets')
+    prizeInfo = ET.SubElement(data, 'prizeInfo')
+    saveData = ET.SubElement(data, 'saveData')
+    with open(file, 'wb') as dataFile:
+        dataFile.truncate(0)
+        mydata = ET.tostring(data)
+        dataFile.write(mydata)
+
+# DataParser instance to be used
+dataParser = DataParser()

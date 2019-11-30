@@ -8,6 +8,12 @@ def initializePrizeList():
     """
     PrizeList.getInstance().initialize()
 
+def getList():
+    """
+    
+    """
+    return PrizeList.getInstance().prizeList
+
 def prizeCheck(numOfTicketsDrawn):
     """
     Checks to see if a prize is registered for the next ticket to be drawn
