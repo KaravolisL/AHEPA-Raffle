@@ -92,7 +92,7 @@ class EditPrizeAlertWindow(WindowBase):
         """
         
         """
-        Signals.getInstance().prizeAlertChanged.emit()
+        Signals().prizeAlertChanged.emit()
         super().closeEvent(ev)
 
     def confirmationEvent(self):
@@ -101,7 +101,7 @@ class EditPrizeAlertWindow(WindowBase):
         """
         dataParser.setPrizeAlertPref('delay', self.prizeAlertDelayOptions.currentText())
         dataParser.setPrizeAlertPref('fontSize', self.prizeAlertFontSizeOptions.currentText())
-        Signals.getInstance().prizeAlertChanged.emit()
+        Signals().prizeAlertChanged.emit()
         self.close()
 
 class ClickableLabel(QLabel):

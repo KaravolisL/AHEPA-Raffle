@@ -92,7 +92,7 @@ class View(QWidget):
 
             # Set color and connect signal
             self.setColor()
-            Signals.getInstance().colorChanged.connect(self.setColor)
+            Signals().colorChanged.connect(self.setColor)
 
             # Set spacing
             self.layout.setSpacing(1)
@@ -144,7 +144,7 @@ class View(QWidget):
 
             # Set cell colors and connect signal
             self.setColor()
-            Signals.getInstance().colorChanged.connect(self.setColor)
+            Signals().colorChanged.connect(self.setColor)
 
             # Restricting size
             self.setMaxHeight(120)
@@ -314,7 +314,7 @@ class View(QWidget):
             :returns: Whether the cell is transparent or not
             :rtype: bool
             """
-            return self.backgroundColor == 'transparent'
+            return 'transparent' in self.styleSheet()
 
         def isInHeader(self):
             ''' Convenience method to distinguish header cells from main table cells '''

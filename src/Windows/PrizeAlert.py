@@ -20,7 +20,7 @@ class PrizeAlert(WindowBase):
         self.background_color, self.delay, self.font_size = dataParser.getPrizeAlertPrefs()
         self.makeLayout()
 
-        Signals.getInstance().prizeAlertChanged.connect(self.reinit)
+        Signals().prizeAlertChanged.connect(self.reinit)
 
     def makeLayout(self):
         """

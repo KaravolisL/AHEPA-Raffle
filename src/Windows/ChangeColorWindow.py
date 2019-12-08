@@ -62,7 +62,7 @@ class ChangeColorWindow(WindowBase):
         if color.isValid():
             dataParser.setColor(element, color.name())
             self.setColorLabels()
-            Signals.getInstance().colorChanged.emit()
+            Signals().colorChanged.emit()
             
     def setSize(self):
         """
