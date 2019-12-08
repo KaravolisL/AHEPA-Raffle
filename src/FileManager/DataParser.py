@@ -12,9 +12,8 @@ def fileChecker(func):
             print(func.__name__)
             print('Exception caught')
             createDefault()
-            # Return an empty list since the file was corrupted
-            if func.__name__ != '__init__':
-                return []
+            # Reevaluate function using newly created default save file
+            return func(*args)
     return func_wrapper
 
 class DataParser():
@@ -128,6 +127,29 @@ class DataParser():
         element = preferences.find('.//{}'.format(forWhat))
         element.set('color', color)
 
+    @fileChecker
+    def getPrizeAlertPrefs(self):
+        """
+
+        :warning: preferences are returned in alphabetical order
+        """
+        prizeAlert = self.root.find('.//prizeAlert')
+        attribs = prizeAlert.attrib
+        values = list(attribs.values())
+        # TODO: Validate color
+        values[1] = int(values[1])
+        values[2] = int(values[2])
+        return values
+
+    @fileChecker
+    def setPrizeAlertPref(self, pref, value):
+        """
+        :param str pref: Preference to set
+        :param str value: Value for preference
+        """
+        print('Setting {} to be {}'.format(pref, value))
+        prizeAlert = self.root.find('.//prizeAlert')
+        prizeAlert.set(pref, value)
 
 def createDefault():
     """
@@ -136,10 +158,17 @@ def createDefault():
     """
     data = ET.Element('data')
     preferences = ET.SubElement(data, 'preferences')
-    header = ET.SubElement(preferences, 'header', {'color', '#6699ff'})
-    mainTable = ET.SubElement(preferences, 'mainTable')
+    header = ET.SubElement(preferences, 'header', {'color': '#6699ff'})
+    mainTable = ET.SubElement(preferences, 'mainTable', {'color': '#6699ff'})
     prizeAlert = ET.SubElement(preferences, 'prizeAlert')
+    prizeAlert.set('color', '#6699ff')
+    prizeAlert.set('fontSize', '16')
+    prizeAlert.set('delay', '8')
     tickets = ET.SubElement(data, 'tickets')
+    for i in range(1, 226):
+        ticket = ET.SubElement(tickets, 'ticket')
+        ticket.set('name', '')
+        ticket.set('id', str(i))
     prizeInfo = ET.SubElement(data, 'prizeInfo')
     saveData = ET.SubElement(data, 'saveData')
     with open(file, 'wb') as dataFile:

@@ -92,7 +92,7 @@ class View(QWidget):
 
             # Set color and connect signal
             self.setColor()
-            Signals.getInstance().colorChanged.connect(self.setColor)
+            Signals().colorChanged.connect(self.setColor)
 
             # Set spacing
             self.layout.setSpacing(1)
@@ -113,7 +113,11 @@ class View(QWidget):
             mainTableColor = dataParser.getColor('mainTable')
             for row in self.cells:
                 for cell in row:
-                    cell.setBackgroundColor(mainTableColor)
+                    if not cell.isTransparent():
+                        cell.setBackgroundColor(mainTableColor)
+                    else:
+                        # Don't change the color, just set it
+                        cell.backgroundColor = mainTableColor
 
     class Header(QWidget):
         instance = None
@@ -140,7 +144,7 @@ class View(QWidget):
 
             # Set cell colors and connect signal
             self.setColor()
-            Signals.getInstance().colorChanged.connect(self.setColor)
+            Signals().colorChanged.connect(self.setColor)
 
             # Restricting size
             self.setMaxHeight(120)
@@ -296,11 +300,21 @@ class View(QWidget):
 
         def setTransparent(self, bool):
             ''' Method to make cells transparent or not '''
+            assert(not self.isInHeader()), 'Header cells should never be transparent'
             if (bool):
-                self.setStyleSheet("QLabel {background-color: transparent;color: transparent;}")
+                self.setBackgroundColor('transparent')
+                self.setTextColor('transparent')
             else:
                 self.setTextColor()
-                self.setBackgroundColor(self.backgroundColor)
+                # I can get the color as such because the header will never be transparent
+                self.setBackgroundColor(dataParser.getColor('mainTable'))
+
+        def isTransparent(self):
+            """
+            :returns: Whether the cell is transparent or not
+            :rtype: bool
+            """
+            return 'transparent' in self.styleSheet()
 
         def isInHeader(self):
             ''' Convenience method to distinguish header cells from main table cells '''
@@ -346,6 +360,7 @@ class MainWindow(QMainWindow):
         menuBar.setResponse(menuBar.editTicketAction, lambda: setWindow('editTicketWindow'))
         menuBar.setResponse(menuBar.editPrizeAction, lambda: setWindow('editPrizeWindow'))
         menuBar.setResponse(menuBar.editChangeBackgroundAction, lambda: setWindow('changeColorWindow'))
+        menuBar.setResponse(menuBar.editPrizeAlertAction, lambda: setWindow('editPrizeAlertWindow'))
         # TODO: Set remaining responses
         return menuBar
 

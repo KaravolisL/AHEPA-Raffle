@@ -22,18 +22,18 @@ class ChangeColorWindow(WindowBase):
         """
         self.headerColorLabel = QLabel('Header Color: ')
         self.headerColorLabel.setAlignment(Qt.AlignCenter)
-        self.headerColorLabel.setMaximumHeight(25)
+        self.headerColorLabel.setMaximumHeight(35)
         self.headerColor = ClickableLabel()
         self.headerColor.setAlignment(Qt.AlignCenter)
-        self.headerColor.setMaximumHeight(25)
+        self.headerColor.setMaximumHeight(35)
         self.headerColor.clicked.connect(lambda: self.showColorPicker('header'))
 
         self.mainTableColorLabel = QLabel('Main Table Color: ')
         self.mainTableColorLabel.setAlignment(Qt.AlignCenter)
-        self.mainTableColorLabel.setMaximumHeight(25)
+        self.mainTableColorLabel.setMaximumHeight(35)
         self.mainTableColor = ClickableLabel()
         self.mainTableColor.setAlignment(Qt.AlignCenter)
-        self.mainTableColor.setMaximumHeight(25)
+        self.mainTableColor.setMaximumHeight(35)
         self.mainTableColor.clicked.connect(lambda: self.showColorPicker('mainTable'))
 
         self.layout.addWidget(self.headerColorLabel, 0, 0)
@@ -62,7 +62,7 @@ class ChangeColorWindow(WindowBase):
         if color.isValid():
             dataParser.setColor(element, color.name())
             self.setColorLabels()
-            Signals.getInstance().colorChanged.emit()
+            Signals().colorChanged.emit()
             
     def setSize(self):
         """
