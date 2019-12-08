@@ -11,6 +11,9 @@ import Controller
 from MenuBar import MenuBar
 from Utils.Validators import validateTicketNumber
 from Windows.WindowRepository import WindowRepository
+from FileManager.DataParser import dataParser
+from Signals import Signals
+
 class View(QWidget):
     instance = None
     def __init__(self):
@@ -87,6 +90,10 @@ class View(QWidget):
                 for j in range(0, 15):
                     self.layout.addWidget(self.cells[i][j], i, j)
 
+            # Set color and connect signal
+            self.setColor()
+            Signals.getInstance().colorChanged.connect(self.setColor)
+
             # Set spacing
             self.layout.setSpacing(1)
 
@@ -101,6 +108,12 @@ class View(QWidget):
 
         def updateCell(self, text, id):
             self.getCell(id).setText(text)
+
+        def setColor(self):
+            mainTableColor = dataParser.getColor('mainTable')
+            for row in self.cells:
+                for cell in row:
+                    cell.setBackgroundColor(mainTableColor)
 
     class Header(QWidget):
         instance = None
@@ -125,10 +138,9 @@ class View(QWidget):
             # Make list of cells to simplify operations
             self.cells = [self.ticketsRemainingCell, self.ticketsDrawnCell, self.lastTicketDrawnCell]
 
-            # DEBUG
-            self.ticketsRemainingCell.setBackgroundColor("transparent")
-            self.ticketsDrawnCell.setBackgroundColor("yellow")
-            self.lastTicketDrawnCell.setBackgroundColor("green")
+            # Set cell colors and connect signal
+            self.setColor()
+            Signals.getInstance().colorChanged.connect(self.setColor)
 
             # Restricting size
             self.setMaxHeight(120)
@@ -179,6 +191,11 @@ class View(QWidget):
             ''' Updates information in the header '''
             for cell, text, num in zip(self.cells, self.HEADER_TEXTS, info):
                 cell.setText(str(text) + str(num))
+
+        def setColor(self):
+            headerColor = dataParser.getColor('header')
+            for cell in self.cells:
+                cell.setBackgroundColor(headerColor)
 
         class TextBox(QLineEdit):
             instance = None
@@ -233,11 +250,8 @@ class View(QWidget):
             self.setWordWrap(True)
 
             # Members for background and text color
-            self.backgroundColor = 'red'
+            self.backgroundColor = 'white'
             self.textColor = 'black'
-
-            # DEBUG
-            self.setBackgroundColor('red')
 
         def setId(self, id):
             self.id = id
@@ -270,7 +284,7 @@ class View(QWidget):
                 print('Undo button clicked')
                 Controller.notifyUndoClicked()
 
-        def setBackgroundColor(self, color = 'red'): # Update with raffle background color
+        def setBackgroundColor(self, color):
             ''' Method to set background color of cell '''
             self.backgroundColor = str(color)
             self.setStyleSheet("QLabel {background-color: " + self.backgroundColor + ";color: " + self.textColor + ";}")
@@ -286,7 +300,7 @@ class View(QWidget):
                 self.setStyleSheet("QLabel {background-color: transparent;color: transparent;}")
             else:
                 self.setTextColor()
-                self.setBackgroundColor()
+                self.setBackgroundColor(self.backgroundColor)
 
         def isInHeader(self):
             ''' Convenience method to distinguish header cells from main table cells '''

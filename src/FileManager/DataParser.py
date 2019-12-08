@@ -106,6 +106,29 @@ class DataParser():
         if len(prizes) != 0:
             self.tree.write(file)
 
+    @fileChecker
+    def getColor(self, forWhat):
+        """
+
+        """
+        preferences = self.root.find('.//preferences')
+        element = preferences.find('.//{}'.format(forWhat))
+        color = element.get('color')
+        if True: # TODO: Validate color
+            return color
+        else:
+            raise Exception
+
+    @fileChecker
+    def setColor(self, forWhat, color):
+        """
+
+        """
+        preferences = self.root.find('.//preferences')
+        element = preferences.find('.//{}'.format(forWhat))
+        element.set('color', color)
+
+
 def createDefault():
     """
     In the case of a corrupted data file, this function will create a default
@@ -113,7 +136,7 @@ def createDefault():
     """
     data = ET.Element('data')
     preferences = ET.SubElement(data, 'preferences')
-    header = ET.SubElement(preferences, 'header')
+    header = ET.SubElement(preferences, 'header', {'color', '#6699ff'})
     mainTable = ET.SubElement(preferences, 'mainTable')
     prizeAlert = ET.SubElement(preferences, 'prizeAlert')
     tickets = ET.SubElement(data, 'tickets')

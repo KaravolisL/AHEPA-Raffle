@@ -99,10 +99,6 @@ def saveProgress():
     FileManager.saveProgress(TicketList.getInstance().getDrawnTickets())
     FileManager.writePrizes(PrizeApi.getList())
     FileManager.writeTickets(TicketList.getInstance().ticketList)
-    # ticketNamesFile = open('ticketNames.txt', 'r+')
-    # ticketNamesFile.truncate(0)
-    # for ticket in TicketList.getInstance().ticketList:
-    #     ticketNamesFile.write(ticket.getName())
 
 def restoreProgress(file):
     """
