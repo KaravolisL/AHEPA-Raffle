@@ -7,6 +7,7 @@ from PyQt5.QtMultimediaWidgets import *
 class Signals(QObject):
     instance = None
     colorChanged = pyqtSignal()
+    prizeAlertChanged = pyqtSignal()
     def __init__(self):
         super().__init__()
 

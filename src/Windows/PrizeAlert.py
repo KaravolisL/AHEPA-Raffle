@@ -8,16 +8,19 @@ from threading import Timer
 import time
 
 from Windows.WindowBase import WindowBase
+from FileManager.DataParser import dataParser
+from Signals import Signals
 
 class PrizeAlert(WindowBase):
-    DELAY = 8
-    FONT_SIZE = 16
 
     def __init__(self):
         super().__init__()
-
         self.setWindowFlags(Qt.CustomizeWindowHint)
+
+        self.background_color, self.delay, self.font_size = dataParser.getPrizeAlertPrefs()
         self.makeLayout()
+
+        Signals.getInstance().prizeAlertChanged.connect(self.reinit)
 
     def makeLayout(self):
         """
@@ -25,8 +28,11 @@ class PrizeAlert(WindowBase):
         """
         self.desc = QLabel()
         self.desc.setAlignment(Qt.AlignCenter)
-        self.desc.setFont(QFont("Arial", PrizeAlert.FONT_SIZE))
+        self.desc.setFont(QFont("Arial", self.font_size))
         self.layout.addWidget(self.desc)
+
+        # Set the background color from preferences
+        self.setStyleSheet('QWidget {background-color: ' + self.background_color +  ';}')
 
     def setPrize(self, prize):
         """
@@ -34,6 +40,14 @@ class PrizeAlert(WindowBase):
         :param Prize prize: prize for which the alert is
         """
         self.desc.setText(prize.description)
+
+    def reinit(self):
+        """
+        
+        """
+        self.background_color, self.delay, self.font_size = dataParser.getPrizeAlertPrefs()
+        self.desc.setFont(QFont("Arial", self.font_size))
+        self.setStyleSheet('QWidget {background-color: ' + self.background_color +  ';}')
 
     def mousePressEvent(self, QMouseEvent):
         self.close()
@@ -44,5 +58,5 @@ class PrizeAlert(WindowBase):
     def show(self):
         super().show()
          # Start a timer for closing the PrizeAlert
-        self.delayThread = Timer(PrizeAlert.DELAY, self.close)
+        self.delayThread = Timer(self.delay, self.close)
         self.delayThread.start()
