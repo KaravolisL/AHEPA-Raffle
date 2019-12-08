@@ -1,5 +1,5 @@
 from Tickets.Ticket import Ticket
-from FileManager import readTicketNames
+from FileManager.FileManager import readTicketNames, importTicketNames
 from GlobalConstants import NUMBER_OF_TICKETS
 
 class TicketList():
@@ -34,7 +34,7 @@ class TicketList():
         """
         self.ticketList.clear()
         self.numOfTicketsDrawn = 0
-        ticketNames = readTicketNames(file)
+        ticketNames = importTicketNames(file)
         for i in range(0, 225):
             self.ticketList.append(Ticket(ticketNames[i], i+1))
 

@@ -5,3 +5,6 @@ class Prize:
 
     def __str__(self):
         return str(self.number) + " " + self.description
+
+    def getAttributes(self):
+        return {'number': str(self.number), 'description': self.description}
