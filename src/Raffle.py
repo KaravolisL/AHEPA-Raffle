@@ -15,7 +15,8 @@ from Controller import Controller
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
-
+    app.setWindowIcon(QIcon(r'..\images\Icon.jpg'))
+    
     # Initialize view and model
     Controller.initialize()
 

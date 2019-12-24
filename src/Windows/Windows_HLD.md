@@ -1,6 +1,5 @@
 # Window Package
 
-
 ```plantuml
 
 package WindowRepository {
