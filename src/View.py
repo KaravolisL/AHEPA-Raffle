@@ -362,6 +362,7 @@ class MainWindow(QMainWindow):
         menuBar.setResponse(menuBar.editChangeBackgroundAction, lambda: setWindow('changeColorWindow'))
         menuBar.setResponse(menuBar.editPrizeAlertAction, lambda: setWindow('editPrizeAlertWindow'))
         menuBar.setResponse(menuBar.viewTicketNamesAction, lambda: setWindow('viewTicketsWindow'))
+        menuBar.setResponse(menuBar.viewPrizesAction, lambda: setWindow('viewPrizesWindow'))
         # TODO: Set remaining responses
         return menuBar
 

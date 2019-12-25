@@ -7,6 +7,7 @@ from Windows.EditPrizeWindow import EditPrizeWindow
 from Windows.ChangeColorWindow import ChangeColorWindow
 from Windows.EditPrizeAlertWindow import EditPrizeAlertWindow
 from Windows.ViewTicketsWindow import ViewTicketsWindow
+from Windows.ViewPrizesWindow import ViewPrizesWindow
 
 class WindowRepository():
     instance = None
@@ -28,6 +29,7 @@ class WindowRepository():
             'changeColorWindow': ChangeColorWindow(),
             'editPrizeAlertWindow': EditPrizeAlertWindow(),
             'viewTicketsWindow': ViewTicketsWindow(),
+            'viewPrizesWindow': ViewPrizesWindow(),
         }
 
     @classmethod
