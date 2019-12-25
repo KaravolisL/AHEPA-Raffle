@@ -103,7 +103,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Save Files
+# Save File
 *.xml
 
 # VS Code
