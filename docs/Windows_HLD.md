@@ -14,6 +14,7 @@ class EditTicketWindow
 class EditPrizeWindow
 class EditPrizeAlertWindow
 class ChangeColorWindow
+class ViewTicketsWindow
 
 WindowBase <|-- AlertBase
 WindowBase <|-- PrizeAlert
@@ -21,6 +22,7 @@ WindowBase <|-- EditTicketWindow
 WindowBase <|-- EditPrizeWindow
 WindowBase <|-- EditPrizeAlertWindow
 WindowBase <|-- ChangeColorWindow
+WindowBase <|-- ViewTicketsWindow
 AlertBase <|-- RestartWarning
 
 }
