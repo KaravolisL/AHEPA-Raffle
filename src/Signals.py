@@ -10,4 +10,6 @@ from Utils.Singleton import Singleton
 class Signals(QObject):
     colorChanged = pyqtSignal()
     prizeAlertChanged = pyqtSignal()
+    ticketDrawn = pyqtSignal(int)
+    ticketNameChanged = pyqtSignal(int)
     

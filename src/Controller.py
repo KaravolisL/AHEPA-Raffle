@@ -8,6 +8,7 @@ import FileManager.FileManager as FileManager
 from Tickets.TicketList import TicketList
 from ViewApi import *
 import Prizes.PrizeApi as PrizeApi
+from Signals import Signals
 
 def initialize():
     """
@@ -64,6 +65,8 @@ def notifyCellRemoved(id):
         print("Displaying prizeAlert")
         PrizeApi.displayPrizeAlert(ticketList.numOfTicketsDrawn)
 
+    Signals().ticketDrawn.emit(id)
+
 def notifyTicketNameChange(ticket):
     """
     This method is called when a ticket's name was changed either during initialization or by the
@@ -71,6 +74,7 @@ def notifyTicketNameChange(ticket):
     :param Ticket ticket: ticket whose names were changed
     """
     updateCell(ticket.getName(), ticket.getNumber())
+    Signals().ticketNameChanged.emit(ticket.number)
 
 def notifyUndoClicked():
     """
