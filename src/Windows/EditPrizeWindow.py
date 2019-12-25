@@ -8,6 +8,7 @@ from Windows.WindowBase import WindowBase
 from Prizes.PrizeApi import getAssociatedPrize, setPrizeDescription, deletePrize, addPrize
 from Utils.Validators import validatePrizeName, validatePrizeNumber
 import Controller
+from Signals import Signals
 
 class EditPrizeWindow(WindowBase):
     def __init__(self):
@@ -135,6 +136,9 @@ class EditPrizeWindow(WindowBase):
             self.setButtons('add')
         else:
             assert(False), 'Argument not supported'
+
+        # emit the prize changed signal
+        Signals().prizeChanged.emit(self.numberEntered)
 
     def keyPressEvent(self, event):
         """

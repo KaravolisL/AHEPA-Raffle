@@ -12,4 +12,5 @@ class Signals(QObject):
     prizeAlertChanged = pyqtSignal()
     ticketDrawn = pyqtSignal(int)
     ticketNameChanged = pyqtSignal(int)
+    prizeChanged = pyqtSignal(int)
     
