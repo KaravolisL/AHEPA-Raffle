@@ -6,6 +6,7 @@ from PyQt5.QtMultimediaWidgets import *
 
 from Windows.WindowBase import WindowBase
 from Tickets.TicketList import TicketList
+from Signals import Signals
 
 class ViewTicketsWindow(WindowBase):
 
@@ -14,8 +15,10 @@ class ViewTicketsWindow(WindowBase):
         self.setWindowTitle('View Tickets')
         self.setWindowFlags(Qt.WindowCloseButtonHint)
 
-        self.makeLayout()
+        Signals().ticketDrawn.connect(self.reevaluate)
+        Signals().ticketNameChanged.connect(self.reevaluate)
 
+        self.makeLayout()
 
     def makeLayout(self):
         """
@@ -39,3 +42,11 @@ class ViewTicketsWindow(WindowBase):
 
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.layout.addWidget(self.table, 0, 0)
+
+    def reevaluate(self, id):
+        """
+        
+        """
+        ticket = TicketList.getInstance().getTicket(id)
+        self.table.item(id - 1, 1).setText(ticket.name)
+        self.table.item(id - 1, 2).setText('Yes' if ticket.isDrawn() else 'No')
