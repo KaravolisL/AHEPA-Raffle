@@ -6,6 +6,7 @@ from PyQt5.QtMultimediaWidgets import *
 
 from Windows.WindowBase import WindowBase
 from FileManager.DataParser import dataParser
+from Utils.ClickableLabel import ClickableLabel
 from Signals import Signals
 
 class ChangeColorWindow(WindowBase):
@@ -73,11 +74,3 @@ class ChangeColorWindow(WindowBase):
         screenWidth = size.width()
         screenHeight = size.height()
         self.setGeometry(0, 0, screenWidth/4, screenHeight/5)
-
-class ClickableLabel(QLabel):
-    clicked = pyqtSignal()
-    def __init__(self, parent = None):
-        QLabel.__init__(self, parent)
-
-    def mousePressEvent(self, ev):
-        self.clicked.emit()

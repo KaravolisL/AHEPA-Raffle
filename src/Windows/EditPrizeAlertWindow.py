@@ -6,6 +6,7 @@ from PyQt5.QtMultimediaWidgets import *
 
 from Windows.WindowBase import WindowBase
 from FileManager.DataParser import dataParser
+from Utils.ClickableLabel import ClickableLabel
 from Signals import Signals
 
 class EditPrizeAlertWindow(WindowBase):
@@ -103,11 +104,3 @@ class EditPrizeAlertWindow(WindowBase):
         dataParser.setPrizeAlertPref('fontSize', self.prizeAlertFontSizeOptions.currentText())
         Signals().prizeAlertChanged.emit()
         self.close()
-
-class ClickableLabel(QLabel):
-    clicked = pyqtSignal()
-    def __init__(self, parent = None):
-        QLabel.__init__(self, parent)
-
-    def mousePressEvent(self, ev):
-        self.clicked.emit()
