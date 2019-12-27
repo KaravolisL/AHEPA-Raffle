@@ -9,6 +9,8 @@ from Windows.EditPrizeAlertWindow import EditPrizeAlertWindow
 from Windows.ViewTicketsWindow import ViewTicketsWindow
 from Windows.ViewPrizesWindow import ViewPrizesWindow
 
+from enum import Enum, auto
+
 class WindowRepository():
     instance = None
     windowList = None
@@ -40,3 +42,16 @@ class WindowRepository():
         window = self.windowList.get(windowType, None)
         assert(window != None), 'Window type not supported'
         return window
+
+class WindowType(Enum):
+    RESTART_WARNING = auto()
+    IMPORT_TICKETS = auto()
+    IMPORT_PRIZES = auto()
+    PRIZE_ALERT = auto()
+    EDIT_TICKET = auto()
+    EDIT_PRIZE = auto()
+    CHANGE_COLOR = auto()
+    EDIT_PRIZE_ALERT = auto()
+    VIEW_TICKETS = auto()
+    VIEW_PRIZES = auto()
+    ABOUT = auto()
