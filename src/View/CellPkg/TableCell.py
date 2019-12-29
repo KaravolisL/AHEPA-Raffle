@@ -1,5 +1,5 @@
 
-from CellPkg.CellBase import CellBase
+from View.CellPkg.CellBase import CellBase
 from Signals import Signals
 
 class TableCell(CellBase):

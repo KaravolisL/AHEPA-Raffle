@@ -1,8 +1,9 @@
-from PyQt5.QtGui import QMainWindow
-from PyQt5.QtCore.Qt import Key_Escape
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 
 from MenuBar import MenuBar
-from MainWidget import MainWidget
+from View.MainWidget import MainWidget
 from Utils.Singleton import Singleton
 from Windows.WindowRepository import WindowType, WindowRepository
 from Signals import Signals
@@ -27,7 +28,7 @@ class MainWindow(QMainWindow):
         Pressing escape will exit full screen
         :param QKeyEvent e: Event passed to this method
         """
-        if e.key() == Key_Escape:
+        if e.key() == Qt.Key_Escape:
             self.showMaximized()
 
     def showFullScreen(self):

@@ -1,8 +1,8 @@
-from PyQt5.QtGui import QWidget, QSizePolicy, QGridLayout
+from PyQt5.QtWidgets import QWidget, QSizePolicy, QGridLayout
 
 from math import floor
 
-from CellPkg.TableCell import TableCell
+from View.CellPkg.TableCell import TableCell
 from FileManager.DataParser import dataParser
 from Signals import Signals
 

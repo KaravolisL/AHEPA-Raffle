@@ -1,7 +1,7 @@
-from CellPkg.CellBase import CellBase
+from View.CellPkg.CellBase import CellBase
 from Signals import Signals
 from Windows.WindowRepository import WindowType
-from MainWindow import MainWindow
+import View.MainWindow
 
 class HeaderCellBase(CellBase):
     def setText(self, text):
@@ -47,7 +47,7 @@ class TicketsDrawnCell(HeaderCellBase):
         Clicking the TicketsDrawnCell will cause the ViewTicketsWindow
         to be shown
         """
-        MainWindow().set_window(WindowType.VIEW_TICKETS)
+        MainWindow.MainWindow().set_window(WindowType.VIEW_TICKETS)
 
 class LastTicketDrawnCell(HeaderCellBase):
     def __init__(self):

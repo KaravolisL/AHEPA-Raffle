@@ -1,5 +1,5 @@
-from PyQt5.QtGui import QLineEdit
-from PyQt5.QtCore.Qt import Key_Enter, Key_Return
+from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtCore import Qt
 
 from Utils.Validators import validateTicketNumber
 from Signals import Signals
@@ -22,7 +22,7 @@ class TextBox(QLineEdit):
         :param QKeyEvent event: Key that was pressed
         """
         self.setReadOnly(False)
-        if event.key() in (Key_Return, Key_Enter):
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
             super().keyPressEvent(event)
         else:
             if validateTicketNumber(self.text()):

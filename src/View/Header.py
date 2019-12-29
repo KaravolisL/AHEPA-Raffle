@@ -1,8 +1,8 @@
-from PyQt5.QtGui import QWidget, QHBoxLayout, QStackedLayout, QSizePolicy
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QStackedLayout, QSizePolicy
 
 from FileManager.DataParser import dataParser
-from CellPkg.HeaderCells import TicketsRemainingCell, TicketsDrawnCell, LastTicketDrawnCell
-from TextBox import TextBox
+from View.CellPkg.HeaderCells import TicketsRemainingCell, TicketsDrawnCell, LastTicketDrawnCell
+from View.TextBox import TextBox
 from Signals import Signals
 
 class Header(QWidget):
@@ -31,18 +31,18 @@ class Header(QWidget):
         leftLayout = QStackedLayout()
         leftWrapper.setLayout(leftLayout)
         leftLayout.setStackingMode(QStackedLayout.StackAll)
-        leftLayout.addWidget(self.ticketsRemainingCell)
+        leftLayout.addWidget(self.cells[0])
         leftLayout.addWidget(self.textBox)
 
         middleWrapper = QWidget()
         middleLayout = QStackedLayout()
         middleWrapper.setLayout(middleLayout)
-        middleLayout.addWidget(self.ticketsDrawnCell)
+        middleLayout.addWidget(self.cells[1])
 
         rightWrapper = QWidget()
         rightLayout = QStackedLayout()
         rightWrapper.setLayout(rightLayout)
-        rightLayout.addWidget(self.lastTicketDrawnCell)
+        rightLayout.addWidget(self.cells[2])
 
         # Final part of the crazy shit
         self.layout.addWidget(leftWrapper)
