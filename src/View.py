@@ -10,7 +10,7 @@ from math import floor
 import Controller
 from MenuBar import MenuBar
 from Utils.Validators import validateTicketNumber
-from Windows.WindowRepository import WindowRepository
+from Windows.WindowRepository import WindowRepository, WindowType
 from FileManager.DataParser import dataParser
 from Signals import Signals
 
@@ -354,15 +354,15 @@ class MainWindow(QMainWindow):
         menuBar = MenuBar()
         menuBar.setResponse(menuBar.viewFullScreenAction, self.showFullScreen)
         menuBar.setResponse(menuBar.viewMaximizedAction, self.showMaximized)
-        menuBar.setResponse(menuBar.fileRestartAction, lambda: setWindow('restartWarning'))
-        menuBar.setResponse(menuBar.fileImportTicketNamesAction, lambda: setWindow('importTicketsWindow'))
-        menuBar.setResponse(menuBar.fileImportPrizesAction, lambda: setWindow('importPrizesWindow'))
-        menuBar.setResponse(menuBar.editTicketAction, lambda: setWindow('editTicketWindow'))
-        menuBar.setResponse(menuBar.editPrizeAction, lambda: setWindow('editPrizeWindow'))
-        menuBar.setResponse(menuBar.editChangeBackgroundAction, lambda: setWindow('changeColorWindow'))
-        menuBar.setResponse(menuBar.editPrizeAlertAction, lambda: setWindow('editPrizeAlertWindow'))
-        menuBar.setResponse(menuBar.viewTicketNamesAction, lambda: setWindow('viewTicketsWindow'))
-        menuBar.setResponse(menuBar.viewPrizesAction, lambda: setWindow('viewPrizesWindow'))
+        menuBar.setResponse(menuBar.fileRestartAction, lambda: setWindow(WindowType.RESTART_WARNING))
+        menuBar.setResponse(menuBar.fileImportTicketNamesAction, lambda: setWindow(WindowType.IMPORT_TICKETS))
+        menuBar.setResponse(menuBar.fileImportPrizesAction, lambda: setWindow(WindowType.IMPORT_PRIZES))
+        menuBar.setResponse(menuBar.editTicketAction, lambda: setWindow(WindowType.EDIT_TICKET))
+        menuBar.setResponse(menuBar.editPrizeAction, lambda: setWindow(WindowType.EDIT_PRIZE))
+        menuBar.setResponse(menuBar.editChangeBackgroundAction, lambda: setWindow(WindowType.CHANGE_COLOR))
+        menuBar.setResponse(menuBar.editPrizeAlertAction, lambda: setWindow(WindowType.EDIT_PRIZE_ALERT))
+        menuBar.setResponse(menuBar.viewTicketNamesAction, lambda: setWindow(WindowType.VIEW_TICKETS))
+        menuBar.setResponse(menuBar.viewPrizesAction, lambda: setWindow(WindowType.VIEW_PRIZES))
         # TODO: Set remaining responses
         return menuBar
 

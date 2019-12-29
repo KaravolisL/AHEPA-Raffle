@@ -22,16 +22,16 @@ class WindowRepository():
         WindowRepository.instance = self
 
         self.windowList = {
-            'restartWarning': RestartWarning(),
-            'importTicketsWindow': ImportTicketsWindow(),
-            'importPrizesWindow': ImportPrizesWindow(),
-            'prizeAlertWindow': PrizeAlert(),
-            'editTicketWindow': EditTicketWindow(),
-            'editPrizeWindow': EditPrizeWindow(),
-            'changeColorWindow': ChangeColorWindow(),
-            'editPrizeAlertWindow': EditPrizeAlertWindow(),
-            'viewTicketsWindow': ViewTicketsWindow(),
-            'viewPrizesWindow': ViewPrizesWindow(),
+            WindowType.RESTART_WARNING: RestartWarning(),
+            WindowType.IMPORT_TICKETS: ImportTicketsWindow(),
+            WindowType.IMPORT_PRIZES: ImportPrizesWindow(),
+            WindowType.PRIZE_ALERT: PrizeAlert(),
+            WindowType.EDIT_TICKET: EditTicketWindow(),
+            WindowType.EDIT_PRIZE: EditPrizeWindow(),
+            WindowType.CHANGE_COLOR: ChangeColorWindow(),
+            WindowType.EDIT_PRIZE_ALERT: EditPrizeAlertWindow(),
+            WindowType.VIEW_TICKETS: ViewTicketsWindow(),
+            WindowType.VIEW_PRIZES: ViewPrizesWindow(),
         }
 
     @classmethod
