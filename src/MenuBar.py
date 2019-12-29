@@ -1,10 +1,6 @@
 # TODO: Add separator between Maximize and View Ticket Names
 
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtGui import QMenuBar, QAction
 
 class MenuBar(QMenuBar):
     def __init__(self):
@@ -58,6 +54,11 @@ class MenuBar(QMenuBar):
         self.helpMenu.addAction(self.helpAboutAction)
 
     def setResponse(self, action, response):
-        ''' Used by MainWindow to set the response for the actions on the MenuBar '''
+        """
+        Used by MainWindow to set the response for the actions on
+        the MenuBar
+        :param QAction action: Action for which to set response
+        :param func response: Function to connect to action
+        """
         action.triggered.connect(response)
 
