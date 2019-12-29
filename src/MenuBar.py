@@ -1,6 +1,6 @@
 # TODO: Add separator between Maximize and View Ticket Names
 
-from PyQt5.QtGui import QMenuBar, QAction
+from PyQt5.QtWidgets import QMenuBar, QAction
 
 class MenuBar(QMenuBar):
     def __init__(self):
