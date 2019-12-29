@@ -14,4 +14,5 @@ class Signals(QObject):
     ticketNameChanged = pyqtSignal(int)
     prizeChanged = pyqtSignal(int)
     undoButtonClicked = pyqtSignal()
+    raffleExited = pyqtSignal()
     

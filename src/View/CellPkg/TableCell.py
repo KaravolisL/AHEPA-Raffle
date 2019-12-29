@@ -8,6 +8,8 @@ class TableCell(CellBase):
         self.sizePolicy().setRetainSizeWhenHidden(True)
         self.setText(self.text)
 
+        Signals().ticketDrawn.connect(lambda: self.setTransparent(True))
+
     def setText(self, text):
         """
         Include the id when setting the text for a table cell
@@ -22,4 +24,3 @@ class TableCell(CellBase):
         """
         if not self.isTransparent():
             Signals().ticketDrawn.emit(self.id)
-            self.setTransparent(True)

@@ -29,7 +29,7 @@ def displayPrizeAlert(numOfTicketsDrawn):
     Constructs a prize alert and displays it
     :param int numOfTicketsDrawn: Number of tickets drawn
     """
-    alert = WR.WindowRepository.getInstance().getWindow('prizeAlertWindow')
+    alert = WR.WindowRepository.getInstance().getWindow(WR.WindowType.PRIZE_ALERT)
     PrizeList.getInstance().setAlert(alert, numOfTicketsDrawn)
 
 def getAssociatedPrize(ticketNumber):
