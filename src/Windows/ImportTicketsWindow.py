@@ -6,6 +6,7 @@ from PyQt5.QtMultimediaWidgets import *
 
 from Windows.AlertBase import AlertBase
 from Tickets.TicketList import TicketList
+from Signals import Signals
 import Controller
 
 class ImportTicketsWindow(QWidget):
@@ -35,5 +36,5 @@ class ImportWarningWindow(AlertBase):
         Controller.restartRaffle()
         TicketList.getInstance().reinitialize(self.fname)
         for ticket in TicketList.getInstance().ticketList:
-            Controller.notifyTicketNameChange(ticket)
+            Signals().ticketNameChanged.emit(ticket.number)
         self.close()

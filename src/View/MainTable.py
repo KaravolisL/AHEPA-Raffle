@@ -4,6 +4,7 @@ from math import floor
 
 from View.CellPkg.TableCell import TableCell
 from FileManager.DataParser import dataParser
+from Tickets.TicketList import TicketList
 from Signals import Signals
 
 class MainTable(QWidget):
@@ -30,6 +31,9 @@ class MainTable(QWidget):
         self.setColor()
         Signals().colorChanged.connect(self.setColor)
 
+        # Connect the ticketDrawn signal
+        Signals().ticketDrawn.connect(lambda id: self.getCell(id).setTransparent(True))
+
     def getCell(self, id):
         """
         Helper method to obtain cell from 2D array given id
@@ -37,12 +41,15 @@ class MainTable(QWidget):
         """
         return self.cells[floor((id-1)/15)][(id-1)%15]
 
-    def updateCell(self, text, id):
+    def updateCell(self, id, text=None):
         """
         Helper method to update a cell with new text given an id.
         :param str text: New text for cell
         :param int id: Id of cell being updated
         """
+        if text is None:
+            ticket = TicketList.getInstance().getTicket(id)
+            text = ticket.name
         self.getCell(id).setText(text)
 
     def setColor(self):

@@ -6,7 +6,8 @@ from PyQt5.QtMultimediaWidgets import *
 
 import FileManager.FileManager as FileManager
 from Tickets.TicketList import TicketList
-from ViewApi import *
+from View.MainWindow import MainWindow
+# from ViewApi import *
 import Prizes.PrizeApi as PrizeApi
 from Signals import Signals
 
@@ -27,7 +28,7 @@ def initialize():
     # Initialize the TicketList
     ticketList.initialize()
     for ticket in ticketList.ticketList:
-        notifyTicketNameChange(ticket)
+        Signals().ticketNameChanged.emit(ticket.number)
 
     # Restore progress using save file
     restoreProgress("saveFile.txt")
@@ -36,8 +37,8 @@ def initialize():
     PrizeApi.initializePrizeList()
 
     # Construct MainWindow and its contents
-    window = getMainWindow()
-    window.showMaximized()
+    mainWindow = MainWindow()
+    mainWindow.showMaximized()
 
 def notifyCellRemoved(id):
     """
@@ -66,15 +67,6 @@ def notifyCellRemoved(id):
         PrizeApi.displayPrizeAlert(ticketList.numOfTicketsDrawn)
 
     Signals().ticketDrawn.emit(id)
-
-def notifyTicketNameChange(ticket):
-    """
-    This method is called when a ticket's name was changed either during initialization or by the
-    user at runtime.
-    :param Ticket ticket: ticket whose names were changed
-    """
-    updateCell(ticket.getName(), ticket.getNumber())
-    Signals().ticketNameChanged.emit(ticket.number)
 
 def notifyUndoClicked():
     """

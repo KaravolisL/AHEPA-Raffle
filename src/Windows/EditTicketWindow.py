@@ -86,7 +86,7 @@ class EditTicketWindow(WindowBase):
         newName = self.ticketNameLineEdit.text()
         if validateTicketName(newName):
             TicketList.getInstance().setTicketName(self.numberEntered, newName)
-            Controller.notifyTicketNameChange(TicketList.getInstance().getTicket(self.numberEntered))
+            Signals().ticketNameChanged.emit(self.numberEntered)
         else:
             # User tried entering an invalid ticket name
             pass

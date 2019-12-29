@@ -13,6 +13,10 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # Setup the menu bar
+        self.menuBar = self.createMenuBar()
+        self.setMenuBar(self.menuBar)
+
         # Creating the central widget for the window
         centralWidget = MainWidget()
         self.setCentralWidget(centralWidget)

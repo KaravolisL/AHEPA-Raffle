@@ -1,16 +1,13 @@
 # PyQt libraries
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QIcon
 
 # System libraries
 import sys
 from datetime import datetime
 
 # Local libraries
-from Controller import Controller
+import Controller
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
