@@ -1,11 +1,8 @@
 # TODO: Do I really need to store the text? I might be able to just
 # reimplement getText
 
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QLabel, QSizePolicy
+from PyQt5.QtCore import Qt
 
 class CellBase(QLabel):
     def __init__(self, text = None, id = 0):
