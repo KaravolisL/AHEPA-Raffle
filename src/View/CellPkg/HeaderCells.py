@@ -4,13 +4,17 @@ from Windows.WindowRepository import WindowType
 import View.MainWindow
 
 class HeaderCellBase(CellBase):
+    def __init__(self, base_text):
+        super().__init__()
+        self.base_text = base_text
+
     def setText(self, text):
         """
         Setting the text of header cells involves just updating the 
         trailing number.
         :param str text: Number to be added to the end of the string
         """
-        super().setText('{} {}'.format(self.text, str(text)))
+        super().setText('{} {}'.format(self.base_text, str(text)))
 
     def isTransparent(self):
         """
