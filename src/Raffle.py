@@ -4,9 +4,12 @@ import Prizes.PrizeApi as PrizeApi
 import FileManager.FileManager as FileManager
 from View.MainWindow import MainWindow
 from Signals import Signals
+from Prizes.PrizeApi import getList
 
 class Raffle():
     def __init__(self):
+        # Construct the MainWindow
+        mainWindow = MainWindow()
 
         # Initialize the TicketList
         TicketList.getInstance().initialize()
@@ -17,9 +20,20 @@ class Raffle():
         # Initialize the PrizeList
         PrizeApi.initializePrizeList()
 
-        # Construct MainWindow and show
-        mainWindow = MainWindow()
+        # Show the main window
         mainWindow.showMaximized()
+
+        # Connect additional signals
+        Signals().raffleExited.connect(self.saveProgress)
+
+    def saveProgress(self):
+        """
+        This method saves the progress of the raffle and any changes made
+        to tickets or prizes
+        """
+        FileManager.saveProgress(TicketList.getInstance().getDrawnTickets())
+        FileManager.writePrizes(PrizeApi.getList())
+        FileManager.writeTickets(TicketList.getInstance().ticketList)
 
     def restoreProgress(self):
         """
