@@ -1,5 +1,6 @@
 from Tickets.Ticket import Ticket
 from FileManager.FileManager import readTicketNames, importTicketNames
+from Signals import Signals
 from GlobalConstants import NUMBER_OF_TICKETS
 
 class TicketList():
@@ -11,6 +12,8 @@ class TicketList():
         assert(TicketList.instance == None) # Assert to ensure singleton
         TicketList.instance = self
         self.numOfTicketsDrawn = 0
+
+        Signals().ticketDrawn.connect(self.removeTicket)
 
     @staticmethod
     def getInstance():
