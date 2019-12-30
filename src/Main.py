@@ -8,6 +8,7 @@ from datetime import datetime
 
 # Local libraries
 import Controller
+from Raffle import Raffle
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -15,6 +16,9 @@ if __name__ == '__main__':
     app.setWindowIcon(QIcon(r'..\images\Icon.jpg'))
     
     # Initialize view and model
-    Controller.initialize()
+    # Controller.initialize()
+
+    # Create a Raffle instance
+    raffle = Raffle()
 
     app.exec_()

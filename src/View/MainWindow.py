@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         windows to survive as long as the MainWindow.
         :param WindowType windowType: Type of window to display
         """
-        window = WindowRepository().getWindow(windowType)
-        self.popup = window
+        self.popup = WindowRepository.getInstance().getWindow(windowType)
+        self.popup.show()
 
     

@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QStackedLayout, QSizePolicy
 
 from FileManager.DataParser import dataParser
+from Tickets.TicketList import TicketList
 from View.CellPkg.HeaderCells import TicketsRemainingCell, TicketsDrawnCell, LastTicketDrawnCell
 from View.TextBox import TextBox
 from Signals import Signals
@@ -49,6 +50,9 @@ class Header(QWidget):
         self.layout.addWidget(middleWrapper)
         self.layout.addWidget(rightWrapper)
 
+        # Connect the ticketDrawn signal to update the header
+        Signals().ticketDrawn.connect(self.updateHeader)
+
     def setMaxHeight(self, height):
         """
         Helper method to set the max height of each subelement
@@ -58,11 +62,11 @@ class Header(QWidget):
             cell.setFixedHeight(height)
         self.textBox.setFixedHeight(height)
 
-    def updateHeader(self, info):
+    def updateHeader(self):
         """
         Method used to update the three numbers displayed in the header
-        :param list info: List containing three ints for the header
         """
+        info = TicketList.getInstance().getHeaderInfo()
         for cell, num in zip(self.cells, info):
             cell.setText(str(num))
 
