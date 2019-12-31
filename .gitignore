@@ -106,5 +106,8 @@ venv.bak/
 # Save File
 *.xml
 
+# Log file
+log_file.txt
+
 # VS Code
 .vscode/
