@@ -1,8 +1,9 @@
-from PyQt5.QtGui import QMainWindow
-from PyQt5.QtCore.Qt import Key_Escape
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 
-from MenuBar import MenuBar
-from MainWidget import MainWidget
+from View.MenuBar import MenuBar
+from View.MainWidget import MainWidget
 from Utils.Singleton import Singleton
 from Windows.WindowRepository import WindowType, WindowRepository
 from Signals import Signals
@@ -11,6 +12,10 @@ from Signals import Signals
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        # Setup the menu bar
+        self.menuBar = self.createMenuBar()
+        self.setMenuBar(self.menuBar)
 
         # Creating the central widget for the window
         centralWidget = MainWidget()
@@ -27,7 +32,7 @@ class MainWindow(QMainWindow):
         Pressing escape will exit full screen
         :param QKeyEvent e: Event passed to this method
         """
-        if e.key() == Key_Escape:
+        if e.key() == Qt.Key_Escape:
             self.showMaximized()
 
     def showFullScreen(self):
@@ -79,7 +84,7 @@ class MainWindow(QMainWindow):
         windows to survive as long as the MainWindow.
         :param WindowType windowType: Type of window to display
         """
-        window = WindowRepository().getWindow(windowType)
-        self.popup = window
+        self.popup = WindowRepository.getInstance().getWindow(windowType)
+        self.popup.show()
 
     

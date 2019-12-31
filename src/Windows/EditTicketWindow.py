@@ -7,7 +7,7 @@ from PyQt5.QtMultimediaWidgets import *
 from Windows.WindowBase import WindowBase
 from Tickets.TicketList import TicketList
 from Utils.Validators import validateTicketName, validateTicketNumber
-import Controller
+from Signals import Signals
 
 class EditTicketWindow(WindowBase):
     def __init__(self):
@@ -86,7 +86,7 @@ class EditTicketWindow(WindowBase):
         newName = self.ticketNameLineEdit.text()
         if validateTicketName(newName):
             TicketList.getInstance().setTicketName(self.numberEntered, newName)
-            Controller.notifyTicketNameChange(TicketList.getInstance().getTicket(self.numberEntered))
+            Signals().ticketNameChanged.emit(self.numberEntered)
         else:
             # User tried entering an invalid ticket name
             pass

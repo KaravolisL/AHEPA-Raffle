@@ -1,6 +1,9 @@
 
-from CellPkg.CellBase import CellBase
+from View.CellPkg.CellBase import CellBase
 from Signals import Signals
+
+# Logger import
+from Logger.Logger import logger
 
 class TableCell(CellBase):
     def __init__(self, text=None, id=0):
@@ -8,12 +11,11 @@ class TableCell(CellBase):
         self.sizePolicy().setRetainSizeWhenHidden(True)
         self.setText(self.text)
 
-        Signals().ticketDrawn.connect(lambda: self.setTransparent(True))
-
     def setText(self, text):
         """
         Include the id when setting the text for a table cell
         """
+        logger.debug('Setting text of cell #{} to {}'.format(self.id, text))
         self.text = text
         super().setText("{}\n{}".format(str(self.id), str(text)))
 

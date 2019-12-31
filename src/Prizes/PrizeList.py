@@ -1,4 +1,6 @@
 from Prizes.Prize import Prize
+from Tickets.TicketList import TicketList
+from Signals import Signals
 from FileManager.FileManager import readPrizes
 
 class PrizeList():
@@ -10,6 +12,9 @@ class PrizeList():
 
         assert(PrizeList.instance == None) # Assert to ensure singleton
         PrizeList.instance = self
+
+        # Connect the ticketDrawn signal to check for prizes
+        Signals().ticketDrawn.connect(self.prizeCheck)
 
     @staticmethod
     def getInstance():
@@ -57,19 +62,18 @@ class PrizeList():
                     nextPrize = prize
         return nextPrize
 
-    def setAlert(self, alert, numOfTicketsDrawn):
+    def prizeCheck(self):
         """
-        Attaches the given alert to the PrizeList, sets it's prize, and displays it
-        :param PrizeAlert alert: alert to attach
-        :param int numOfTicketsDrawn: current number of tickets drawn
+        Checks to see if a prize is registered for the next ticket to be drawn
+        This method is connected to the ticketDrawn signal. If a prize is found,
+        a prize alert will be displayed.
         """
-        print("Showing Alert")
-        self.alert = alert
-        self.alert.setPrize(self.getNextPrize(numOfTicketsDrawn))
-        self.alert.show()
-
-
-    
-
-    
-
+        numOfTicketsDrawn = TicketList.getInstance().numOfTicketsDrawn
+        nextPrize = self.getNextPrize(numOfTicketsDrawn)
+        if (nextPrize is None) or (numOfTicketsDrawn != nextPrize.number - 1):
+            return
+        else:
+            from Windows.WindowRepository import WindowRepository, WindowType
+            self.alert = WindowRepository.getInstance().getWindow(WindowType.PRIZE_ALERT)
+            self.alert.setPrize(nextPrize)
+            self.alert.show()

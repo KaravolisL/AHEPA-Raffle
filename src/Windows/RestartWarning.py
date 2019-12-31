@@ -1,5 +1,5 @@
 from Windows.AlertBase import AlertBase
-import Controller
+from Signals import Signals
 
 class RestartWarning(AlertBase):
     def __init__(self):
@@ -8,9 +8,9 @@ class RestartWarning(AlertBase):
 
     def confirmationEvent(self):
         """
-        Calls controller's restartRaffle function and closes window
+        Emit the restartRaffle signal and close window
         """
-        Controller.restartRaffle()
+        Signals().restartRaffle.emit()
         self.close()
 
     def closeEvent(self, e):

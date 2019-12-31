@@ -1,7 +1,7 @@
-from PyQt5.QtGui import QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
-from MainTable import MainTable
-from Header import Header
+from View.MainTable import MainTable
+from View.Header import Header
 
 class MainWidget(QWidget):
     def __init__(self):

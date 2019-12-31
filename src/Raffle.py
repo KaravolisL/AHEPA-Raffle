@@ -1,23 +1,63 @@
-# PyQt libraries
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
 
-# System libraries
-import sys
-from datetime import datetime
+from Tickets.TicketList import TicketList
+import Prizes.PrizeApi as PrizeApi
+import FileManager.FileManager as FileManager
+from View.MainWindow import MainWindow
+from Signals import Signals
+from Prizes.PrizeApi import getList
 
-# Local libraries
-from Controller import Controller
+# Logger import
+from Logger.Logger import logger
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
-    app.setWindowIcon(QIcon(r'..\images\Icon.jpg'))
-    
-    # Initialize view and model
-    Controller.initialize()
+class Raffle():
+    def __init__(self):
+        logger.debug('Raffle initializing')
 
-    app.exec_()
+        # Initialize the TicketList
+        TicketList.getInstance().initialize()
+
+        # Construct the MainWindow
+        mainWindow = MainWindow()
+
+        # Restore progress
+        self.restoreProgress()
+
+        # Initialize the PrizeList
+        PrizeApi.initializePrizeList()
+
+        # Show the main window
+        mainWindow.showMaximized()
+
+        # Connect additional signals
+        Signals().raffleExited.connect(self.saveProgress)
+        Signals().restartRaffle.connect(self.restartRaffle)
+
+    def saveProgress(self):
+        """
+        This method saves the progress of the raffle and any changes made
+        to tickets or prizes
+        """
+        FileManager.saveProgress(TicketList.getInstance().getDrawnTickets())
+        FileManager.writePrizes(PrizeApi.getList())
+        FileManager.writeTickets(TicketList.getInstance().ticketList)
+
+    def restoreProgress(self):
+        """
+        This method reads from the save file and updates the raffle to
+        that given point.
+        """
+        removedTickets = FileManager.readSaveFile()
+        if len(removedTickets) == 0:
+            return
+        for id in [ticket.getNumber() for ticket in removedTickets]:
+            Signals().ticketDrawn.emit(id)
+
+    def restartRaffle(self):
+        """
+        This method is called when the user clicks the restart option. It replaces all
+        the tickets drawn and resets the header.
+        """
+        lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
+        while lastTicketDrawn != None:
+            Signals().undoButtonClicked.emit(lastTicketDrawn.number)
+            lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()

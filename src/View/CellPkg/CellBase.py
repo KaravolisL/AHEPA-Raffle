@@ -1,11 +1,8 @@
 # TODO: Do I really need to store the text? I might be able to just
 # reimplement getText
 
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QLabel, QSizePolicy
+from PyQt5.QtCore import Qt
 
 class CellBase(QLabel):
     def __init__(self, text = None, id = 0):
@@ -33,9 +30,7 @@ class CellBase(QLabel):
         :param str color: New background color
         """
         # TODO: Validate color
-        # Only set the class attribute if we're changing colors
-        if color != 'transparent':
-            self.backgroundColor = str(color)
+        self.backgroundColor = str(color)
         self.setStyleSheet("QLabel {background-color: " + str(color) + ";color: " + self.textColor + ";}")
 
     def setTextColor(self, color):
@@ -43,9 +38,7 @@ class CellBase(QLabel):
         Overwrites class attribute and resets style sheet using it
         :param str color: New text color
         """
-        # Only set the class attribute if we're changing colors
-        if color != 'transparent':
-            self.textColor = str(color)
+        self.textColor = str(color)
         self.setStyleSheet("QLabel {background-color: " + self.backgroundColor + ";color: " + str(color) + ";}")
 
     def isTransparent(self):
@@ -61,8 +54,7 @@ class CellBase(QLabel):
         """
         if bool:
             # The class attributes will not be overwritten in this case
-            self.setBackgroundColor('transparent')
-            self.setTextColor('transparent')
+            self.setStyleSheet("QLabel {background-color: transparent; color: transparent;}")
         else:
             self.setBackgroundColor(self.backgroundColor)
             self.setTextColor(self.textColor)

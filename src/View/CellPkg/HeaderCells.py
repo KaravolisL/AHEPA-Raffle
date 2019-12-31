@@ -1,16 +1,21 @@
-from CellPkg.CellBase import CellBase
+from View.CellPkg.CellBase import CellBase
+from Tickets.TicketList import TicketList
 from Signals import Signals
 from Windows.WindowRepository import WindowType
-from MainWindow import MainWindow
+import View.MainWindow as MainWindow
 
 class HeaderCellBase(CellBase):
+    def __init__(self, base_text):
+        super().__init__()
+        self.base_text = base_text
+
     def setText(self, text):
         """
         Setting the text of header cells involves just updating the 
         trailing number.
         :param str text: Number to be added to the end of the string
         """
-        super().setText('{} {}'.format(self.text, str(text)))
+        super().setText('{} {}'.format(self.base_text, str(text)))
 
     def isTransparent(self):
         """
@@ -47,7 +52,7 @@ class TicketsDrawnCell(HeaderCellBase):
         Clicking the TicketsDrawnCell will cause the ViewTicketsWindow
         to be shown
         """
-        MainWindow().set_window(WindowType.VIEW_TICKETS)
+        MainWindow.MainWindow().setWindow(WindowType.VIEW_TICKETS)
 
 class LastTicketDrawnCell(HeaderCellBase):
     def __init__(self):
@@ -59,4 +64,7 @@ class LastTicketDrawnCell(HeaderCellBase):
         """
         Pressing the LastTicketDrawnCell replaces the last drawn ticket
         """
-        Signals().undoButtonClicked.emit()
+        # Get last ticket drawn
+        lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
+        if lastTicketDrawn != None:
+            Signals().undoButtonClicked.emit(lastTicketDrawn.number)

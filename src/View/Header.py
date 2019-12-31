@@ -1,9 +1,13 @@
-from PyQt5.QtGui import QWidget, QHBoxLayout, QStackedLayout, QSizePolicy
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QStackedLayout, QSizePolicy
 
 from FileManager.DataParser import dataParser
-from CellPkg.HeaderCells import TicketsRemainingCell, TicketsDrawnCell, LastTicketDrawnCell
-from TextBox import TextBox
+from Tickets.TicketList import TicketList
+from View.CellPkg.HeaderCells import TicketsRemainingCell, TicketsDrawnCell, LastTicketDrawnCell
+from View.TextBox import TextBox
 from Signals import Signals
+
+# Logging import
+from Logger.Logger import logger
 
 class Header(QWidget):
     def __init__(self):
@@ -31,23 +35,27 @@ class Header(QWidget):
         leftLayout = QStackedLayout()
         leftWrapper.setLayout(leftLayout)
         leftLayout.setStackingMode(QStackedLayout.StackAll)
-        leftLayout.addWidget(self.ticketsRemainingCell)
+        leftLayout.addWidget(self.cells[0])
         leftLayout.addWidget(self.textBox)
 
         middleWrapper = QWidget()
         middleLayout = QStackedLayout()
         middleWrapper.setLayout(middleLayout)
-        middleLayout.addWidget(self.ticketsDrawnCell)
+        middleLayout.addWidget(self.cells[1])
 
         rightWrapper = QWidget()
         rightLayout = QStackedLayout()
         rightWrapper.setLayout(rightLayout)
-        rightLayout.addWidget(self.lastTicketDrawnCell)
+        rightLayout.addWidget(self.cells[2])
 
         # Final part of the crazy shit
         self.layout.addWidget(leftWrapper)
         self.layout.addWidget(middleWrapper)
         self.layout.addWidget(rightWrapper)
+
+        # Connect the signals to update the header
+        Signals().ticketDrawn.connect(self.updateHeader)
+        Signals().undoButtonClicked.connect(self.updateHeader)
 
     def setMaxHeight(self, height):
         """
@@ -58,11 +66,12 @@ class Header(QWidget):
             cell.setFixedHeight(height)
         self.textBox.setFixedHeight(height)
 
-    def updateHeader(self, info):
+    def updateHeader(self):
         """
         Method used to update the three numbers displayed in the header
-        :param list info: List containing three ints for the header
         """
+        info = TicketList.getInstance().getHeaderInfo()
+        logger.debug('Updating the header with info {}'.format(info))
         for cell, num in zip(self.cells, info):
             cell.setText(str(num))
 
