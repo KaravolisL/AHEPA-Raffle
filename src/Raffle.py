@@ -6,8 +6,13 @@ from View.MainWindow import MainWindow
 from Signals import Signals
 from Prizes.PrizeApi import getList
 
+# Logger import
+from Logger.Logger import logger
+
 class Raffle():
     def __init__(self):
+        logger.debug('Raffle initializing')
+
         # Initialize the TicketList
         TicketList.getInstance().initialize()
 
