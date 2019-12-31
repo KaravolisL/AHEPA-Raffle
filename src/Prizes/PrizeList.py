@@ -74,6 +74,6 @@ class PrizeList():
             return
         else:
             from Windows.WindowRepository import WindowRepository, WindowType
-            self.alert = WindowRepository.getInstance().getWindow(WindowType.PRIZE_ALERT)
+            self.alert = WindowRepository().getWindow(WindowType.PRIZE_ALERT)
             self.alert.setPrize(nextPrize)
             self.alert.show()
