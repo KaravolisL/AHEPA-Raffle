@@ -55,3 +55,4 @@ class Raffle():
         lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
         while lastTicketDrawn != None:
             Signals().undoButtonClicked.emit(lastTicketDrawn.number)
+            lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
