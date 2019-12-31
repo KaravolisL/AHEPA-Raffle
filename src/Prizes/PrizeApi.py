@@ -1,6 +1,5 @@
 from Prizes.PrizeList import PrizeList
 from Prizes.Prize import Prize
-import Windows.WindowRepository as WR
 
 def initializePrizeList():
     """
@@ -13,24 +12,6 @@ def getList():
     
     """
     return PrizeList.getInstance().prizeList
-
-def prizeCheck(numOfTicketsDrawn):
-    """
-    Checks to see if a prize is registered for the next ticket to be drawn
-    :param int numOfTicketsDrawn: Number of tickets drawn
-    :returns: Whether a prize exists for the next ticket
-    :rtype: bool
-    """
-    nextPrize = PrizeList.getInstance().getNextPrize(numOfTicketsDrawn)
-    return (nextPrize != None) and (numOfTicketsDrawn == nextPrize.number - 1)
-
-def displayPrizeAlert(numOfTicketsDrawn):
-    """
-    Constructs a prize alert and displays it
-    :param int numOfTicketsDrawn: Number of tickets drawn
-    """
-    alert = WR.WindowRepository.getInstance().getWindow(WR.WindowType.PRIZE_ALERT)
-    PrizeList.getInstance().setAlert(alert, numOfTicketsDrawn)
 
 def getAssociatedPrize(ticketNumber):
     """

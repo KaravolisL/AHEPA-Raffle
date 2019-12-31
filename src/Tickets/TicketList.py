@@ -1,7 +1,11 @@
+# Local imports
 from Tickets.Ticket import Ticket
 from FileManager.FileManager import readTicketNames, importTicketNames
 from Signals import Signals
 from GlobalConstants import NUMBER_OF_TICKETS
+
+# Logging import
+from Logger.Logger import logger
 
 class TicketList():
     instance = None
@@ -54,7 +58,7 @@ class TicketList():
     def getLastTicketDrawn(self):
         """
         Iterates the list and compares each ticket's numberDrawn field
-        :returns: Returns the last ticket drawn
+        :returns: Returns the last ticket drawn, None if no tickets have been drawn
         :rtype: Ticket
         """
         if self.numOfTicketsDrawn != 0:
@@ -69,20 +73,21 @@ class TicketList():
         Sets the given tickets numberDrawn field and increments numOfTicketsDrawn
         :param int ticketNumber: Number of ticket to remove
         """
+        assert(self.ticketList[ticketNumber - 1].isDrawn() is False), 'Ticket already removed'
+        logger.debug('Removing ticket number {}'.format(ticketNumber))
         self.ticketList[ticketNumber - 1].numberDrawn = self.numOfTicketsDrawn + 1
         self.numOfTicketsDrawn += 1
 
     def replaceTicket(self):
         """
         Sets the last ticket drawn's numberDrawn field and decrements numOfTicketsDrawn
-        :returns: Last ticket drawn
-        :rtype: Ticket
         """
-        lastTicket = self.getLastTicketDrawn()
-        if lastTicket != None:
-            self.ticketList[lastTicket.number - 1].numberDrawn = 0
-            self.numOfTicketsDrawn -= 1
-        return lastTicket
+        ticket = self.getLastTicketDrawn()
+        assert(ticket != None), 'No tickets have been drawn'
+        assert(ticket.isDrawn()), 'Ticket has not been drawn'
+        logger.debug('Replacing ticket number {}'.format(ticket.number))
+        self.ticketList[ticket.number - 1].numberDrawn = 0
+        self.numOfTicketsDrawn -= 1
 
     def hasTicketBeenDrawn(self, ticketNumber):
         """

@@ -1,6 +1,5 @@
 from Prizes.Prize import Prize
 from Tickets.TicketList import TicketList
-import Windows.WindowRepository as WR
 from Signals import Signals
 from FileManager.FileManager import readPrizes
 
@@ -73,6 +72,8 @@ class PrizeList():
         nextPrize = self.getNextPrize(numOfTicketsDrawn)
         if (nextPrize is None) or (numOfTicketsDrawn != nextPrize.number - 1):
             return
-        self.alert = WR.WindowRepository.getInstance().getWindow(WR.WindowType.PRIZE_ALERT)
-        self.alert.setPrize(nextPrize)
-        self.alert.show()
+        else:
+            from Windows.WindowRepository import WindowRepository, WindowType
+            self.alert = WindowRepository.getInstance().getWindow(WindowType.PRIZE_ALERT)
+            self.alert.setPrize(nextPrize)
+            self.alert.show()

@@ -65,6 +65,6 @@ class LastTicketDrawnCell(HeaderCellBase):
         Pressing the LastTicketDrawnCell replaces the last drawn ticket
         """
         # Get last ticket drawn
-        lastTicketDrawn = TicketList.getInstance().replaceTicket()
+        lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
         if lastTicketDrawn != None:
             Signals().undoButtonClicked.emit(lastTicketDrawn.number)

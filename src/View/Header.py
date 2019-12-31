@@ -6,6 +6,9 @@ from View.CellPkg.HeaderCells import TicketsRemainingCell, TicketsDrawnCell, Las
 from View.TextBox import TextBox
 from Signals import Signals
 
+# Logging import
+from Logger.Logger import logger
+
 class Header(QWidget):
     def __init__(self):
         super().__init__()
@@ -68,6 +71,7 @@ class Header(QWidget):
         Method used to update the three numbers displayed in the header
         """
         info = TicketList.getInstance().getHeaderInfo()
+        logger.debug('Updating the header with info {}'.format(info))
         for cell, num in zip(self.cells, info):
             cell.setText(str(num))
 

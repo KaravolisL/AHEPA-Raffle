@@ -8,11 +8,11 @@ from Prizes.PrizeApi import getList
 
 class Raffle():
     def __init__(self):
-        # Construct the MainWindow
-        mainWindow = MainWindow()
-
         # Initialize the TicketList
         TicketList.getInstance().initialize()
+
+        # Construct the MainWindow
+        mainWindow = MainWindow()
 
         # Restore progress
         self.restoreProgress()
@@ -52,6 +52,6 @@ class Raffle():
         This method is called when the user clicks the restart option. It replaces all
         the tickets drawn and resets the header.
         """
-        lastTicketDrawn = TicketList.getInstance().replaceTicket()
+        lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
         while lastTicketDrawn != None:
             Signals().undoButtonClicked.emit(lastTicketDrawn.number)
