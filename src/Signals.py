@@ -16,4 +16,4 @@ class Signals(QObject):
     undoButtonClicked = pyqtSignal()
     raffleExited = pyqtSignal()
     raffleInitialized = pyqtSignal()
-    
+    restartRaffle = pyqtSignal()

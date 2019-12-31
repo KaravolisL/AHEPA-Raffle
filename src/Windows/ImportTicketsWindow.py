@@ -7,7 +7,6 @@ from PyQt5.QtMultimediaWidgets import *
 from Windows.AlertBase import AlertBase
 from Tickets.TicketList import TicketList
 from Signals import Signals
-import Controller
 
 class ImportTicketsWindow(QWidget):
     def __init__(self):
@@ -33,7 +32,7 @@ class ImportWarningWindow(AlertBase):
         Handles the event of the user confirming raffle restart. Note: Raffle must be restarted first
         before reinitializing the TicketList with new names.
         """
-        Controller.restartRaffle()
+        Signals().restartRaffle.emit()
         TicketList.getInstance().reinitialize(self.fname)
         for ticket in TicketList.getInstance().ticketList:
             Signals().ticketNameChanged.emit(ticket.number)

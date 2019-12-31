@@ -25,6 +25,7 @@ class Raffle():
 
         # Connect additional signals
         Signals().raffleExited.connect(self.saveProgress)
+        Signals().restartRaffle.connect(self.restartRaffle)
 
     def saveProgress(self):
         """
@@ -44,4 +45,12 @@ class Raffle():
         if len(removedTickets) == 0:
             return
         for id in [ticket.getNumber() for ticket in removedTickets]:
+            Signals().ticketDrawn.emit(id)
+
+    def restartRaffle(self):
+        """
+        This method is called when the user clicks the restart option. It replaces all
+        the tickets drawn and resets the header.
+        """
+        while (TicketList.getInstance().hasRaffleStarted() is not False):
             Signals().ticketDrawn.emit(id)
