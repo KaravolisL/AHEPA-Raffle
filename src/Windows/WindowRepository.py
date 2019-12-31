@@ -16,14 +16,9 @@ from Utils.Singleton import Singleton
 
 @Singleton
 class WindowRepository():
-    instance = None
     windowList = None
 
     def __init__(self):
-
-        assert(WindowRepository.instance == None) # Assert to ensure singleton
-
-        WindowRepository.instance = self
 
         self.windowList = {
             WindowType.RESTART_WARNING: RestartWarning(),
