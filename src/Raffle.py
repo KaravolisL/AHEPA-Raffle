@@ -52,5 +52,6 @@ class Raffle():
         This method is called when the user clicks the restart option. It replaces all
         the tickets drawn and resets the header.
         """
-        while (TicketList.getInstance().hasRaffleStarted() is not False):
-            Signals().ticketDrawn.emit(id)
+        lastTicketDrawn = TicketList.getInstance().replaceTicket()
+        while lastTicketDrawn != None:
+            Signals().undoButtonClicked.emit(lastTicketDrawn.number)

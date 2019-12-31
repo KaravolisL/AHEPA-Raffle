@@ -11,7 +11,7 @@ class MainTable(QWidget):
     def __init__(self):
         super().__init__()
 
-        # Create 2D array of blank cells, cells will be initialized by Controller initialize
+        # Create 2D array of blank cells
         self.cells = [[TableCell(id=j+i) for i in range(0, 15)] for j in range(1, 226, 15)]
 
         # Create and set layout
@@ -31,8 +31,9 @@ class MainTable(QWidget):
         self.setColor()
         Signals().colorChanged.connect(self.setColor)
 
-        # Connect the ticketDrawn signal
+        # Connect the ticketDrawn and undoButtonClicked signals
         Signals().ticketDrawn.connect(lambda id: self.getCell(id).setTransparent(True))
+        Signals().undoButtonClicked.connect(lambda id: self.getCell(id).setTransparent(False))
 
     def getCell(self, id):
         """

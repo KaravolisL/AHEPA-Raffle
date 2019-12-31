@@ -1,4 +1,5 @@
 from View.CellPkg.CellBase import CellBase
+from Tickets.TicketList import TicketList
 from Signals import Signals
 from Windows.WindowRepository import WindowType
 import View.MainWindow as MainWindow
@@ -63,4 +64,7 @@ class LastTicketDrawnCell(HeaderCellBase):
         """
         Pressing the LastTicketDrawnCell replaces the last drawn ticket
         """
-        Signals().undoButtonClicked.emit()
+        # Get last ticket drawn
+        lastTicketDrawn = TicketList.getInstance().replaceTicket()
+        if lastTicketDrawn != None:
+            Signals().undoButtonClicked.emit(lastTicketDrawn.number)

@@ -13,7 +13,9 @@ class TicketList():
         TicketList.instance = self
         self.numOfTicketsDrawn = 0
 
+        # Connect signals for removing and replacing tickets
         Signals().ticketDrawn.connect(self.removeTicket)
+        Signals().undoButtonClicked.connect(self.replaceTicket)
 
     @staticmethod
     def getInstance():

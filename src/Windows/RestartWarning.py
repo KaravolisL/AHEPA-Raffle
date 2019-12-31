@@ -8,7 +8,7 @@ class RestartWarning(AlertBase):
 
     def confirmationEvent(self):
         """
-        Calls controller's restartRaffle function and closes window
+        Emit the restartRaffle signal and close window
         """
         Signals().restartRaffle.emit()
         self.close()

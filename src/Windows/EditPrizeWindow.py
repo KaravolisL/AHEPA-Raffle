@@ -7,7 +7,6 @@ from PyQt5.QtMultimediaWidgets import *
 from Windows.WindowBase import WindowBase
 from Prizes.PrizeApi import getAssociatedPrize, setPrizeDescription, deletePrize, addPrize
 from Utils.Validators import validatePrizeName, validatePrizeNumber
-import Controller
 from Signals import Signals
 
 class EditPrizeWindow(WindowBase):

@@ -50,8 +50,9 @@ class Header(QWidget):
         self.layout.addWidget(middleWrapper)
         self.layout.addWidget(rightWrapper)
 
-        # Connect the ticketDrawn signal to update the header
+        # Connect the signals to update the header
         Signals().ticketDrawn.connect(self.updateHeader)
+        Signals().undoButtonClicked.connect(self.updateHeader)
 
     def setMaxHeight(self, height):
         """
