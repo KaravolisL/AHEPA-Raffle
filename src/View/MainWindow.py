@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 
-from MenuBar import MenuBar
+from View.MenuBar import MenuBar
 from View.MainWidget import MainWidget
 from Utils.Singleton import Singleton
 from Windows.WindowRepository import WindowType, WindowRepository
