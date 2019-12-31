@@ -2,6 +2,9 @@
 from View.CellPkg.CellBase import CellBase
 from Signals import Signals
 
+# Logger import
+from Logger.Logger import logger
+
 class TableCell(CellBase):
     def __init__(self, text=None, id=0):
         super().__init__(text, id)
@@ -12,6 +15,7 @@ class TableCell(CellBase):
         """
         Include the id when setting the text for a table cell
         """
+        logger.debug('Setting text of cell #{} to {}'.format(self.id, text))
         self.text = text
         super().setText("{}\n{}".format(str(self.id), str(text)))
 
