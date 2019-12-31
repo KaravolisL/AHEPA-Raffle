@@ -7,6 +7,7 @@ from PyQt5.QtMultimediaWidgets import *
 from Windows.WindowBase import WindowBase
 from Tickets.TicketList import TicketList
 from Utils.Validators import validateTicketName, validateTicketNumber
+from Signals import Signals
 
 class EditTicketWindow(WindowBase):
     def __init__(self):

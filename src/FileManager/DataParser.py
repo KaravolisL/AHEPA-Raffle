@@ -1,6 +1,8 @@
 import xml.etree.ElementTree as ET
 from Tickets.Ticket import Ticket # TODO: Work to get rid of this dependency
 
+from Logger.Logger import logger
+
 file = r'FileManager/data.xml'
 
 def fileChecker(func):
@@ -135,10 +137,9 @@ class DataParser():
         """
         prizeAlert = self.root.find('.//prizeAlert')
         attribs = prizeAlert.attrib
-        values = list(attribs.values())
+        logger.debug('prizeAlert attributes: {}'.format(attribs))
+        values = [attribs['color'], int(attribs['delay']), int(attribs['fontSize'])]
         # TODO: Validate color
-        values[1] = int(values[1])
-        values[2] = int(values[2])
         return values
 
     @fileChecker
