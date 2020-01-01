@@ -1,3 +1,7 @@
+# System libraries
+from enum import Enum, auto
+
+# Local libraries
 from Windows.RestartWarning import RestartWarning
 from Windows.ImportTicketsWindow import ImportTicketsWindow
 from Windows.ImportPrizesWindow import ImportPrizesWindow
@@ -8,18 +12,13 @@ from Windows.ChangeColorWindow import ChangeColorWindow
 from Windows.EditPrizeAlertWindow import EditPrizeAlertWindow
 from Windows.ViewTicketsWindow import ViewTicketsWindow
 from Windows.ViewPrizesWindow import ViewPrizesWindow
+from Utils.Singleton import Singleton
 
-from enum import Enum, auto
-
+@Singleton
 class WindowRepository():
-    instance = None
     windowList = None
 
     def __init__(self):
-
-        assert(WindowRepository.instance == None) # Assert to ensure singleton
-
-        WindowRepository.instance = self
 
         self.windowList = {
             WindowType.RESTART_WARNING: RestartWarning(),
@@ -33,10 +32,6 @@ class WindowRepository():
             WindowType.VIEW_TICKETS: ViewTicketsWindow(),
             WindowType.VIEW_PRIZES: ViewPrizesWindow(),
         }
-
-    @classmethod
-    def getInstance(cls):
-        return cls.instance if cls.instance != None else WindowRepository()
 
     def getWindow(self, windowType):
         window = self.windowList.get(windowType, None)
