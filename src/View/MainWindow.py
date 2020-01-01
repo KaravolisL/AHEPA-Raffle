@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(centralWidget)
 
         # Setting window icon
-        self.setWindowIcon(QIcon(r'..\..\images\Icon.jpg'))
+        self.setWindowIcon(QIcon(r'..\images\Icon.jpg'))
 
         # Variable to hold additional window instances
         self.popup = None
