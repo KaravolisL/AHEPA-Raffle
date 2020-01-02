@@ -1,8 +1,5 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QLabel, QColorDialog
+from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 from FileManager.DataParser import dataParser
@@ -16,6 +13,8 @@ class ChangeColorWindow(WindowBase):
 
         self.makeLayout()
         self.setColorLabels()
+
+        self.setSizeAndCenter(1/4, 1/5)
 
     def makeLayout(self):
         """
@@ -44,7 +43,7 @@ class ChangeColorWindow(WindowBase):
 
     def setColorLabels(self):
         """
-        
+
         """
         # Get all colors from data file
         self.headerColorInHex = dataParser.getColor('header')
@@ -57,20 +56,10 @@ class ChangeColorWindow(WindowBase):
 
     def showColorPicker(self, element):
         """
-        
+
         """
         color = QColorDialog.getColor()
         if color.isValid():
             dataParser.setColor(element, color.name())
             self.setColorLabels()
             Signals().colorChanged.emit()
-            
-    def setSize(self):
-        """
-        Sizes window to be 1/5 width and height
-        """
-        screen = QApplication.primaryScreen()
-        size = screen.size()
-        screenWidth = size.width()
-        screenHeight = size.height()
-        self.setGeometry(0, 0, screenWidth/4, screenHeight/5)

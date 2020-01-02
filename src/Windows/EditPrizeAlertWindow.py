@@ -1,8 +1,5 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QLabel, QComboBox, QColorDialog, QPushButton
+from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 from FileManager.DataParser import dataParser
@@ -19,6 +16,8 @@ class EditPrizeAlertWindow(WindowBase):
 
         self.makeLayout()
         self.setColorLabel()
+
+        self.setSizeAndCenter(1/4, 1/5)
 
     def makeLayout(self):
         """
@@ -78,16 +77,6 @@ class EditPrizeAlertWindow(WindowBase):
         if color.isValid():
             dataParser.setColor(element, color.name())
             self.setColorLabel()
-            
-    def setSize(self):
-        """
-        Sizes window to be 1/5 width and height
-        """
-        screen = QApplication.primaryScreen()
-        size = screen.size()
-        screenWidth = size.width()
-        screenHeight = size.height()
-        self.setGeometry(0, 0, screenWidth/4, screenHeight/5)
 
     def closeEvent(self, ev):
         """

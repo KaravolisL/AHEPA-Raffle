@@ -1,8 +1,4 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QWidget, QFileDialog
 
 from Windows.AlertBase import AlertBase
 from Tickets.TicketList import TicketList

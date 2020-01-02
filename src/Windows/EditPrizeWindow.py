@@ -1,8 +1,5 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QLabel, QLineEdit, QPushButton
+from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 from Prizes.PrizeApi import getAssociatedPrize, setPrizeDescription, deletePrize, addPrize
@@ -18,15 +15,7 @@ class EditPrizeWindow(WindowBase):
 
         self.initLineEdits()
 
-    def setSize(self):
-        """
-        Sizes window to be one fifth width and height
-        """
-        screen = QApplication.primaryScreen()
-        size = screen.size()
-        screenWidth = size.width()
-        screenHeight = size.height()
-        self.setGeometry(0, 0, screenWidth/5, screenHeight/5)
+        self.setSizeAndCenter(1/5, 1/5)
 
     def makeLayout(self):
         """

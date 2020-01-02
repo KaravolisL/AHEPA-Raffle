@@ -1,9 +1,8 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt
 
+# System Libraries
 from threading import Timer
 import time
 
@@ -21,6 +20,8 @@ class PrizeAlert(WindowBase):
         self.makeLayout()
 
         Signals().prizeAlertChanged.connect(self.reinit)
+
+        self.setSizeAndCenter()
 
     def makeLayout(self):
         """
