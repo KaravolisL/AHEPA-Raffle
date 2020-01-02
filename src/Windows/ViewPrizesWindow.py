@@ -1,8 +1,4 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QTableWidget, QHeaderView
 
 from Windows.ViewWindow import ViewWindow
 import Prizes.PrizeApi as PrizeApi

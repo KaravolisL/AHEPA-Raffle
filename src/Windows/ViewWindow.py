@@ -1,8 +1,5 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 
@@ -10,6 +7,7 @@ class ViewWindow(WindowBase):
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.WindowCloseButtonHint)
+        self.setSizeAndCenter()
 
     def reevaluate(self):
         raise NotImplementedError

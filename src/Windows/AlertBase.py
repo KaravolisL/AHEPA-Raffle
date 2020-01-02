@@ -1,8 +1,6 @@
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtMultimedia import *
-from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtWidgets import QPushButton, QLabel
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 
@@ -13,17 +11,8 @@ class AlertBase(WindowBase):
         self.setWindowModality(Qt.ApplicationModal)
         self.text = text
         self.makeLayout()
+        self.setSizeAndCenter(1/6, 1/7)
         self.setWindowFlags(Qt.WindowCloseButtonHint)
-
-    def setSize(self):
-        """
-        Sizes window to be a seventh of screen width and height 
-        """
-        screen = QApplication.primaryScreen()
-        size = screen.size()
-        screenWidth = size.width()
-        screenHeight = size.height()
-        self.setGeometry(0, 0, screenWidth/6, screenHeight/7)
 
     def makeLayout(self):
         """
