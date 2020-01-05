@@ -24,6 +24,7 @@ class PrizeList():
         prizeDict = readPrizes()
         for prize in prizeDict:
             self.prizeList.append(Prize(prize, prizeDict[prize]))
+            Signals().prizeChanged.emit(prize)
 
     def remove(self, prizeNumber):
         """
