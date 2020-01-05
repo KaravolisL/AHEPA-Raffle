@@ -33,8 +33,10 @@ def importTicketNames(file):
 
 def importPrizeNames(file):
     """
-    Reads prizes from a given file. Overwrites the current prizes in data.xml and
-    returns a list of 
+    Reads prizes from a given file. Overwrites the current prizes in data.xml
+    :param str file: File from which to read prizes
+    :returns: Dictionary formatted as {prizeNumber : description}
+    :rtype: dict
     """
     # TODO: Add handling for more file formats
     prizes = {}
@@ -47,7 +49,7 @@ def importPrizeNames(file):
             number, desc = line.split(' ', 1)
             prizes[int(number)] = desc.strip('\n')
         prizeFile.close()
-    dataParser.writePrizes(prizes)
+        dataParser.writePrizes(prizes)
     return prizes
 
 def readPrizes(file = 'prizeInfo.txt'):

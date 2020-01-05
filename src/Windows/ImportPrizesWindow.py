@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QFileDialog
 
 from Windows.AlertBase import AlertBase
 from FileManager.FileManager import importPrizeNames
+from Prizes.PrizeApi import initializePrizeList
 
 class ImportPrizesWindow(QWidget):
     def __init__(self):
@@ -25,6 +26,11 @@ class ImportWarningWindow(AlertBase):
 
     def confirmationEvent(self):
         prizes = importPrizeNames(self.fname)
-        # TODO: Do something with these prizes
+        if len(prizes) is 0:
+            # TODO: Alert user import failed
+            pass
+        else:
+            # New prizes have been written to data.xml, so reinitialized the list
+            initializePrizeList()
         self.close()
 

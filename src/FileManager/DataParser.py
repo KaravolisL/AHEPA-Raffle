@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from Tickets.Ticket import Ticket # TODO: Work to get rid of this dependency
+from Prizes.Prize import Prize
 
 from Logger.Logger import logger
 
@@ -97,13 +98,17 @@ class DataParser():
     @fileChecker
     def writePrizes(self, prizes):
         """
-        Clears current prize info section and writes given prizes
+        Clears current prize info section and writes given prizes. This function handles either a
+        list of prizes represented as dicts or a list of Prize objects.
         :param list prizes: List of prizes represented as dictionaries
         """
         prizeInfo = self.root.find('.//prizeInfo')
         prizeInfo.clear()
         for prize in prizes:
-            ET.SubElement(prizeInfo, 'prize', prize.getAttributes())
+            if type(prize) is Prize:
+                ET.SubElement(prizeInfo, 'prize', prize.getAttributes())
+            else:
+                ET.SubElement(prizeInfo, 'prize', {'number': str(prize), 'description': prizes[prize]})
         if len(prizes) != 0:
             self.tree.write(file)
 
