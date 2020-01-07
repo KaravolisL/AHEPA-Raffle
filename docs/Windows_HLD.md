@@ -7,7 +7,7 @@ hide empty members
 package WindowRepository {
 
 class WindowBase
-class AlertBase
+class WarningBase
 class PrizeAlert
 class RestartWarning
 class ImportTicketsWindow
@@ -22,7 +22,7 @@ class ViewPrizesWindow
 
 class ImportWarningWindow
 
-WindowBase <|-- AlertBase
+WindowBase <|-- WarningBase
 WindowBase <|-- PrizeAlert
 WindowBase <|-- EditTicketWindow
 WindowBase <|-- EditPrizeWindow
@@ -31,8 +31,8 @@ WindowBase <|-- ChangeColorWindow
 WindowBase <|-- ViewWindow
 ViewWindow <|-- ViewTicketsWindow
 ViewWindow <|-- ViewPrizesWindow
-AlertBase <|-- RestartWarning
-AlertBase <|-- ImportWarningWindow
+WarningBase <|-- RestartWarning
+WarningBase <|-- ImportWarningWindow
 
 }
 

@@ -1,7 +1,7 @@
-from Windows.AlertBase import AlertBase
+from Windows.WarningBase import WarningBase
 from Signals import Signals
 
-class RestartWarning(AlertBase):
+class RestartWarning(WarningBase):
     def __init__(self):
         self.text = 'Restarting the raffle will cause \nall progress to be lost!'
         super().__init__(self.text)

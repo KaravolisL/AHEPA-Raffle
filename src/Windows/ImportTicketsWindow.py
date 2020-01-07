@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QFileDialog
 
-from Windows.AlertBase import AlertBase
+from Windows.WarningBase import WarningBase
 from Tickets.TicketList import TicketList
 from Signals import Signals
 
@@ -17,7 +17,7 @@ class ImportTicketsWindow(QWidget):
         self.warning = ImportWarningWindow(fname)
         self.warning.show()
 
-class ImportWarningWindow(AlertBase):
+class ImportWarningWindow(WarningBase):
     def __init__(self, fname):
         self.fname = fname
         self.text = 'Importing tickets will cause all progress\n to be lost and ticket names to be overwritten.'

@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 
-class AlertBase(WindowBase):
+class WarningBase(WindowBase):
     def __init__(self, text):
         super().__init__()
         self.setWindowTitle('Warning!!')
