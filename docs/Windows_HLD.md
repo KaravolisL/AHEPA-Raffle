@@ -8,6 +8,7 @@ package WindowRepository {
 
 class WindowBase
 class WarningBase
+class AlertBase
 class PrizeAlert
 class RestartWarning
 class ImportTicketsWindow
@@ -21,8 +22,10 @@ class ViewTicketsWindow
 class ViewPrizesWindow
 
 class ImportWarningWindow
+class CorruptedFileAlertWindow
 
 WindowBase <|-- WarningBase
+WindowBase <|-- AlertBase
 WindowBase <|-- PrizeAlert
 WindowBase <|-- EditTicketWindow
 WindowBase <|-- EditPrizeWindow
@@ -33,6 +36,7 @@ ViewWindow <|-- ViewTicketsWindow
 ViewWindow <|-- ViewPrizesWindow
 WarningBase <|-- RestartWarning
 WarningBase <|-- ImportWarningWindow
+AlertBase <|-- CorruptedFileAlertWindow
 
 }
 

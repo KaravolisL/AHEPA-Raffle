@@ -12,6 +12,7 @@ from Windows.ChangeColorWindow import ChangeColorWindow
 from Windows.EditPrizeAlertWindow import EditPrizeAlertWindow
 from Windows.ViewTicketsWindow import ViewTicketsWindow
 from Windows.ViewPrizesWindow import ViewPrizesWindow
+from Windows.CorruptedFileAlertWindow import CorruptedFileAlertWindow
 from Utils.Singleton import Singleton
 
 @Singleton
@@ -31,6 +32,7 @@ class WindowRepository():
             WindowType.EDIT_PRIZE_ALERT: EditPrizeAlertWindow(),
             WindowType.VIEW_TICKETS: ViewTicketsWindow(),
             WindowType.VIEW_PRIZES: ViewPrizesWindow(),
+            WindowType.CORRUPTED_FILE_ALERT: CorruptedFileAlertWindow(),
         }
 
     def getWindow(self, windowType):
@@ -49,4 +51,5 @@ class WindowType(Enum):
     EDIT_PRIZE_ALERT = auto()
     VIEW_TICKETS = auto()
     VIEW_PRIZES = auto()
+    CORRUPTED_FILE_ALERT = auto()
     ABOUT = auto()
