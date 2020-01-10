@@ -11,6 +11,7 @@ class ViewTicketsWindow(ViewWindow):
 
         Signals().ticketDrawn.connect(self.reevaluate)
         Signals().ticketNameChanged.connect(self.reevaluate)
+        Signals().undoButtonClicked.connect(self.reevaluate)
 
         self.makeLayout()
 
@@ -43,4 +44,4 @@ class ViewTicketsWindow(ViewWindow):
         """
         ticket = TicketList.getInstance().getTicket(id)
         self.table.item(id - 1, 1).setText(ticket.name)
-        self.table.item(id - 1, 2).setText('Yes' if ticket.isDrawn() else 'No')
+        self.table.item(id - 1, 2).setText(str(ticket.numberDrawn) if ticket.isDrawn() else '')
