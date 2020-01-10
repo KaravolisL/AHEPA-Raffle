@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QFileDialog
 
-from Windows.AlertBase import AlertBase
+from Windows.WarningBase import WarningBase
 from FileManager.FileManager import importPrizeNames
 from Prizes.PrizeApi import initializePrizeList
 
@@ -18,7 +18,7 @@ class ImportPrizesWindow(QWidget):
         self.warning = ImportWarningWindow(fname)
         self.warning.show()
 
-class ImportWarningWindow(AlertBase):
+class ImportWarningWindow(WarningBase):
     def __init__(self, fname):
         self.fname = fname
         self.text = 'Importing prizes will cause all\n prizes to be overwritten.'

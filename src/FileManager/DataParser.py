@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from Tickets.Ticket import Ticket # TODO: Work to get rid of this dependency
 from Prizes.Prize import Prize
+from Windows.CorruptedFileAlertWindow import CorruptedFileAlertWindow
 
 from Logger.Logger import logger
 
@@ -11,15 +12,16 @@ def fileChecker(func):
         try:
             return func(*args)
         except:
-            # TODO: Add a popup to alert the user of corrupted file
-            print(func.__name__)
-            print('Exception caught')
+            DataParser.alertWindow = CorruptedFileAlertWindow()
+            DataParser.alertWindow.show()
+            logger.debug("Exception caught in {}".format(func.__name__))
             createDefault()
             # Reevaluate function using newly created default save file
             return func(*args)
     return func_wrapper
 
 class DataParser():
+    alertWindow = None
 
     @fileChecker
     def __init__(self):

@@ -4,10 +4,10 @@ from PyQt5.QtCore import Qt
 
 from Windows.WindowBase import WindowBase
 
-class AlertBase(WindowBase):
+class WarningBase(WindowBase):
     def __init__(self, text):
         super().__init__()
-        self.setWindowTitle('Alert!!')
+        self.setWindowTitle('Warning!!')
         self.setWindowModality(Qt.ApplicationModal)
         self.text = text
         self.makeLayout()
@@ -16,22 +16,29 @@ class AlertBase(WindowBase):
 
     def makeLayout(self):
         """
-        Creates the ok button and label defined by subclass
+        Creates the two buttons and label using text defined by subclass
         """
-        self.confirmButton = QPushButton('Ok')
+        self.confirmButton = QPushButton('Confirm')
         self.confirmButton.clicked.connect(self.confirmationEvent)
         self.confirmButton.setDefault(True)
+
+        self.cancelButton = QPushButton('Cancel')
+        self.cancelButton.clicked.connect(self.cancelEvent)
 
         self.label = QLabel(self.text)
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(QFont("Arial", 11))
 
-        self.layout.addWidget(self.label, 0, 0)
+        self.layout.addWidget(self.label, 0 , 0, 1, 2)
         self.layout.addWidget(self.confirmButton, 1, 0)
+        self.layout.addWidget(self.cancelButton, 1, 1)
 
     def confirmationEvent(self):
+        raise NotImplementedError
+
+    def cancelEvent(self):
         """
-        Simply closes the window
+        Nothing will be done if cancel button is hit
         """
         self.close()
 
