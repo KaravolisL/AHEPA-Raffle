@@ -2,7 +2,6 @@
 from Tickets.Ticket import Ticket
 from FileManager.FileManager import readTicketNames, importTicketNames
 from Signals import Signals
-from GlobalConstants import NUMBER_OF_TICKETS
 
 # Logging import
 from Logger.Logger import logger
@@ -104,7 +103,7 @@ class TicketList():
         :returns: list containing header information
         :rtype: list
         """
-        ticketsRemaining = NUMBER_OF_TICKETS - self.numOfTicketsDrawn
+        ticketsRemaining = 225 - self.numOfTicketsDrawn
         lastTicket = 0 if self.getLastTicketDrawn() is None else self.getLastTicketDrawn().number
         return [ticketsRemaining, self.numOfTicketsDrawn, lastTicket]
 
