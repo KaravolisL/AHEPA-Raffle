@@ -14,7 +14,7 @@ class PrizeAlert(WindowBase):
 
     def __init__(self):
         super().__init__()
-        self.setWindowFlags(Qt.CustomizeWindowHint)
+        self.setWindowFlags(Qt.FramelessWindowHint)
 
         self.background_color, self.delay, self.font_size = dataParser.getPrizeAlertPrefs()
         self.makeLayout()
