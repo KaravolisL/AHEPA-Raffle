@@ -17,3 +17,4 @@ class Signals(QObject):
     raffleExited = pyqtSignal()
     raffleInitialized = pyqtSignal()
     restartRaffle = pyqtSignal()
+    dfsfdfsfdfsdfsd
