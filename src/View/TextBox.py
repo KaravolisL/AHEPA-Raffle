@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtCore import Qt
 
 from Utils.Validators import validateTicketNumber
+from Tickets.TicketList import TicketList
 from Signals import Signals
 
 # Logger import
@@ -30,6 +31,9 @@ class TextBox(QLineEdit):
         else:
             logger.debug('Key press detected on TextBox, text is {}'.format(self.text()))
             if validateTicketNumber(self.text()):
-                Signals().ticketDrawn.emit(int(self.text()))
+                if not TicketList.getInstance().hasTicketBeenDrawn(int(self.text())):
+                    Signals().ticketDrawn.emit(int(self.text()))
+                else:
+                    logger.debug('Ticket number {} has already been drawn'.format(self.text()))
             self.clear()
         self.setReadOnly(True)

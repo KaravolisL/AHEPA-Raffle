@@ -15,6 +15,7 @@ class CellBase(QLabel):
         self.setAlignment(Qt.AlignCenter)
         self.setWordWrap(True)
         self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.setMinimumSize(self.sizeHint())
     
     def setText(self, text):
         """

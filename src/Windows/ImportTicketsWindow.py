@@ -11,7 +11,6 @@ class ImportTicketsWindow(QWidget):
 
     def show(self):
         fname = QFileDialog.getOpenFileName(self, 'Open File', '', ('Text Files (*.txt)'))[0]
-        print(fname)
         if fname == '':
             return
         self.warning = ImportWarningWindow(fname)
