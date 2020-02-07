@@ -12,6 +12,7 @@ from Windows.ChangeColorWindow import ChangeColorWindow
 from Windows.EditPrizeAlertWindow import EditPrizeAlertWindow
 from Windows.ViewTicketsWindow import ViewTicketsWindow
 from Windows.ViewPrizesWindow import ViewPrizesWindow
+from Windows.AboutWindow import AboutWindow
 from Utils.Singleton import Singleton
 
 @Singleton
@@ -31,6 +32,7 @@ class WindowRepository():
             WindowType.EDIT_PRIZE_ALERT: EditPrizeAlertWindow(),
             WindowType.VIEW_TICKETS: ViewTicketsWindow(),
             WindowType.VIEW_PRIZES: ViewPrizesWindow(),
+            WindowType.ABOUT: AboutWindow(),
         }
 
     def getWindow(self, windowType):
