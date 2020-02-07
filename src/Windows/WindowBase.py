@@ -10,7 +10,7 @@ class WindowBase(QWidget):
         self.setLayout(self.layout)
 
         # Setting window icon
-        self.setWindowIcon(QIcon(r'..\images\Icon.jpg'))
+        self.setWindowIcon(QIcon(r'images\Icon.jpg'))
 
     def setSizeAndCenter(self, width_factor=(2/3), height_factor=(2/3)):
         """
