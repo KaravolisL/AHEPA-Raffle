@@ -26,7 +26,7 @@ class ImportWarningWindow(WarningBase):
 
     def confirmationEvent(self):
         prizes = importPrizeNames(self.fname)
-        if len(prizes) is 0:
+        if len(prizes) == 0:
             # TODO: Alert user import failed
             pass
         else:

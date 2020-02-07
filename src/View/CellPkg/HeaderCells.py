@@ -1,3 +1,5 @@
+from PyQt5.QtGui import QFont
+
 from View.CellPkg.CellBase import CellBase
 from Tickets.TicketList import TicketList
 from Signals import Signals
@@ -8,6 +10,7 @@ class HeaderCellBase(CellBase):
     def __init__(self, base_text):
         super().__init__()
         self.base_text = base_text
+        self.setFont(QFont('Arial', 11))
 
     def setText(self, text):
         """
