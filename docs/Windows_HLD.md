@@ -20,6 +20,7 @@ class ChangeColorWindow
 class ViewWindow
 class ViewTicketsWindow
 class ViewPrizesWindow
+class AboutWindow
 
 class ImportWarningWindow
 class CorruptedFileAlertWindow
@@ -32,6 +33,7 @@ WindowBase <|-- EditPrizeWindow
 WindowBase <|-- EditPrizeAlertWindow
 WindowBase <|-- ChangeColorWindow
 WindowBase <|-- ViewWindow
+WindowBase <|-- AboutWindow
 ViewWindow <|-- ViewTicketsWindow
 ViewWindow <|-- ViewPrizesWindow
 WarningBase <|-- RestartWarning
