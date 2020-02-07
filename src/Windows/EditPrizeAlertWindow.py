@@ -34,7 +34,7 @@ class EditPrizeAlertWindow(WindowBase):
         self.prizeAlertFontSizeLabel = QLabel('Font Size: ')
         self.prizeAlertFontSizeLabel.setAlignment(Qt.AlignCenter)
         self.prizeAlertFontSizeOptions = QComboBox()
-        for i in range(2, 37, 2):
+        for i in range(2, 57, 2):
             self.prizeAlertFontSizeOptions.addItem(str(i))
         self.prizeAlertFontSizeOptions.setCurrentText(str(self.font_size))
 

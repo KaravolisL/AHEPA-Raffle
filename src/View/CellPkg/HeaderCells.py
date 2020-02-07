@@ -10,7 +10,7 @@ class HeaderCellBase(CellBase):
     def __init__(self, base_text):
         super().__init__()
         self.base_text = base_text
-        self.setFont(QFont('Arial', 11))
+        self.setFont(QFont('Arial', 12))
 
     def setText(self, text):
         """

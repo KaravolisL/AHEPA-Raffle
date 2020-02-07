@@ -1,4 +1,6 @@
 
+from PyQt5.QtGui import QFont
+
 from View.CellPkg.CellBase import CellBase
 from Signals import Signals
 
@@ -10,6 +12,7 @@ class TableCell(CellBase):
         super().__init__(text, id)
         self.sizePolicy().setRetainSizeWhenHidden(True)
         self.setText(self.text)
+        self.setFont(QFont('Arial', 9))
 
     def setText(self, text):
         """
