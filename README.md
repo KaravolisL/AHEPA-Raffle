@@ -69,13 +69,13 @@ Full screen mode can be used to hide the window border and the menu bar. To ente
 
 You can remove a ticket one of two ways. First, you can simply click any of the 225 tickets. The ticket will disappear, and the header will be updated with the new information. You also have the option to enter the ticket number. There is a hidden text box in the left most cell of the header labeled Tickets Remaining. Begin by clicking the cell and typing the number of the ticket. Again, the text will not be visible. Then, click enter and the ticket will disappear as if it were clicked.
 
-![Text Box](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/TextBox.PNG)
+![Text Box](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/TextBox.png)
 
 ### Undo
 
 You might make a mistake and have to replace a ticket that was drawn. To do this, simply click the right most cell of the header labeled Last Ticket Drawn. This will undo the last action that was taken by making a ticket visible and updating the header accordingly.
 
-![Undo Button](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/UndoButton.PNG)
+![Undo Button](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/UndoButton.png)
 
 ### Restarting the Raffle
 
