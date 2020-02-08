@@ -128,14 +128,6 @@ class EditPrizeWindow(WindowBase):
         # emit the prize changed signal
         Signals().prizeChanged.emit(self.numberEntered)
 
-    def keyPressEvent(self, event):
-        """
-        Connects the enter key to changeDescEvent
-        :param QKeyEvent event: Key that was pressed
-        """
-        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
-            self.changeDescEvent()
-
     def cancelEvent(self):
         """
         Nothing will be done if cancel button is hit
