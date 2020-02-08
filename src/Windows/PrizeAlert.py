@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLabel, QSizePolicy
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 
@@ -27,9 +27,12 @@ class PrizeAlert(WindowBase):
         """
         Adds and styles the description to the alert
         """
-        self.desc = QLabel()
+        self.desc = QLabel(self)
         self.desc.setAlignment(Qt.AlignCenter)
         self.desc.setFont(QFont("Arial", self.font_size))
+        self.desc.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.desc.setWordWrap(True)
+        self.desc.setMinimumSize(self.sizeHint())
         self.layout.addWidget(self.desc)
 
         # Set the background color from preferences
