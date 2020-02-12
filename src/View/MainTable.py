@@ -69,4 +69,8 @@ class MainTable(QWidget):
         mainTableColor = dataParser.getColor('mainTable')
         for row in self.cells:
             for cell in row:
-                cell.setBackgroundColor(mainTableColor)
+                if cell.isTransparent():
+                    cell.setBackgroundColor(mainTableColor)
+                    cell.setTransparent(True)
+                else:
+                    cell.setBackgroundColor(mainTableColor)
