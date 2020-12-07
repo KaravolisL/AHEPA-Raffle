@@ -1,5 +1,8 @@
 # AHEPA-Raffle
 
+## Coding Standard
+![Python Coding Standard](https://github.com/KaravolisL/AHEPA-Raffle/blob/badges/.github/badges/pylint-badge.svg)
+
 ## Launching the Program
 
 To launch the program, double-click Main.exe in the distributed src folder. It may take a minute or two to launch.
