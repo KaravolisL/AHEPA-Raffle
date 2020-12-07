@@ -61,6 +61,6 @@ class PrizeAlert(WindowBase):
 
     def show(self):
         super().show()
-         # Start a timer for closing the PrizeAlert
+        # Start a timer for closing the PrizeAlert
         self.delayThread = Timer(self.delay, self.close)
         self.delayThread.start()

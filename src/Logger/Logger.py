@@ -5,9 +5,9 @@ logger.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(lineno)d - %(message)s')
 
-open(r'Logger\log_file.txt', 'w').close()
+open(r'Logger\log_file.log', 'w').close()
 
-fh = logging.FileHandler(r'Logger\log_file.txt')
+fh = logging.FileHandler(r'Logger\log_file.log')
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 logger.addHandler(fh)

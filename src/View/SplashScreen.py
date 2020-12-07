@@ -3,10 +3,15 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QFont
 
 from datetime import datetime
+from time import sleep
 
 from Windows.WindowBase import WindowBase
 
 class SplashScreen(WindowBase):
+
+    # How long to show the splash screen
+    SPLASH_SCREEN_DELAY_IN_SEC = 3
+
     def __init__(self):
         super().__init__()
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
@@ -28,9 +33,12 @@ class SplashScreen(WindowBase):
 
         self.layout.addWidget(self.desc, 0, 0)
         self.layout.addWidget(self.pictureLabel, 1, 0)
-        self.layout.setContentsMargins(0, 0, 0, 50)
+        self.layout.setContentsMargins(0, 0, 0, 75)
 
         self.setStyleSheet('QWidget {background-color: #f8f8ff;}')
 
-    def mousePressEvent(self, QMouseEvent):
-        self.close()
+    def show(self):
+        super().show()
+
+        # Add extra time for displaying the splash screen
+        sleep(5)

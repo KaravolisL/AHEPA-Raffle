@@ -22,8 +22,8 @@ if __name__ == '__main__':
     from Raffle import Raffle
     raffle = Raffle()
 
-    # Setting the flag will kill the thread
-    delayThread = Timer(2, lambda: splash_screen.close())
+    # Allow the splash screen to be displayed for some time
+    delayThread = Timer(splash_screen.SPLASH_SCREEN_DELAY_IN_SEC, lambda: splash_screen.close())
     delayThread.start()
 
     app.exec_()

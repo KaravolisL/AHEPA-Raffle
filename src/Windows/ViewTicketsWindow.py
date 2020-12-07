@@ -28,12 +28,13 @@ class ViewTicketsWindow(ViewWindow):
             ticket = TicketList.getInstance().getTicket(i)
             ticketIdItem = self.make_item(i)
             ticketNameItem = self.make_item(ticket.name)
-            ticketDrawnItem = self.make_item(ticket.numberDrawn if ticket.isDrawn() else '')
+            ticketDrawnItem = self.make_item(ticket.numberDrawn if ticket.isDrawn() else ' ')
             self.table.setItem(i - 1, 0, ticketIdItem)
             self.table.setItem(i - 1, 1, ticketNameItem)
             self.table.setItem(i - 1, 2, ticketDrawnItem)
             
         self.table.setAlternatingRowColors(True)
+        self.table.setSortingEnabled(True)
 
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.layout.addWidget(self.table, 0, 0)

@@ -107,7 +107,7 @@ venv.bak/
 *.xml
 
 # Log file
-log_file.txt
+log_file.log
 
 # VS Code
 .vscode/
