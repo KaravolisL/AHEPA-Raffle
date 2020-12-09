@@ -20,6 +20,7 @@ def main():
     if args.no_gui:
         return EXIT_SUCCESS
 
+    # Initialize the user interface
     app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
 

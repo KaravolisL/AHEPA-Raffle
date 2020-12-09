@@ -1,4 +1,9 @@
 """Module for the backend of the application"""
+
+from constants import NUMBER_OF_TICKETS
+
+from logger import get_logger
+logger = get_logger(__name__)
 # from Tickets.TicketList import TicketList
 # import Prizes.PrizeApi as PrizeApi
 # import FileManager.FileManager as FileManager
@@ -62,23 +67,6 @@
 #             Signals().undoButtonClicked.emit(lastTicketDrawn.number)
 #             lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
 
-class Raffle:
-    """Class to represent the raffle"""
-    def __init__(self):
-        self.prizes = []
-        self.tickets = []
-
-        # Initialize ticket list
-        self.num_tickets_drawn = 0
-        for i in range(0, 225):
-            self.tickets.append(Ticket("", i+1))
-
-        # Initialize prize list
-        # prizeDict = readPrizes()
-        prize_dict = {}
-        for prize_number, prize_description in prize_dict.items():
-            self.prizes.append(Prize(prize_number, prize_description))
-
 class Prize:
     """Class to represent a single prize"""
     def __init__(self, number, description = ""):
@@ -101,5 +89,51 @@ class Ticket:
     def is_drawn(self) -> bool:
         """Returns whether this ticket has been drawn or not"""
         return self.number_drawn != 0
+
+class Raffle:
+    """Class to represent the raffle"""
+    def __init__(self):
+        self.prizes = []
+        self.tickets = []
+
+        # Initialize ticket list
+        self.num_tickets_drawn = 0
+        for i in range(0, NUMBER_OF_TICKETS):
+            self.tickets.append(Ticket("", i+1))
+
+        # Initialize prize list
+        # prizeDict = readPrizes()
+        prize_dict = {}
+        for prize_number, prize_description in prize_dict.items():
+            self.prizes.append(Prize(prize_number, prize_description))
+
+    def draw_ticket(self, ticket_number) -> None:
+        """Sets the given ticket's number_drawn field and increments num_tickets_drawn
+        :param int ticket_number: Number of ticket to remove
+        """
+        assert not self.tickets[ticket_number - 1].is_drawn(), 'Ticket already removed'
+        logger.debug('Removing ticket number {}'.format(ticket_number))
+        self.tickets[ticket_number - 1].number_drawn = self.num_tickets_drawn + 1
+        self.num_tickets_drawn += 1
+
+    def restart(self):
+        """This method replaces all drawn tickets"""
+        last_ticket_drawn = self.get_last_ticket_drawn()
+        while last_ticket_drawn is not None:
+            last_ticket_drawn.number_drawn = 0
+            self.num_tickets_drawn -= 1
+            last_ticket_drawn = self.get_last_ticket_drawn()
+
+    def get_last_ticket_drawn(self) -> Ticket:
+        """Iterates the list and compares each ticket's number_drawn field
+        :returns: Returns the last ticket drawn, None if no tickets have been drawn
+        :rtype: Ticket
+        """
+        if self.num_tickets_drawn != 0:
+            for ticket in self.tickets:
+                if ticket.number_drawn == self.num_tickets_drawn:
+                    return ticket
+        else:
+            return None
 
 raffle = Raffle()
