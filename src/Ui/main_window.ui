@@ -38,7 +38,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="last_ticket_drawn_label">
+       <widget class="ClickableLabel" name="last_ticket_drawn_label">
         <property name="text">
          <string>Last Ticket Drawn: </string>
         </property>
