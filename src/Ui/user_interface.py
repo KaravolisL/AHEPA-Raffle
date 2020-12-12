@@ -21,15 +21,40 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for i, label in enumerate(self.ticket_labels):
             label.setText(str(raffle.tickets[i]))
-            
+
             # We need to use a closure for i to ensure it copies it through the loop
-            label.clicked.connect((lambda ticket_number: lambda: self.ticket_label_clicked(ticket_number))(i + 1))
+            label.clicked.connect((lambda ticket_number: \
+                                   lambda: self.ticket_label_clicked(ticket_number))(i + 1))
+
+        # Set up the header cells
+        self.update_header()
 
         self.showMaximized()
 
     def ticket_label_clicked(self, ticket_number: int):
         """Function called when a ticket label is clicked
-        
+
         :param int ticket_number: Number of the ticket to be removed
         """
-        raffle.draw_ticket(ticket_number)
+        # Make the ticket disapper
+        ticket_label = self.ticket_labels[ticket_number - 1]
+        ticket_label.setStyleSheet("QLabel {background-color: transparent; color: transparent;}")
+
+        # Check whether this ticket has been drawn
+        if not raffle.tickets[ticket_number - 1].is_drawn():
+            raffle.draw_ticket(ticket_number)
+
+        # Update the information in the header
+        self.update_header()
+
+    def update_header(self):
+        """Method used to update the information in the header cells"""
+        num_tickets_remaining = NUMBER_OF_TICKETS - raffle.num_tickets_drawn
+        self.tickets_remaining_label.setText("Tickets Remaining: {}".format(num_tickets_remaining))
+
+        self.tickets_drawn_label.setText("Tickets Drawn: {}".format(raffle.num_tickets_drawn))
+
+        last_ticket_drawn = raffle.get_last_ticket_drawn()
+        self.last_ticket_drawn_label.setText(
+            "Last Ticket Drawn: {}".format(last_ticket_drawn.number)
+        )

@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
-    <height>524</height>
+    <width>1641</width>
+    <height>884</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_0">
       <item>
        <widget class="QLabel" name="tickets_remaining_label">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Tickets Remaining: 225</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -30,7 +30,7 @@
       <item>
        <widget class="QLabel" name="tickets_drawn_label">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Tickets Drawn: 0</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -40,7 +40,7 @@
       <item>
        <widget class="QLabel" name="last_ticket_drawn_label">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Last Ticket Drawn: </string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -2366,7 +2366,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>666</width>
+     <width>1641</width>
      <height>18</height>
     </rect>
    </property>
