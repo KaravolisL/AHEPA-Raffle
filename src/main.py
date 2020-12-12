@@ -6,6 +6,8 @@ from argparse import ArgumentParser
 
 from PyQt5 import QtWidgets
 
+from Ui.gui_manager import GuiManager
+
 EXIT_SUCCESS = 0
 
 def main():
@@ -23,6 +25,9 @@ def main():
     # Initialize the user interface
     app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
+
+    interface_manager = GuiManager()
+    interface_manager.initialize()
 
     app.exec_()
 

@@ -84,7 +84,7 @@ class Ticket:
         self.number_drawn = 0
 
     def __str__(self):
-        return self.name
+        return str(self.number) + '\n' + self.name
 
     def is_drawn(self) -> bool:
         """Returns whether this ticket has been drawn or not"""
