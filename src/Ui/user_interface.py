@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QRegExp
 
 from Ui.custom_widgets import ClickableLabel
+from Ui.alerts import Warning
 from raffle import raffle
 from constants import NUMBER_OF_TICKETS
 from logger import get_logger
@@ -30,6 +31,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.last_ticket_drawn_label.clicked.connect(self.undo_button_clicked)
 
         self.update_header()
+
+        # Connect menu bar actions
+        self.restart_action.triggered.connect(self.restart_selected)
 
         self.showMaximized()
 
@@ -79,3 +83,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Update the header
         self.update_header()
+
+    def restart_selected(self):
+        """Method called when the restart option is selected"""
+
+        warning = Warning("Restarting the raffle will cause all progress to"
+                          " be lost! Are you sure you want to continue?")
+
+        if warning.exec():
+            logger.debug("Restarting...")
+            while raffle.num_tickets_drawn != 0:
+                self.undo_button_clicked()

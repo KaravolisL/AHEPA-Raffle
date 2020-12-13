@@ -2374,7 +2374,7 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionRestart"/>
+    <addaction name="restart_action"/>
     <addaction name="actionImport_Ticket_Names"/>
     <addaction name="actionImport_Prizes"/>
    </widget>
@@ -2408,7 +2408,7 @@
    <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
-  <action name="actionRestart">
+  <action name="restart_action">
    <property name="text">
     <string>Restart</string>
    </property>
