@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1641</width>
-    <height>884</height>
+    <width>1643</width>
+    <height>891</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -3260,7 +3260,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1641</width>
+     <width>1643</width>
      <height>18</height>
     </rect>
    </property>
@@ -3288,8 +3288,8 @@
     <addaction name="actionFull_Screen"/>
     <addaction name="actionMaximized"/>
     <addaction name="separator"/>
-    <addaction name="actionTicket_Names"/>
-    <addaction name="actionPrizes"/>
+    <addaction name="view_ticket_names_action"/>
+    <addaction name="view_prizes_action"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -3347,12 +3347,12 @@
     <string>Maximize</string>
    </property>
   </action>
-  <action name="actionTicket_Names">
+  <action name="view_ticket_names_action">
    <property name="text">
     <string>Ticket Names</string>
    </property>
   </action>
-  <action name="actionPrizes">
+  <action name="view_prizes_action">
    <property name="text">
     <string>Prizes</string>
    </property>

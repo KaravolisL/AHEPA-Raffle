@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
 from Ui.alerts import Warning
+import Ui.gui_manager as gm
 from raffle import raffle
 import file_manager
 from constants import NUMBER_OF_TICKETS
@@ -38,6 +39,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.restart_action.triggered.connect(self.restart_selected)
         self.import_ticket_names_action.triggered.connect(self.import_ticket_names_selected)
         self.import_prizes_action.triggered.connect(self.import_prizes_selected)
+        self.view_ticket_names_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.VIEW_TICKETS)
+        )
+        self.view_prizes_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.VIEW_PRIZES)
+        )
 
         self.showMaximized()
 
@@ -152,4 +159,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for label in self.ticket_labels:
             label.setMaximumWidth(self.frameGeometry().width() / 15)
+
+    def closeEvent(self, event) -> None:
+        """Closes all windows and the application"""
+        super().closeEvent(event)
+        gm.gui_manager.clear_windows()
     # pylint: enable=invalid-name
