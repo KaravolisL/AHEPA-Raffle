@@ -3,7 +3,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
 
-from logger import get_logger
+from debug_logger import get_logger
 
 logger = get_logger(__name__)
 

@@ -2,12 +2,14 @@
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QRegExp
+from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
 from Ui.alerts import Warning
 from raffle import raffle
+import file_manager
 from constants import NUMBER_OF_TICKETS
-from logger import get_logger
+from debug_logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -34,8 +36,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Connect menu bar actions
         self.restart_action.triggered.connect(self.restart_selected)
+        self.import_ticket_names_action.triggered.connect(self.import_ticket_names_selected)
+        self.import_prizes_action.triggered.connect(self.import_prizes_selected)
 
         self.showMaximized()
+
+    def refresh(self):
+        """Method used to refresh gui based on backend data"""
+        # Update ticket names
+        for i, label in enumerate(self.ticket_labels):
+            label.setText(str(raffle.tickets[i]))
+
+        # Update the header information
+        self.update_header()
 
     def ticket_label_clicked(self, ticket_number: int):
         """Function called when a ticket label is clicked
@@ -86,7 +99,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def restart_selected(self):
         """Method called when the restart option is selected"""
-
         warning = Warning("Restarting the raffle will cause all progress to"
                           " be lost! Are you sure you want to continue?")
 
@@ -94,3 +106,50 @@ class MainWindow(QtWidgets.QMainWindow):
             logger.debug("Restarting...")
             while raffle.num_tickets_drawn != 0:
                 self.undo_button_clicked()
+
+    def import_ticket_names_selected(self):
+        """Method called when the import ticket names option is selected"""
+        dialog = QtWidgets.QFileDialog(self)
+        dialog.setFileMode(QFileDialog.ExistingFile)
+        dialog.setWindowTitle("Select Ticket Names")
+        dialog.setNameFilter("Text files (*.txt)")
+
+        if not dialog.exec():
+            return
+
+        # Try to import the names
+        file_name = dialog.selectedFiles()[0]
+        try:
+            file_manager.import_ticket_names(file_name)
+        except file_manager.FormatException:
+            pass
+        else:
+            self.refresh()
+
+    def import_prizes_selected(self):
+        """Method called when the import prizes option is selected"""
+        dialog = QtWidgets.QFileDialog(self)
+        dialog.setFileMode(QFileDialog.ExistingFile)
+        dialog.setWindowTitle("Select Prizes")
+        dialog.setNameFilter("Text files (*.txt)")
+
+        if not dialog.exec():
+            return
+
+        # Try to import the prizes
+        file_name = dialog.selectedFiles()[0]
+        try:
+            file_manager.import_prizes(file_name)
+        except file_manager.FormatException:
+            pass
+        else:
+            self.refresh()
+
+    # pylint: disable=invalid-name
+    def resizeEvent(self, event) -> None:
+        """Reevaluates max widths for labels"""
+        super().resizeEvent(event)
+
+        for label in self.ticket_labels:
+            label.setMaximumWidth(self.frameGeometry().width() / 15)
+    # pylint: enable=invalid-name

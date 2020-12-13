@@ -1,18 +1,10 @@
 """Module for the backend of the application"""
 
+from typing import List
 from constants import NUMBER_OF_TICKETS
 
-from logger import get_logger
+from debug_logger import get_logger
 logger = get_logger(__name__)
-# from Tickets.TicketList import TicketList
-# import Prizes.PrizeApi as PrizeApi
-# import FileManager.FileManager as FileManager
-# from View.MainWindow import MainWindow
-# from Signals import Signals
-# from Prizes.PrizeApi import getList
-
-# # Logger import
-# from Logger.Logger import logger
 
 # class Raffle():
 #     def __init__(self):
@@ -57,16 +49,6 @@ logger = get_logger(__name__)
 #         for id in [ticket.getNumber() for ticket in removedTickets]:
 #             Signals().ticketDrawn.emit(id)
 
-#     def restartRaffle(self):
-#         """
-#         This method is called when the user clicks the restart option. It replaces all
-#         the tickets drawn and resets the header.
-#         """
-#         lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
-#         while lastTicketDrawn != None:
-#             Signals().undoButtonClicked.emit(lastTicketDrawn.number)
-#             lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
-
 class Prize:
     """Class to represent a single prize"""
     def __init__(self, number, description = ""):
@@ -93,8 +75,8 @@ class Ticket:
 class Raffle:
     """Class to represent the raffle"""
     def __init__(self):
-        self.prizes = []
-        self.tickets = []
+        self.prizes: List[Prize] = []
+        self.tickets: List[Ticket] = []
 
         # Initialize ticket list
         self.num_tickets_drawn = 0

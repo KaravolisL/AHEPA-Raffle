@@ -15,8 +15,23 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout" stretch="3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+    <property name="leftMargin">
+     <number>15</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>15</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_0">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item>
        <widget class="QLabel" name="tickets_remaining_label">
         <property name="text">
@@ -51,153 +66,309 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_1">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_1">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_6">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_7">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_9">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_10">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_11">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_12">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_13">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_14">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_15">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -213,6 +384,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -222,6 +396,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -233,6 +410,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -242,6 +422,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -253,6 +436,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -262,6 +448,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -273,6 +462,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -282,6 +474,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -293,6 +488,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -302,6 +500,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -313,6 +514,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -322,6 +526,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -333,6 +540,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -343,6 +553,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -352,6 +565,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -367,6 +583,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -376,6 +595,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -387,6 +609,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -396,6 +621,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -407,6 +635,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -416,6 +647,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -427,6 +661,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -436,6 +673,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -447,6 +687,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -456,6 +699,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -467,6 +713,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -476,6 +725,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -487,6 +739,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -497,6 +752,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -506,6 +764,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -521,6 +782,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -530,6 +794,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -541,6 +808,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -550,6 +820,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -561,6 +834,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -570,6 +846,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -581,6 +860,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -590,6 +872,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -601,6 +886,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -610,6 +898,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -621,6 +912,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -630,6 +924,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -641,6 +938,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -651,6 +951,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -660,6 +963,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -675,6 +981,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -684,6 +993,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -695,6 +1007,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -704,6 +1019,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -715,6 +1033,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -724,6 +1045,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -735,6 +1059,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -744,6 +1071,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -755,6 +1085,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -764,6 +1097,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -775,6 +1111,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -784,6 +1123,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -795,6 +1137,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -805,6 +1150,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -814,6 +1162,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -829,6 +1180,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -838,6 +1192,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -849,6 +1206,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -858,6 +1218,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -869,6 +1232,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -878,6 +1244,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -889,6 +1258,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -898,6 +1270,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -909,6 +1284,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -918,6 +1296,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -929,6 +1310,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -938,6 +1322,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -949,6 +1336,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -959,6 +1349,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -968,6 +1361,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -983,6 +1379,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -992,6 +1391,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1003,6 +1405,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1012,6 +1417,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1023,6 +1431,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1032,6 +1443,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1043,6 +1457,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1052,6 +1469,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1063,6 +1483,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1072,6 +1495,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1083,6 +1509,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1092,6 +1521,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1103,6 +1535,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1113,6 +1548,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1122,6 +1560,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1137,6 +1578,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1146,6 +1590,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1157,6 +1604,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1166,6 +1616,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1177,6 +1630,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1186,6 +1642,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1197,6 +1656,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1206,6 +1668,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1217,6 +1682,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1226,6 +1694,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1237,6 +1708,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1246,6 +1720,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1257,6 +1734,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1267,6 +1747,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1276,6 +1759,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1291,6 +1777,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1300,6 +1789,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1311,6 +1803,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1320,6 +1815,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1331,6 +1829,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1340,6 +1841,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1351,6 +1855,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1360,6 +1867,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1371,6 +1881,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1380,6 +1893,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1391,6 +1907,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1400,6 +1919,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1411,6 +1933,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1420,6 +1945,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1431,159 +1959,300 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_136">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_137">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_138">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_139">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_140">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_141">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_142">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_143">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_144">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_145">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_146">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_147">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_148">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_149">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="ClickableLabel" name="label_150">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1599,6 +2268,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1608,6 +2280,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1619,6 +2294,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1628,6 +2306,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1639,6 +2320,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1648,6 +2332,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1659,6 +2346,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1668,6 +2358,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1679,6 +2372,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1688,6 +2384,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1699,6 +2398,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1708,6 +2410,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1719,6 +2424,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1729,6 +2437,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1738,6 +2449,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1753,6 +2467,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1762,6 +2479,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1773,6 +2493,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1782,6 +2505,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1793,6 +2519,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1802,6 +2531,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1813,6 +2545,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1822,6 +2557,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1833,6 +2571,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1842,6 +2583,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1853,6 +2597,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1862,6 +2609,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1873,6 +2623,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1883,6 +2636,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1892,6 +2648,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1907,6 +2666,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1916,6 +2678,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1927,6 +2692,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1936,6 +2704,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1947,6 +2718,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1956,6 +2730,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1967,6 +2744,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1976,6 +2756,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1987,6 +2770,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1996,6 +2782,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2007,6 +2796,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2016,6 +2808,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2027,6 +2822,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2037,6 +2835,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2046,6 +2847,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2061,6 +2865,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2070,6 +2877,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2081,6 +2891,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2090,6 +2903,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2101,6 +2917,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2110,6 +2929,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2121,6 +2943,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2130,6 +2955,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2141,6 +2969,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2150,6 +2981,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2161,6 +2995,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2170,6 +3007,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2181,6 +3021,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2191,6 +3034,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2200,6 +3046,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2215,6 +3064,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2224,6 +3076,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2235,6 +3090,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2244,6 +3102,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2255,6 +3116,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2264,6 +3128,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2275,6 +3142,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2284,6 +3154,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2295,6 +3168,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2304,6 +3180,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2315,6 +3194,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2324,6 +3206,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2335,6 +3220,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2345,6 +3233,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -2354,6 +3245,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2375,8 +3269,8 @@
      <string>File</string>
     </property>
     <addaction name="restart_action"/>
-    <addaction name="actionImport_Ticket_Names"/>
-    <addaction name="actionImport_Prizes"/>
+    <addaction name="import_ticket_names_action"/>
+    <addaction name="import_prizes_action"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -2413,12 +3307,12 @@
     <string>Restart</string>
    </property>
   </action>
-  <action name="actionImport_Ticket_Names">
+  <action name="import_ticket_names_action">
    <property name="text">
     <string>Import Ticket Names</string>
    </property>
   </action>
-  <action name="actionImport_Prizes">
+  <action name="import_prizes_action">
    <property name="text">
     <string>Import Prizes</string>
    </property>
