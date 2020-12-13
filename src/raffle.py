@@ -57,16 +57,6 @@ logger = get_logger(__name__)
 #         for id in [ticket.getNumber() for ticket in removedTickets]:
 #             Signals().ticketDrawn.emit(id)
 
-#     def restartRaffle(self):
-#         """
-#         This method is called when the user clicks the restart option. It replaces all
-#         the tickets drawn and resets the header.
-#         """
-#         lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
-#         while lastTicketDrawn != None:
-#             Signals().undoButtonClicked.emit(lastTicketDrawn.number)
-#             lastTicketDrawn = TicketList.getInstance().getLastTicketDrawn()
-
 class Prize:
     """Class to represent a single prize"""
     def __init__(self, number, description = ""):

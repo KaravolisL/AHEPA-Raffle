@@ -1,7 +1,7 @@
 """Module containing functions used to read from and write to files"""
 
 from debug_logger import get_logger
-from raffle import raffle
+from raffle import raffle, Prize
 from constants import NUMBER_OF_TICKETS
 
 logger = get_logger(__name__)
@@ -18,8 +18,7 @@ def format_checker(func):
 
 @format_checker
 def import_ticket_names(file: str):
-    """Reads ticket names from a give file. Overwrites the current ticket names in
-    data.xml and returns a list of the names
+    """Reads ticket names from a give file.
 
     :param str file: File from which to read
     """
@@ -34,6 +33,25 @@ def import_ticket_names(file: str):
     # Set the ticket names
     for new_name, ticket in zip(names, raffle.tickets):
         ticket.name = new_name
+
+@format_checker
+def import_prizes(file: str):
+    """Reads prizes from a given file. Replaced existing prizes with
+    the new ones
+
+    :param str file: File from which to read
+    """
+    logger.debug("Importing prizes")
+
+    # Read from file
+    prizes = []
+    with open(file, 'r') as prizes_file:
+        for line in prizes_file:
+            number, description = line.split(" ", 1)
+            prize = Prize(int(number), description)
+            prizes.append(prize)
+
+    raffle.prizes = prizes
 
 class FormatException(Exception):
     """Exception used for ill-formatted files"""

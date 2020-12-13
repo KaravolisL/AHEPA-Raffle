@@ -37,6 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Connect menu bar actions
         self.restart_action.triggered.connect(self.restart_selected)
         self.import_ticket_names_action.triggered.connect(self.import_ticket_names_selected)
+        self.import_prizes_action.triggered.connect(self.import_prizes_selected)
 
         self.showMaximized()
 
@@ -120,6 +121,25 @@ class MainWindow(QtWidgets.QMainWindow):
         file_name = dialog.selectedFiles()[0]
         try:
             file_manager.import_ticket_names(file_name)
+        except file_manager.FormatException:
+            pass
+        else:
+            self.refresh()
+
+    def import_prizes_selected(self):
+        """Method called when the import prizes option is selected"""
+        dialog = QtWidgets.QFileDialog(self)
+        dialog.setFileMode(QFileDialog.ExistingFile)
+        dialog.setWindowTitle("Select Prizes")
+        dialog.setNameFilter("Text files (*.txt)")
+
+        if not dialog.exec():
+            return
+
+        # Try to import the prizes
+        file_name = dialog.selectedFiles()[0]
+        try:
+            file_manager.import_prizes(file_name)
         except file_manager.FormatException:
             pass
         else:
