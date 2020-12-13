@@ -9,7 +9,7 @@ from Ui.alerts import Warning
 from raffle import raffle
 import file_manager
 from constants import NUMBER_OF_TICKETS
-from logger import get_logger
+from debug_logger import get_logger
 
 logger = get_logger(__name__)
 
