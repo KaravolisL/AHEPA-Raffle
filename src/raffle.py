@@ -116,13 +116,19 @@ class Raffle:
         self.tickets[ticket_number - 1].number_drawn = self.num_tickets_drawn + 1
         self.num_tickets_drawn += 1
 
+    def replace_ticket(self) -> None:
+        """Replaces the last drawn ticket"""
+        last_ticket_drawn = self.get_last_ticket_drawn()
+        assert last_ticket_drawn is not None, 'No tickets have been drawn'
+        assert last_ticket_drawn.is_drawn(), 'Ticket has not been drawn'
+        logger.debug('Replacing ticket number {}'.format(last_ticket_drawn.number))
+        self.tickets[last_ticket_drawn.number - 1].number_drawn = 0
+        self.num_tickets_drawn -= 1
+
     def restart(self):
         """This method replaces all drawn tickets"""
-        last_ticket_drawn = self.get_last_ticket_drawn()
-        while last_ticket_drawn is not None:
-            last_ticket_drawn.number_drawn = 0
-            self.num_tickets_drawn -= 1
-            last_ticket_drawn = self.get_last_ticket_drawn()
+        while self.num_tickets_drawn != 0:
+            self.replace_ticket()
 
     def get_last_ticket_drawn(self) -> Ticket:
         """Iterates the list and compares each ticket's number_drawn field

@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QRegExp
 
 from Ui.custom_widgets import ClickableLabel
+from Ui.alerts import Warning
 from raffle import raffle
 from constants import NUMBER_OF_TICKETS
 from logger import get_logger
@@ -27,7 +28,12 @@ class MainWindow(QtWidgets.QMainWindow):
                                    lambda: self.ticket_label_clicked(ticket_number))(i + 1))
 
         # Set up the header cells
+        self.last_ticket_drawn_label.clicked.connect(self.undo_button_clicked)
+
         self.update_header()
+
+        # Connect menu bar actions
+        self.restart_action.triggered.connect(self.restart_selected)
 
         self.showMaximized()
 
@@ -55,6 +61,36 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tickets_drawn_label.setText("Tickets Drawn: {}".format(raffle.num_tickets_drawn))
 
         last_ticket_drawn = raffle.get_last_ticket_drawn()
-        self.last_ticket_drawn_label.setText(
-            "Last Ticket Drawn: {}".format(last_ticket_drawn.number)
-        )
+        if last_ticket_drawn is None:
+            self.last_ticket_drawn_label.setText("Last Ticket Drawn: ")
+        else:
+            self.last_ticket_drawn_label.setText(
+                "Last Ticket Drawn: {}".format(last_ticket_drawn.number)
+            )
+
+    def undo_button_clicked(self):
+        """Method to handle the undo action"""
+        last_ticket_drawn = raffle.get_last_ticket_drawn()
+        if last_ticket_drawn is None:
+            return
+
+        # Make ticket visible
+        ticket_label = self.ticket_labels[last_ticket_drawn.number - 1]
+        ticket_label.setStyleSheet("")
+
+        # Replace the ticket in the backend
+        raffle.replace_ticket()
+
+        # Update the header
+        self.update_header()
+
+    def restart_selected(self):
+        """Method called when the restart option is selected"""
+
+        warning = Warning("Restarting the raffle will cause all progress to"
+                          " be lost! Are you sure you want to continue?")
+
+        if warning.exec():
+            logger.debug("Restarting...")
+            while raffle.num_tickets_drawn != 0:
+                self.undo_button_clicked()
