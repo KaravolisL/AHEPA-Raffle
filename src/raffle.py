@@ -66,7 +66,7 @@ class Prize:
     @number.setter
     def number(self, val: int):
         self._number = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     @property
     def description(self):
@@ -76,7 +76,7 @@ class Prize:
     @description.setter
     def description(self, val: str):
         self._description = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     def __str__(self):
         return str(self.number) + " " + self.description
@@ -97,7 +97,7 @@ class Ticket:
     @name.setter
     def name(self, val: str):
         self._name = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     @property
     def number(self):
@@ -107,7 +107,7 @@ class Ticket:
     @number.setter
     def number(self, val: int):
         self._number = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     @property
     def number_drawn(self):
@@ -117,7 +117,7 @@ class Ticket:
     @number_drawn.setter
     def number_drawn(self, val: int):
         self._number_drawn = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     def __str__(self):
         return str(self.number) + '\n' + self.name
@@ -152,7 +152,7 @@ class Raffle:
     @prizes.setter
     def prizes(self, val: List[Prize]):
         self._prizes = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     @property
     def tickets(self):
@@ -162,7 +162,7 @@ class Raffle:
     @tickets.setter
     def tickets(self, val: List[Ticket]):
         self._tickets = val
-        self.signals.dataChanged.emit()
+        self.signals.data_changed.emit()
 
     def get_prize_from_number(self, prize_number: int) -> Prize:
         """Obtains a prize given the number
@@ -182,6 +182,11 @@ class Raffle:
         logger.debug('Removing ticket number %d', ticket_number)
         self.num_tickets_drawn += 1
         self.tickets[ticket_number - 1].number_drawn = self.num_tickets_drawn
+
+        # Check if there is a prize next
+        next_prize = self.get_prize_from_number(self.num_tickets_drawn + 1)
+        if next_prize is not None:
+            self.signals.prize_next.emit(next_prize)
 
     def replace_ticket(self) -> None:
         """Replaces the last drawn ticket"""
@@ -211,6 +216,7 @@ class Raffle:
 
 class Signals(QObject):
     """Class to hold signals"""
-    dataChanged = pyqtSignal()
+    data_changed = pyqtSignal()
+    prize_next = pyqtSignal(Prize)
 
 raffle = Raffle()

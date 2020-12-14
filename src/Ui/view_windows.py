@@ -24,7 +24,7 @@ class TicketsView(QtWidgets.QMainWindow):
         self.table_view.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
         # Connect to list signals
-        raffle.signals.dataChanged.connect(self.create_model)
+        raffle.signals.data_changed.connect(self.create_model)
 
         self.show()
 
@@ -44,7 +44,7 @@ class TicketsView(QtWidgets.QMainWindow):
                 self.model.setItem(i, j, item)
 
             # Connect to signals
-            ticket.signals.dataChanged.connect(self.refresh)
+            ticket.signals.data_changed.connect(self.refresh)
 
         self.table_view.setModel(self.model)
 
@@ -72,7 +72,7 @@ class PrizesView(QtWidgets.QMainWindow):
         self.table_view.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
         # Connect to list signals
-        raffle.signals.dataChanged.connect(self.create_model)
+        raffle.signals.data_changed.connect(self.create_model)
 
         self.show()
 
@@ -91,7 +91,7 @@ class PrizesView(QtWidgets.QMainWindow):
                 self.model.setItem(i, j, item)
 
             # Connect to signals
-            prize.signals.dataChanged.connect(self.refresh)
+            prize.signals.data_changed.connect(self.refresh)
 
         self.table_view.setModel(self.model)
 
