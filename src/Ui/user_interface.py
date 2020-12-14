@@ -54,7 +54,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Connect to signals
         for ticket in raffle.tickets:
-            ticket.signals.dataChanged.connect(self.refresh)
+            ticket.signals.data_changed.connect(self.refresh)
+
+        raffle.signals.prize_next.connect(gm.gui_manager.create_prize_alert)
 
         self.showMaximized()
 

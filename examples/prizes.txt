@@ -1,4 +1,4 @@
-75 The next ticket drawn will win $100 cash.
+5 The next ticket drawn will win $100 cash.
 125 The next ticket drawn will win $100 cash.
 175 The next ticket drawn will win $100 cash.
 200 The next ticket drawn will win $100 cash.
