@@ -48,6 +48,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.edit_ticket_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_TICKET)
         )
+        self.edit_prize_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_PRIZE)
+        )
 
         # Connect to signals
         for ticket in raffle.tickets:

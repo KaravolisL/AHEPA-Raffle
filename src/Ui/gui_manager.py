@@ -11,6 +11,7 @@ class WindowType(Enum):
     VIEW_TICKETS = 0
     VIEW_PRIZES = 1
     EDIT_TICKET = 2
+    EDIT_PRIZE = 3
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -32,6 +33,8 @@ class GuiManager:
             self.window_list.append(view_windows.PrizesView())
         elif window_type == WindowType.EDIT_TICKET:
             self.window_list.append(edit_windows.TicketEdit())
+        elif window_type == WindowType.EDIT_PRIZE:
+            self.window_list.append(edit_windows.PrizeEdit())
 
     def clear_windows(self):
         """Deletes all open windows"""

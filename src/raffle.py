@@ -164,6 +164,16 @@ class Raffle:
         self._tickets = val
         self.signals.dataChanged.emit()
 
+    def get_prize_from_number(self, prize_number: int) -> Prize:
+        """Obtains a prize given the number
+
+        :param int prize_number: Number of the prize to get
+        """
+        for prize in self.prizes:
+            if prize.number == prize_number:
+                return prize
+        return None
+
     def draw_ticket(self, ticket_number) -> None:
         """Sets the given ticket's number_drawn field and increments num_tickets_drawn
         :param int ticket_number: Number of ticket to remove
