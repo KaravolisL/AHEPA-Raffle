@@ -8,7 +8,7 @@ from Ui.custom_widgets import ClickableLabel
 from Ui.alerts import Warning
 import Ui.gui_manager as gm
 from raffle import raffle
-import file_manager
+import file_management
 from constants import NUMBER_OF_TICKETS
 from debug_logger import get_logger
 
@@ -133,8 +133,8 @@ class MainWindow(QtWidgets.QMainWindow):
         # Try to import the names
         file_name = dialog.selectedFiles()[0]
         try:
-            file_manager.import_ticket_names(file_name)
-        except file_manager.FormatException:
+            file_management.import_ticket_names(file_name)
+        except file_management.FormatException:
             pass
         else:
             self.refresh()
@@ -152,8 +152,8 @@ class MainWindow(QtWidgets.QMainWindow):
         # Try to import the prizes
         file_name = dialog.selectedFiles()[0]
         try:
-            file_manager.import_prizes(file_name)
-        except file_manager.FormatException:
+            file_management.import_prizes(file_name)
+        except file_management.FormatException:
             pass
         else:
             self.refresh()

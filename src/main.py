@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 from PyQt5 import QtWidgets
 
 from Ui.gui_manager import gui_manager
-import file_manager
+import file_management
 
 EXIT_SUCCESS = 0
 
@@ -25,10 +25,10 @@ def main():
     args = argument_parser.parse_args()
 
     if args.import_names:
-        file_manager.import_ticket_names(r'examples/ticket_names.txt')
+        file_management.import_ticket_names(r'examples/ticket_names.txt')
 
     if args.import_prizes:
-        file_manager.import_prizes(r'examples/prizes.txt')
+        file_management.import_prizes(r'examples/prizes.txt')
 
     if args.no_gui:
         return EXIT_SUCCESS

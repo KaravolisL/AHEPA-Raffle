@@ -1,7 +1,9 @@
 """Module containing functions used to read from and write to files"""
 
+import json
+
 from debug_logger import get_logger
-from raffle import raffle, Prize
+from raffle import Ticket, raffle, Prize
 from constants import NUMBER_OF_TICKETS
 
 logger = get_logger(__name__)
@@ -51,7 +53,29 @@ def import_prizes(file: str):
             prize = Prize(int(number), description)
             prizes.append(prize)
 
+    # Replace the current prizes with the new ones
     raffle.prizes = prizes
+
+class CustomEncoder(json.JSONEncoder):
+    """Custom json encoder to handle specific classes"""
+    def default(self, obj):
+        """Converts a python object to json"""
+        if isinstance(obj, Ticket):
+            return { "name" : obj.name,
+                     "number" : obj.number,
+                     "number_drawn": obj.number_drawn
+            }
+        return super().default(obj)
+
+class SaveFileManager:
+    """Class responsible for reading and writing the save file"""
+    SAVE_FILE = r'save_file.json'
+
+    def __init__(self):
+        self.tickets_json = json.loads(json.dumps(raffle.tickets, cls=CustomEncoder))
+        print(self.tickets_json['name'])
+
+save_file_manager = SaveFileManager()
 
 class FormatException(Exception):
     """Exception used for ill-formatted files"""
