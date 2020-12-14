@@ -4,11 +4,14 @@ from enum import Enum
 
 import Ui.user_interface as user_interface
 import Ui.view_windows as view_windows
+import Ui.edit_windows as edit_windows
 
 class WindowType(Enum):
     """Enumerated type for auxiliary windows"""
     VIEW_TICKETS = 0
     VIEW_PRIZES = 1
+    EDIT_TICKET = 2
+    EDIT_PRIZE = 3
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -28,6 +31,10 @@ class GuiManager:
             self.window_list.append(view_windows.TicketsView())
         elif window_type == WindowType.VIEW_PRIZES:
             self.window_list.append(view_windows.PrizesView())
+        elif window_type == WindowType.EDIT_TICKET:
+            self.window_list.append(edit_windows.TicketEdit())
+        elif window_type == WindowType.EDIT_PRIZE:
+            self.window_list.append(edit_windows.PrizeEdit())
 
     def clear_windows(self):
         """Deletes all open windows"""

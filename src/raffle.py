@@ -164,14 +164,24 @@ class Raffle:
         self._tickets = val
         self.signals.dataChanged.emit()
 
+    def get_prize_from_number(self, prize_number: int) -> Prize:
+        """Obtains a prize given the number
+
+        :param int prize_number: Number of the prize to get
+        """
+        for prize in self.prizes:
+            if prize.number == prize_number:
+                return prize
+        return None
+
     def draw_ticket(self, ticket_number) -> None:
         """Sets the given ticket's number_drawn field and increments num_tickets_drawn
         :param int ticket_number: Number of ticket to remove
         """
         assert not self.tickets[ticket_number - 1].is_drawn(), 'Ticket already removed'
         logger.debug('Removing ticket number %d', ticket_number)
-        self.tickets[ticket_number - 1].number_drawn = self.num_tickets_drawn + 1
         self.num_tickets_drawn += 1
+        self.tickets[ticket_number - 1].number_drawn = self.num_tickets_drawn
 
     def replace_ticket(self) -> None:
         """Replaces the last drawn ticket"""
@@ -179,8 +189,8 @@ class Raffle:
         assert last_ticket_drawn is not None, 'No tickets have been drawn'
         assert last_ticket_drawn.is_drawn(), 'Ticket has not been drawn'
         logger.debug('Replacing ticket number %d', last_ticket_drawn.number)
-        self.tickets[last_ticket_drawn.number - 1].number_drawn = 0
         self.num_tickets_drawn -= 1
+        self.tickets[last_ticket_drawn.number - 1].number_drawn = 0
 
     def restart(self):
         """This method replaces all drawn tickets"""
