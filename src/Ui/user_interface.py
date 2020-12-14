@@ -45,6 +45,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.view_prizes_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.VIEW_PRIZES)
         )
+        self.edit_ticket_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_TICKET)
+        )
+
+        # Connect to signals
+        for ticket in raffle.tickets:
+            ticket.signals.dataChanged.connect(self.refresh)
 
         self.showMaximized()
 
@@ -69,9 +76,6 @@ class MainWindow(QtWidgets.QMainWindow):
         # Check whether this ticket has been drawn
         if not raffle.tickets[ticket_number - 1].is_drawn():
             raffle.draw_ticket(ticket_number)
-
-        # Update the information in the header
-        self.update_header()
 
     def update_header(self):
         """Method used to update the information in the header cells"""
@@ -100,9 +104,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Replace the ticket in the backend
         raffle.replace_ticket()
-
-        # Update the header
-        self.update_header()
 
     def restart_selected(self):
         """Method called when the restart option is selected"""
