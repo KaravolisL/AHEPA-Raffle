@@ -49,6 +49,8 @@ class GuiManager:
 
     def clear_windows(self):
         """Deletes all open windows"""
+        for window in reversed(self.window_list):
+            window.close()
         self.window_list.clear()
 
 gui_manager = GuiManager()
