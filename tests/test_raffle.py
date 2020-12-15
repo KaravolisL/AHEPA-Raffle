@@ -5,9 +5,11 @@ sys.path.insert(1, 'src')
 
 from raffle import Raffle
 from constants import NUMBER_OF_TICKETS
+import file_management
 
 def test_draw_ticket():
     """Unit test for draw ticket method"""
+    file_management.save_file_manager.create_default_save()
     test_raffle = Raffle()
 
     for i in range(0, NUMBER_OF_TICKETS):
@@ -20,6 +22,7 @@ def test_draw_ticket():
 
 def test_restart():
     """Unit test for the restart method"""
+    file_management.save_file_manager.create_default_save()
     test_raffle = Raffle()
     assert test_raffle.get_last_ticket_drawn() is None
 
@@ -36,6 +39,7 @@ def test_restart():
 
 def test_replace_ticket():
     """Unit test for the replace ticket method"""
+    file_management.save_file_manager.create_default_save()
     test_raffle = Raffle()
 
     for i in range(0, NUMBER_OF_TICKETS):
