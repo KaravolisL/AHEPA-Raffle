@@ -5,7 +5,6 @@ import threading
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
 
-
 class PrizeAlert(QtWidgets.QMainWindow):
     """Window to be displayed prior to a prize being given"""
     def __init__(self, text: str):

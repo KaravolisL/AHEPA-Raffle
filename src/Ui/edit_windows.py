@@ -5,7 +5,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIntValidator
 
 from constants import NUMBER_OF_TICKETS
-from raffle import raffle, Prize
+from raffle import raffle
+from data_classes import Prize
 
 class TicketEdit(QtWidgets.QMainWindow):
     """Window used to edit a ticket"""
