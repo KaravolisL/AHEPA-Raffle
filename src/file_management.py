@@ -1,7 +1,7 @@
 """Module containing functions used to read from and write to files"""
 
 import json
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 from debug_logger import get_logger
 from constants import NUMBER_OF_TICKETS
@@ -116,7 +116,14 @@ class SaveFileManager:
             json.dump(
                 {
                     "Tickets" : [Ticket(i + 1) for i in range(0, NUMBER_OF_TICKETS)],
-                    "Prizes"  : []
+                    "Prizes"  : [],
+                    "Preferences" : {
+                        "Prize_Alert_Color" : "#6699ff",
+                        "Prize_Alert_Font_Size" : 16,
+                        "Prize_Alert_Delay" : 8,
+                        "Header_Color" : "#6699ff",
+                        "Main_Table_Color" : "#6699ff"
+                    }
                 },
                 save_file,
                 cls=CustomEncoder,
@@ -129,8 +136,8 @@ class SaveFileManager:
         :return: Tickets contained in the save file
         :rtype: List[Ticket]
         """
-        json_obj = json.load(open(self.SAVE_FILE, 'r'), object_hook=custom_decoder)
-        return json_obj['Tickets']
+        saved_data = json.load(open(self.SAVE_FILE, 'r'), object_hook=custom_decoder)
+        return saved_data['Tickets']
 
     def get_prizes(self) -> List[Prize]:
         """Retrieves the list of prizes from the save file
@@ -138,8 +145,20 @@ class SaveFileManager:
         :return: Prizes contained in the save file
         :rtype: List[Prize]
         """
-        json_obj = json.load(open(self.SAVE_FILE, 'r'), object_hook=custom_decoder)
-        return json_obj['Prizes']
+        saved_data = json.load(open(self.SAVE_FILE, 'r'), object_hook=custom_decoder)
+        return saved_data['Prizes']
+
+    def get_prize_alert_preferences(self) -> Tuple[str, int, int]:
+        """Retrieves the prize alert preferences from the save file
+        
+        :return: (color, font_size, delay)
+        :rtype: Tuple[str, int, int]
+        """
+        with open(self.SAVE_FILE, 'r') as save_file:
+            saved_data = json.load(save_file, object_hook=custom_decoder)
+            return (saved_data['Preferences']['Prize_Alert_Color'],
+                    saved_data['Preferences']['Prize_Alert_Font_Size'],
+                    saved_data['Preferences']['Prize_Alert_Delay'])
 
     def write_tickets_to_save_file(self, tickets: List[Ticket]) -> None:
         """Writes the list of tickets to the save file"""
@@ -165,7 +184,5 @@ class SaveFileManager:
 
         with open(self.SAVE_FILE, 'w') as save_file:
             json.dump(json_objects, save_file, cls=CustomEncoder, indent=4)
-
-
 
 save_file_manager = SaveFileManager()

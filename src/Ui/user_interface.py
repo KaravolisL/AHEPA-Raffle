@@ -10,7 +10,7 @@ from Ui.alerts import Warning
 import Ui.gui_manager as gm
 from raffle import raffle
 import file_management
-from constants import NUMBER_OF_TICKETS
+from constants import NUMBER_OF_TICKETS, APPLICATION_FONT_FAMILY
 from debug_logger import get_logger
 
 logger = get_logger(__name__)
@@ -30,7 +30,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             # Add the name to the label
             label.setText(str(raffle.tickets[i]))
-            label.setFont(QFont("MS Shell Dlg 2", 9))
+            label.setFont(QFont(APPLICATION_FONT_FAMILY, 9))
 
             # We need to use a closure for i to ensure it copies it through the loop
             label.clicked.connect((lambda ticket_number: \
