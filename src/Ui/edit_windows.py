@@ -7,6 +7,7 @@ from PyQt5.QtGui import QIntValidator
 from constants import NUMBER_OF_TICKETS
 from raffle import raffle
 from data_classes import Prize
+import Ui.gui_manager
 import file_management
 
 class TicketEdit(QtWidgets.QMainWindow):
@@ -159,4 +160,48 @@ class PrizeAlertEdit(QtWidgets.QMainWindow):
             font_size,
             delay
         ))
+        self.close()
+
+class BackgroundColorEdit(QtWidgets.QMainWindow):
+    """Window used to edit the background color of tickets"""
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('src/Ui/change_background_color.ui', self)
+
+        # Obtain current background colors
+        header_bg_color, table_bg_color = \
+            file_management.save_file_manager.get_bg_colors()
+        self.header_color_label.setStyleSheet("QWidget { background-color: " + header_bg_color + ";}")
+        self.main_table_color_label.setStyleSheet("QWidget { background-color: " + table_bg_color + ";}")
+
+        # Connect signals
+        self.button_box.rejected.connect(self.close)
+        self.button_box.accepted.connect(self.save_preferences)
+        self.header_color_label.clicked.connect(lambda: self.show_color_picker(self.header_color_label))
+        self.main_table_color_label.clicked.connect(lambda: self.show_color_picker(self.main_table_color_label))
+
+        self.show()
+
+    @classmethod
+    def show_color_picker(self, label: QtWidgets.QLabel) -> None:
+        """Opens a color dialog for the background color of the header"""
+        color = QtWidgets.QColorDialog.getColor()
+        if color.isValid():
+            label.setStyleSheet("QWidget { background-color: " + color.name() + ";}")
+
+    def save_preferences(self) -> None:
+        """Writes the currently selected preferences to the save file"""
+        # Gather the preferences
+        header_bg_color = self.header_color_label.styleSheet().split(':')[1].strip(' ;}')
+        table_bg_color = self.main_table_color_label.styleSheet().split(':')[1].strip(' ;}')
+
+        # Write them to the save file
+        file_management.save_file_manager.write_background_colors((
+            header_bg_color,
+            table_bg_color
+        ))
+
+        # Force the main window to refresh
+        Ui.gui_manager.gui_manager.force_main_window_refresh()
+
         self.close()
