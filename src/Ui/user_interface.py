@@ -133,11 +133,12 @@ class MainWindow(QtWidgets.QMainWindow):
         # Try to import the names
         file_name = dialog.selectedFiles()[0]
         try:
-            file_management.import_ticket_names(file_name)
+            new_names = file_management.import_ticket_names(file_name)
         except file_management.FormatException:
             pass
         else:
-            self.refresh()
+            for ticket, new_name in zip(raffle.tickets, new_names):
+                ticket.name = new_name
 
     def import_prizes_selected(self):
         """Method called when the import prizes option is selected"""
@@ -152,11 +153,11 @@ class MainWindow(QtWidgets.QMainWindow):
         # Try to import the prizes
         file_name = dialog.selectedFiles()[0]
         try:
-            file_management.import_prizes(file_name)
+            new_prizes = file_management.import_prizes(file_name)
         except file_management.FormatException:
             pass
         else:
-            self.refresh()
+            raffle.prizes = new_prizes
 
     # pylint: disable=invalid-name
     def resizeEvent(self, event) -> None:

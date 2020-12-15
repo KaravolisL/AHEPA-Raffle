@@ -8,49 +8,6 @@ from constants import NUMBER_OF_TICKETS
 from debug_logger import get_logger
 logger = get_logger(__name__)
 
-# class Raffle():
-#     def __init__(self):
-#         logger.debug('Raffle initializing')
-
-#         # Initialize the TicketList
-#         TicketList.getInstance().initialize()
-
-#         # Construct the MainWindow
-#         mainWindow = MainWindow()
-
-#         # Restore progress
-#         self.restoreProgress()
-
-#         # Initialize the PrizeList
-#         PrizeApi.initializePrizeList()
-
-#         # Show the main window
-#         mainWindow.showMaximized()
-
-#         # Connect additional signals
-#         Signals().raffleExited.connect(self.saveProgress)
-#         Signals().restartRaffle.connect(self.restartRaffle)
-
-#     def saveProgress(self):
-#         """
-#         This method saves the progress of the raffle and any changes made
-#         to tickets or prizes
-#         """
-#         FileManager.saveProgress(TicketList.getInstance().getDrawnTickets())
-#         FileManager.writePrizes(PrizeApi.getList())
-#         FileManager.writeTickets(TicketList.getInstance().ticketList)
-
-#     def restoreProgress(self):
-#         """
-#         This method reads from the save file and updates the raffle to
-#         that given point.
-#         """
-#         removedTickets = FileManager.readSaveFile()
-#         if len(removedTickets) == 0:
-#             return
-#         for id in [ticket.getNumber() for ticket in removedTickets]:
-#             Signals().ticketDrawn.emit(id)
-
 class Prize:
     """Class to represent a single prize"""
     def __init__(self, number, description = ""):

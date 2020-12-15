@@ -7,6 +7,7 @@ from argparse import ArgumentParser
 from PyQt5 import QtWidgets
 
 from Ui.gui_manager import gui_manager
+from raffle import raffle
 import file_management
 
 EXIT_SUCCESS = 0
@@ -25,10 +26,13 @@ def main():
     args = argument_parser.parse_args()
 
     if args.import_names:
-        file_management.import_ticket_names(r'examples/ticket_names.txt')
+        new_names = file_management.import_ticket_names(r'examples/ticket_names.txt')
+        for ticket, new_name in zip(raffle.tickets, new_names):
+            ticket.name = new_name
 
     if args.import_prizes:
-        file_management.import_prizes(r'examples/prizes.txt')
+        new_prizes = file_management.import_prizes(r'examples/prizes.txt')
+        raffle.prizes = new_prizes
 
     if args.no_gui:
         return EXIT_SUCCESS
