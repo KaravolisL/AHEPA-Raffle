@@ -109,3 +109,54 @@ class PrizeEdit(QtWidgets.QMainWindow):
             prize.description = self.prize_description_line_edit.text()
             file_management.save_file_manager.write_prizes_to_save_file(raffle.prizes)
         self.prize_number_edited()
+
+class PrizeAlertEdit(QtWidgets.QMainWindow):
+    """Window used to edit the prize alert"""
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('src/Ui/edit_prize_alert.ui', self)
+
+        # Obtain the current preferences
+        bg_color, font_size, delay = \
+            file_management.save_file_manager.get_prize_alert_preferences()
+
+        # Change the color of the label
+        self.prize_alert_color_label.setStyleSheet("QWidget { background-color: " + bg_color + ";}")
+
+        # Add options to the font size combo
+        for i in (*range(1, 13), *range(14, 50, 2)):
+            self.font_size_combo.addItem(str(i))
+        self.font_size_combo.setCurrentText(str(font_size))
+
+        # Add options to the delay combo
+        for i in range(1, 21):
+            self.delay_combo.addItem(str(i))
+        self.delay_combo.setCurrentText(str(delay))
+
+        # Connect signals
+        self.button_box.rejected.connect(self.close)
+        self.button_box.accepted.connect(self.save_preferences)
+        self.prize_alert_color_label.clicked.connect(self.show_color_picker)
+
+        self.show()
+
+    def show_color_picker(self) -> None:
+        """Opens a color dialog for the background color of the prize alert"""
+        color = QtWidgets.QColorDialog.getColor()
+        if color.isValid():
+            self.prize_alert_color_label.setStyleSheet("QWidget { background-color: " + color.name() + ";}")
+
+    def save_preferences(self) -> None:
+        """Writes the currently selected preferences to the save file"""
+        # Gather the preferences
+        bg_color = self.prize_alert_color_label.styleSheet().split(':')[1].strip(' ;}')
+        font_size = int(self.font_size_combo.currentText())
+        delay = int(self.delay_combo.currentText())
+
+        # Write them to the save file
+        file_management.save_file_manager.write_prize_alert_preferences((
+            bg_color,
+            font_size,
+            delay
+        ))
+        self.close()

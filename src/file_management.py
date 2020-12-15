@@ -185,4 +185,17 @@ class SaveFileManager:
         with open(self.SAVE_FILE, 'w') as save_file:
             json.dump(json_objects, save_file, cls=CustomEncoder, indent=4)
 
+    def write_prize_alert_preferences(self, prefs: Tuple[str, int, int]) -> None:
+        """Writes the prize alert preferences to the save file"""
+        with open(self.SAVE_FILE, 'r') as save_file:
+            json_objects = json.load(save_file, object_hook=custom_decoder)
+
+        # Edit preferences
+        json_objects['Preferences']['Prize_Alert_Color'] = prefs[0]
+        json_objects['Preferences']['Prize_Alert_Font_Size'] = prefs[1]
+        json_objects['Preferences']['Prize_Alert_Delay'] = prefs[2]
+
+        with open(self.SAVE_FILE, 'w') as save_file:
+            json.dump(json_objects, save_file, cls=CustomEncoder, indent=4)
+
 save_file_manager = SaveFileManager()

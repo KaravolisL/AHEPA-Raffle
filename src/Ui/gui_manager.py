@@ -14,7 +14,8 @@ class WindowType(Enum):
     VIEW_PRIZES = 1
     EDIT_TICKET = 2
     EDIT_PRIZE = 3
-    PRIZE_ALERT = 4
+    EDIT_PRIZE_ALERT = 4
+    PRIZE_ALERT = 5
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -38,6 +39,8 @@ class GuiManager:
             self.window_list.append(edit_windows.TicketEdit())
         elif window_type == WindowType.EDIT_PRIZE:
             self.window_list.append(edit_windows.PrizeEdit())
+        elif window_type == WindowType.EDIT_PRIZE_ALERT:
+            self.window_list.append(edit_windows.PrizeAlertEdit())
 
 
     def create_prize_alert(self, prize: Prize):
