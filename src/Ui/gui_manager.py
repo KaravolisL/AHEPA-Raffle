@@ -6,7 +6,7 @@ import Ui.user_interface as user_interface
 import Ui.view_windows as view_windows
 import Ui.edit_windows as edit_windows
 import Ui.prize_alert as prize_alert
-from raffle import Prize
+from data_classes import Prize
 
 class WindowType(Enum):
     """Enumerated type for auxiliary windows"""
