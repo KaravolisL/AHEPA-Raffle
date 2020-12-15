@@ -6,7 +6,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
-from Ui.alerts import Warning
+from Ui.alerts import WarningAlert
 import Ui.gui_manager as gm
 from raffle import raffle
 import file_management
@@ -92,9 +92,12 @@ class MainWindow(QtWidgets.QMainWindow):
         header_bg_color, table_bg_color = \
             file_management.save_file_manager.get_bg_colors()
 
-        self.tickets_remaining_label.setStyleSheet("QWidget { background-color: " + header_bg_color + ";}")
-        self.tickets_drawn_label.setStyleSheet("QWidget { background-color: " + header_bg_color + ";}")
-        self.last_ticket_drawn_label.setStyleSheet("QWidget { background-color: " + header_bg_color + ";}")
+        self.tickets_remaining_label.setStyleSheet("QWidget { background-color: " +
+                                                   header_bg_color + ";}")
+        self.tickets_drawn_label.setStyleSheet("QWidget { background-color: " +
+                                               header_bg_color + ";}")
+        self.last_ticket_drawn_label.setStyleSheet("QWidget { background-color: " +
+                                                   header_bg_color + ";}")
 
         for label in self.ticket_labels:
             if 'transparent' not in label.styleSheet():
@@ -144,7 +147,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def restart_selected(self):
         """Method called when the restart option is selected"""
-        warning = Warning("Restarting the raffle will cause all progress to"
+        warning = WarningAlert("Restarting the raffle will cause all progress to"
                           " be lost! Are you sure you want to continue?")
 
         if warning.exec():

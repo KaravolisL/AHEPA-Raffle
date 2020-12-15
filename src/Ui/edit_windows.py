@@ -145,7 +145,8 @@ class PrizeAlertEdit(QtWidgets.QMainWindow):
         """Opens a color dialog for the background color of the prize alert"""
         color = QtWidgets.QColorDialog.getColor()
         if color.isValid():
-            self.prize_alert_color_label.setStyleSheet("QWidget { background-color: " + color.name() + ";}")
+            self.prize_alert_color_label.setStyleSheet("QWidget { background-color: " +
+                                                       color.name() + ";}")
 
     def save_preferences(self) -> None:
         """Writes the currently selected preferences to the save file"""
@@ -171,19 +172,25 @@ class BackgroundColorEdit(QtWidgets.QMainWindow):
         # Obtain current background colors
         header_bg_color, table_bg_color = \
             file_management.save_file_manager.get_bg_colors()
-        self.header_color_label.setStyleSheet("QWidget { background-color: " + header_bg_color + ";}")
-        self.main_table_color_label.setStyleSheet("QWidget { background-color: " + table_bg_color + ";}")
+        self.header_color_label.setStyleSheet("QWidget { background-color: " +
+                                              header_bg_color + ";}")
+        self.main_table_color_label.setStyleSheet("QWidget { background-color: " +
+                                                  table_bg_color + ";}")
 
         # Connect signals
         self.button_box.rejected.connect(self.close)
         self.button_box.accepted.connect(self.save_preferences)
-        self.header_color_label.clicked.connect(lambda: self.show_color_picker(self.header_color_label))
-        self.main_table_color_label.clicked.connect(lambda: self.show_color_picker(self.main_table_color_label))
+        self.header_color_label.clicked.connect(
+            lambda: self.show_color_picker(self.header_color_label)
+        )
+        self.main_table_color_label.clicked.connect(
+            lambda: self.show_color_picker(self.main_table_color_label)
+        )
 
         self.show()
 
     @classmethod
-    def show_color_picker(self, label: QtWidgets.QLabel) -> None:
+    def show_color_picker(cls, label: QtWidgets.QLabel) -> None:
         """Opens a color dialog for the background color of the header"""
         color = QtWidgets.QColorDialog.getColor()
         if color.isValid():
