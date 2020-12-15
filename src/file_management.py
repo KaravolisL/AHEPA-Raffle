@@ -143,26 +143,27 @@ class SaveFileManager:
 
     def write_tickets_to_save_file(self, tickets: List[Ticket]) -> None:
         """Writes the list of tickets to the save file"""
-        with open(self.SAVE_FILE, 'r+') as save_file:
+        with open(self.SAVE_FILE, 'r') as save_file:
             # Read in and delete existing tickets
             json_objects = json.load(save_file, object_hook=custom_decoder)
-            del json_objects['Tickets']
 
-            # Add new tickets list and write back
-            json_objects['Tickets'] = tickets
-            save_file.seek(0)
+        # Delete and re-add tickets
+        del json_objects['Tickets']
+        json_objects['Tickets'] = tickets
+
+        with open(self.SAVE_FILE, 'w') as save_file:
             json.dump(json_objects, save_file, cls=CustomEncoder, indent=4)
 
     def write_prizes_to_save_file(self, prizes: List[Prize]) -> None:
         """Writes the list of prizes to the save file"""
-        with open(self.SAVE_FILE, 'r+') as save_file:
-            # Read in and delete existing prizes
+        with open(self.SAVE_FILE, 'r') as save_file:
             json_objects = json.load(save_file, object_hook=custom_decoder)
-            del json_objects['Prizes']
 
-            # Add new prizes list and write back
-            json_objects['Prizes'] = prizes
-            save_file.seek(0)
+        # Delete and re-add prizes
+        del json_objects['Prizes']
+        json_objects['Prizes'] = prizes
+
+        with open(self.SAVE_FILE, 'w') as save_file:
             json.dump(json_objects, save_file, cls=CustomEncoder, indent=4)
 
 
