@@ -70,6 +70,9 @@ class Raffle:
         if next_prize is not None:
             self.signals.prize_next.emit(next_prize)
 
+        # Write to the save file
+        file_management.save_file_manager.write_tickets_to_save_file(self.tickets)
+
     def replace_ticket(self) -> None:
         """Replaces the last drawn ticket"""
         last_ticket_drawn = self.get_last_ticket_drawn()
@@ -78,6 +81,9 @@ class Raffle:
         logger.debug('Replacing ticket number %d', last_ticket_drawn.number)
         self.num_tickets_drawn -= 1
         self.tickets[last_ticket_drawn.number - 1].number_drawn = 0
+
+        # Write to the save file
+        file_management.save_file_manager.write_tickets_to_save_file(self.tickets)
 
     def restart(self):
         """This method replaces all drawn tickets"""

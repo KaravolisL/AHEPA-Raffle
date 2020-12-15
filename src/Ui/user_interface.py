@@ -2,6 +2,7 @@
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
@@ -24,15 +25,23 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ticket_labels = self.findChildren(ClickableLabel, QRegExp("label_[0-9]"))
 
         for i, label in enumerate(self.ticket_labels):
+            # Fix the width, so word wrap works correctly
+            label.setMaximumWidth(label.width())
+
+            # Add the name to the label
             label.setText(str(raffle.tickets[i]))
+            label.setFont(QFont("MS Shell Dlg 2", 9))
 
             # We need to use a closure for i to ensure it copies it through the loop
             label.clicked.connect((lambda ticket_number: \
                                    lambda: self.ticket_label_clicked(ticket_number))(i + 1))
 
+            # Restore progress
+            if raffle.tickets[i].is_drawn():
+                self.ticket_label_clicked(i + 1)
+
         # Set up the header cells
         self.last_ticket_drawn_label.clicked.connect(self.undo_button_clicked)
-
         self.update_header()
 
         # Connect menu bar actions
@@ -139,6 +148,7 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             for ticket, new_name in zip(raffle.tickets, new_names):
                 ticket.name = new_name
+            file_management.save_file_manager.write_tickets_to_save_file(raffle.tickets)
 
     def import_prizes_selected(self):
         """Method called when the import prizes option is selected"""
@@ -158,6 +168,7 @@ class MainWindow(QtWidgets.QMainWindow):
             pass
         else:
             raffle.prizes = new_prizes
+            file_management.save_file_manager.write_prizes_to_save_file(raffle.prizes)
 
     # pylint: disable=invalid-name
     def resizeEvent(self, event) -> None:
