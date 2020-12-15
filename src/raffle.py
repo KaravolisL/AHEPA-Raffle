@@ -4,7 +4,6 @@ from typing import List
 
 from data_classes import Prize, Ticket, Signals
 import file_management
-from constants import NUMBER_OF_TICKETS
 from debug_logger import get_logger
 logger = get_logger(__name__)
 
@@ -16,18 +15,16 @@ class Raffle:
         self.signals = Signals()
 
         # Initialize ticket list
-        self.num_tickets_drawn = 0
-        for i in range(0, NUMBER_OF_TICKETS):
-            self.tickets.append(Ticket("", i + 1))
+        self.tickets = file_management.save_file_manager.get_tickets()
 
-        # Read tickets from save
-        # file_management.save_file_manager.
+        # Determine how many tickets have been drawn
+        self.num_tickets_drawn = 0
+        for ticket in self.tickets:
+            if ticket.number_drawn > self.num_tickets_drawn:
+                self.num_tickets_drawn = ticket.number_drawn
 
         # Initialize prize list
-        # prizeDict = readPrizes()
-        prize_dict = {}
-        for prize_number, prize_description in prize_dict.items():
-            self.prizes.append(Prize(prize_number, prize_description))
+        self.prizes = file_management.save_file_manager.get_prizes()
 
     @property
     def prizes(self):

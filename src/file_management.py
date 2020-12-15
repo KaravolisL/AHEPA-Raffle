@@ -1,8 +1,7 @@
 """Module containing functions used to read from and write to files"""
 
 import json
-import pathlib
-from typing import List
+from typing import Any, Dict, List
 
 from debug_logger import get_logger
 from constants import NUMBER_OF_TICKETS
@@ -58,14 +57,34 @@ def import_prizes(file: str) -> List[Prize]:
 
 class CustomEncoder(json.JSONEncoder):
     """Custom json encoder to handle specific classes"""
-    def default(self, obj):
+    def default(self, o: Any):
         """Converts a python object to json"""
-        if isinstance(obj, Ticket):
-            return { "name" : obj.name,
-                     "number" : obj.number,
-                     "number_drawn": obj.number_drawn
+        if isinstance(o, Ticket):
+            return {
+                "name" : o.name,
+                "number" : o.number,
+                "number_drawn": o.number_drawn
             }
-        return super().default(obj)
+        if isinstance(o, Prize):
+            return {
+                "number" : o.number,
+                "description" : o.description
+            }
+        return super().default(o)
+
+def custom_decoder(dct: Dict) -> Any:
+    """Custom json decoder to construct specific objects
+
+    :param dict dct: Json dictionary
+
+    :return: Decoded python object
+    :rtype: Either custom object or dict
+    """
+    if "number_drawn" in dct:
+        return Ticket(dct['number'], dct['name'], dct['number_drawn'])
+    if "description" in dct:
+        return Prize(dct['number'], dct['description'])
+    return dct
 
 class SaveFileManager:
     """Class responsible for reading and writing the save file"""
@@ -87,19 +106,40 @@ class SaveFileManager:
         # Throw an exception if the file doesn't exist or is formatted incorrectly
         try:
             json.load(open(self.SAVE_FILE, 'r'))
-        except ValueError as value_error:
+        except (IOError, ValueError) as exception:
             self.create_default_save()
-            raise FormatException from value_error
+            raise FormatException from exception
 
     def create_default_save(self):
         """Creates a default save file"""
         with open(self.SAVE_FILE, 'w') as save_file:
             json.dump(
-                {"Tickets" : [Ticket("", i + 1) for i in range(0, NUMBER_OF_TICKETS)]},
+                {
+                    "Tickets" : [Ticket(i + 1) for i in range(0, NUMBER_OF_TICKETS)],
+                    "Prizes"  : []
+                },
                 save_file,
                 cls=CustomEncoder,
                 indent=4
             )
+
+    def get_tickets(self) -> List[Ticket]:
+        """Retrieves the list of tickets from the save file
+
+        :return: Tickets contained in the save file
+        :rtype: List[Ticket]
+        """
+        json_obj = json.load(open(self.SAVE_FILE, 'r'), object_hook=custom_decoder)
+        return json_obj['Tickets']
+
+    def get_prizes(self) -> List[Prize]:
+        """Retrieves the list of prizes from the save file
+
+        :return: Prizes contained in the save file
+        :rtype: List[Prize]
+        """
+        json_obj = json.load(open(self.SAVE_FILE, 'r'), object_hook=custom_decoder)
+        return json_obj['Prizes']
 
 
 save_file_manager = SaveFileManager()

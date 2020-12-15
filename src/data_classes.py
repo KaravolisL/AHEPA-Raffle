@@ -34,10 +34,10 @@ class Prize:
 
 class Ticket:
     """Class to represent a single ticket"""
-    def __init__(self, name = "", number = 0):
+    def __init__(self, number = 0, name = "", number_drawn = 0):
         self._name = name
         self._number = number
-        self._number_drawn = 0
+        self._number_drawn = number_drawn
         self.signals = Signals()
 
     @property
