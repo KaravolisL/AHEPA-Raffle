@@ -6,7 +6,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
-from Ui.alerts import WarningAlert
+from Ui.alerts import WarningAlert, Alert
 import Ui.gui_manager as gm
 from raffle import raffle
 import file_management
@@ -76,6 +76,12 @@ class MainWindow(QtWidgets.QMainWindow):
         raffle.signals.prize_next.connect(gm.gui_manager.create_prize_alert)
 
         self.showMaximized()
+
+        # Check if the save file was corrupted
+        if file_management.save_file_manager.save_file_corrupted:
+            alert = Alert("The save file was corrupted. The program has been reset")
+            alert.setWindowTitle("Corrupted Save File")
+            alert.exec()
 
     def refresh(self):
         """Method used to refresh gui based on backend data"""

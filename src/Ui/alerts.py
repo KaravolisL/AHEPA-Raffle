@@ -17,3 +17,14 @@ class WarningAlert(QtWidgets.QDialog):
 
         # Hide help button
         self.setWindowFlags(Qt.WindowCloseButtonHint)
+
+class Alert(QtWidgets.QDialog):
+    """Alert popup"""
+    def __init__(self, text):
+        super().__init__()
+        uic.loadUi('src/Ui/alert.ui', self)
+
+        self.alert_text.setText(text)
+
+        # Hide help button
+        self.setWindowFlags(Qt.WindowCloseButtonHint)
