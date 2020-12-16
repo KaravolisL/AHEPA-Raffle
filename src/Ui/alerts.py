@@ -7,7 +7,7 @@ from debug_logger import get_logger
 
 logger = get_logger(__name__)
 
-class Warning(QtWidgets.QDialog):
+class WarningAlert(QtWidgets.QDialog):
     """Warning popup"""
     def __init__(self, text):
         super().__init__()

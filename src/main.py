@@ -23,7 +23,13 @@ def main():
                                  help='Auto imports the example names')
     argument_parser.add_argument('--import_prizes', '-p', action='store_true',
                                  help='Auto imports the example prizes')
+    argument_parser.add_argument('--default_save', '-d', action='store_true',
+                                 help='Overwrites existing save with a default one')
     args = argument_parser.parse_args()
+
+    if args.default_save:
+        file_management.save_file_manager.create_default_save()
+        raffle.__init__()
 
     if args.import_names:
         new_names = file_management.import_ticket_names(r'examples/ticket_names.txt')

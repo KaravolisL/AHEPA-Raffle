@@ -6,11 +6,11 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
-from Ui.alerts import Warning
+from Ui.alerts import WarningAlert
 import Ui.gui_manager as gm
 from raffle import raffle
 import file_management
-from constants import NUMBER_OF_TICKETS
+from constants import NUMBER_OF_TICKETS, APPLICATION_FONT_FAMILY
 from debug_logger import get_logger
 
 logger = get_logger(__name__)
@@ -30,7 +30,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             # Add the name to the label
             label.setText(str(raffle.tickets[i]))
-            label.setFont(QFont("MS Shell Dlg 2", 9))
+            label.setFont(QFont(APPLICATION_FONT_FAMILY, 9))
 
             # We need to use a closure for i to ensure it copies it through the loop
             label.clicked.connect((lambda ticket_number: \
@@ -43,6 +43,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # Set up the header cells
         self.last_ticket_drawn_label.clicked.connect(self.undo_button_clicked)
         self.update_header()
+
+        # Update the background colors
+        self.update_bg_color()
 
         # Connect menu bar actions
         self.restart_action.triggered.connect(self.restart_selected)
@@ -60,11 +63,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.edit_prize_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_PRIZE)
         )
+        self.change_bg_color_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_BG_COLOR)
+        )
+        self.edit_prize_alert_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_PRIZE_ALERT)
+        )
 
         # Connect to signals
         for ticket in raffle.tickets:
             ticket.signals.data_changed.connect(self.refresh)
-
         raffle.signals.prize_next.connect(gm.gui_manager.create_prize_alert)
 
         self.showMaximized()
@@ -77,6 +85,23 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Update the header information
         self.update_header()
+
+    def update_bg_color(self):
+        """Updates the background color based on the values in the save file"""
+        # Obtain current background colors
+        header_bg_color, table_bg_color = \
+            file_management.save_file_manager.get_bg_colors()
+
+        self.tickets_remaining_label.setStyleSheet("QWidget { background-color: " +
+                                                   header_bg_color + ";}")
+        self.tickets_drawn_label.setStyleSheet("QWidget { background-color: " +
+                                               header_bg_color + ";}")
+        self.last_ticket_drawn_label.setStyleSheet("QWidget { background-color: " +
+                                                   header_bg_color + ";}")
+
+        for label in self.ticket_labels:
+            if 'transparent' not in label.styleSheet():
+                label.setStyleSheet("QWidget { background-color: " + table_bg_color + ";}")
 
     def ticket_label_clicked(self, ticket_number: int):
         """Function called when a ticket label is clicked
@@ -114,14 +139,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Make ticket visible
         ticket_label = self.ticket_labels[last_ticket_drawn.number - 1]
-        ticket_label.setStyleSheet("")
+        _, table_bg_color = file_management.save_file_manager.get_bg_colors()
+        ticket_label.setStyleSheet("QWidget { background-color: " + table_bg_color + ";}")
 
         # Replace the ticket in the backend
         raffle.replace_ticket()
 
     def restart_selected(self):
         """Method called when the restart option is selected"""
-        warning = Warning("Restarting the raffle will cause all progress to"
+        warning = WarningAlert("Restarting the raffle will cause all progress to"
                           " be lost! Are you sure you want to continue?")
 
         if warning.exec():

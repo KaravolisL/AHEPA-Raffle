@@ -4,6 +4,10 @@ import threading
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
+
+from constants import APPLICATION_FONT_FAMILY
+import file_management
 
 class PrizeAlert(QtWidgets.QMainWindow):
     """Window to be displayed prior to a prize being given"""
@@ -12,13 +16,21 @@ class PrizeAlert(QtWidgets.QMainWindow):
         uic.loadUi('src/Ui/prize_alert.ui', self)
         self.setWindowFlags(Qt.FramelessWindowHint)
 
+        # Obtain the preferences
+        bg_color, font_size, delay = \
+            file_management.save_file_manager.get_prize_alert_preferences()
+
         # Set the text
         self.prize_description.setText(text)
+        self.prize_description.setFont(QFont(APPLICATION_FONT_FAMILY, font_size))
+
+        # Set the background color
+        self.setStyleSheet('QWidget {background-color: ' + bg_color +  ';}')
 
         self.show()
 
         # Start a timer for closing the PrizeAlert
-        self.delay_thread = threading.Timer(8, self.close)
+        self.delay_thread = threading.Timer(delay, self.close)
         self.delay_thread.start()
 
     # pylint: disable=invalid-name

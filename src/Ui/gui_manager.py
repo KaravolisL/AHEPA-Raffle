@@ -14,7 +14,9 @@ class WindowType(Enum):
     VIEW_PRIZES = 1
     EDIT_TICKET = 2
     EDIT_PRIZE = 3
-    PRIZE_ALERT = 4
+    EDIT_PRIZE_ALERT = 4
+    EDIT_BG_COLOR = 5
+    PRIZE_ALERT = 6
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -38,7 +40,10 @@ class GuiManager:
             self.window_list.append(edit_windows.TicketEdit())
         elif window_type == WindowType.EDIT_PRIZE:
             self.window_list.append(edit_windows.PrizeEdit())
-
+        elif window_type == WindowType.EDIT_PRIZE_ALERT:
+            self.window_list.append(edit_windows.PrizeAlertEdit())
+        elif window_type == WindowType.EDIT_BG_COLOR:
+            self.window_list.append(edit_windows.BackgroundColorEdit())
 
     def create_prize_alert(self, prize: Prize):
         """Creates a prize alert window with the given text
@@ -46,6 +51,12 @@ class GuiManager:
         :param str text: Text to be displayed
         """
         self.window_list.append(prize_alert.PrizeAlert(prize.description))
+
+    def force_main_window_refresh(self):
+        """Forces the main window to refresh itself"""
+        for window in self.window_list:
+            if isinstance(window, user_interface.MainWindow):
+                window.update_bg_color()
 
     def clear_windows(self):
         """Deletes all open windows"""
