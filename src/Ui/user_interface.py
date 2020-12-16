@@ -74,6 +74,9 @@ class MainWindow(QtWidgets.QMainWindow):
         )
         self.full_screen_action.triggered.connect(self.showFullScreen)
         self.maximize_action.triggered.connect(self.showMaximized)
+        self.about_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.ABOUT)
+        )
 
         # Connect to signals
         for ticket in raffle.tickets:
