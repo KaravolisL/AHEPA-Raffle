@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/Icon.jpg</normaloff>../images/Icon.jpg</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="2,1">
    <property name="leftMargin">
     <number>15</number>

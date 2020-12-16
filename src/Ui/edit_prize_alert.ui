@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Edit Prize Alert</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/Icon.jpg</normaloff>../images/Icon.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,0">
     <property name="leftMargin">

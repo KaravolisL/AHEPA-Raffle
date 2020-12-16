@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>312</width>
-    <height>177</height>
+    <width>314</width>
+    <height>184</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -18,6 +18,10 @@
   </property>
   <property name="windowTitle">
    <string>Change Background Color</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/Icon.jpg</normaloff>../images/Icon.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="maximumSize">

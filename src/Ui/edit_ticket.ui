@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Edit Ticket</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/Icon.jpg</normaloff>../images/Icon.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout">
     <property name="labelAlignment">

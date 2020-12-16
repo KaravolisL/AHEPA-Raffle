@@ -5,6 +5,7 @@ from datetime import datetime
 from argparse import ArgumentParser
 
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QIcon
 
 from Ui.gui_manager import gui_manager
 from raffle import raffle
@@ -46,6 +47,7 @@ def main():
     # Initialize the user interface
     app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
+    app.setWindowIcon(QIcon(r'src/images/Icon.jpg'))
 
     gui_manager.initialize()
 
