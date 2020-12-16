@@ -19,6 +19,7 @@ class WindowType(Enum):
     EDIT_BG_COLOR = 5
     PRIZE_ALERT = 6
     ABOUT = 7
+    CONTROL_PANEL = 8
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -48,6 +49,8 @@ class GuiManager:
             self.window_list.append(edit_windows.BackgroundColorEdit())
         elif window_type == WindowType.ABOUT:
             self.window_list.append(info_windows.About())
+        elif window_type == WindowType.CONTROL_PANEL:
+            self.window_list.append(view_windows.ControlPanel())
 
     def create_prize_alert(self, prize: Prize):
         """Creates a prize alert window with the given text

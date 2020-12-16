@@ -39,16 +39,12 @@ class MainWindow(QtWidgets.QMainWindow):
             label.clicked.connect((lambda ticket_number: \
                                    lambda: self.ticket_label_clicked(ticket_number))(i + 1))
 
-            # Restore progress
-            if raffle.tickets[i].is_drawn():
-                self.ticket_label_clicked(i + 1)
-
         # Set up the header cells
         self.last_ticket_drawn_label.clicked.connect(self.undo_button_clicked)
-        self.update_header()
 
         # Update the background colors
         self.update_bg_color()
+        self.refresh()
 
         # Connect menu bar actions
         self.restart_action.triggered.connect(self.restart_selected)
@@ -59,6 +55,9 @@ class MainWindow(QtWidgets.QMainWindow):
         )
         self.view_prizes_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.VIEW_PRIZES)
+        )
+        self.control_panel_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.CONTROL_PANEL)
         )
         self.edit_ticket_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_TICKET)
@@ -93,9 +92,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def refresh(self):
         """Method used to refresh gui based on backend data"""
+        _, table_bg_color = file_management.save_file_manager.get_bg_colors()
+
         # Update ticket names
         for i, label in enumerate(self.ticket_labels):
             label.setText(str(raffle.tickets[i]))
+
+            if raffle.tickets[i].is_drawn():
+                label.setStyleSheet("QLabel {background-color: transparent; color: transparent;}")
+            else:
+                label.setStyleSheet("QWidget { background-color: " + table_bg_color + ";}")
 
         # Update the header information
         self.update_header()
@@ -122,12 +128,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         :param int ticket_number: Number of the ticket to be removed
         """
-        # Make the ticket disapper
-        ticket_label = self.ticket_labels[ticket_number - 1]
-        ticket_label.setStyleSheet("QLabel {background-color: transparent; color: transparent;}")
-
         # Check whether this ticket has been drawn
         if not raffle.tickets[ticket_number - 1].is_drawn():
+            assert 'transparent' not in self.ticket_labels[ticket_number - 1].styleSheet()
             raffle.draw_ticket(ticket_number)
 
     def update_header(self):
@@ -150,11 +153,6 @@ class MainWindow(QtWidgets.QMainWindow):
         last_ticket_drawn = raffle.get_last_ticket_drawn()
         if last_ticket_drawn is None:
             return
-
-        # Make ticket visible
-        ticket_label = self.ticket_labels[last_ticket_drawn.number - 1]
-        _, table_bg_color = file_management.save_file_manager.get_bg_colors()
-        ticket_label.setStyleSheet("QWidget { background-color: " + table_bg_color + ";}")
 
         # Replace the ticket in the backend
         raffle.replace_ticket()
