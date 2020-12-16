@@ -184,7 +184,9 @@ class MainWindow(QtWidgets.QMainWindow):
         try:
             new_names = file_management.import_ticket_names(file_name)
         except file_management.FormatException:
-            pass
+            alert = Alert("Tickets failed to import! Check the formatting of your file.")
+            alert.setWindowTitle("Import Failed")
+            alert.exec()
         else:
             for ticket, new_name in zip(raffle.tickets, new_names):
                 ticket.name = new_name
@@ -205,7 +207,9 @@ class MainWindow(QtWidgets.QMainWindow):
         try:
             new_prizes = file_management.import_prizes(file_name)
         except file_management.FormatException:
-            pass
+            alert = Alert("Prizes failed to import! Check the formatting of your file.")
+            alert.setWindowTitle("Import Failed")
+            alert.exec()
         else:
             raffle.prizes = new_prizes
             file_management.save_file_manager.write_prizes_to_save_file(raffle.prizes)
