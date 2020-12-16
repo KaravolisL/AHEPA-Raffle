@@ -6,6 +6,7 @@ import Ui.user_interface as user_interface
 import Ui.view_windows as view_windows
 import Ui.edit_windows as edit_windows
 import Ui.prize_alert as prize_alert
+import Ui.info_windows as info_windows
 from data_classes import Prize
 
 class WindowType(Enum):
@@ -17,6 +18,7 @@ class WindowType(Enum):
     EDIT_PRIZE_ALERT = 4
     EDIT_BG_COLOR = 5
     PRIZE_ALERT = 6
+    ABOUT = 7
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -44,6 +46,8 @@ class GuiManager:
             self.window_list.append(edit_windows.PrizeAlertEdit())
         elif window_type == WindowType.EDIT_BG_COLOR:
             self.window_list.append(edit_windows.BackgroundColorEdit())
+        elif window_type == WindowType.ABOUT:
+            self.window_list.append(info_windows.About())
 
     def create_prize_alert(self, prize: Prize):
         """Creates a prize alert window with the given text

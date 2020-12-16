@@ -13,22 +13,32 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/Icon.jpg</normaloff>../images/Icon.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout" stretch="3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+    <property name="spacing">
+     <number>2</number>
+    </property>
     <property name="leftMargin">
-     <number>15</number>
+     <number>10</number>
     </property>
     <property name="topMargin">
-     <number>15</number>
+     <number>10</number>
     </property>
     <property name="rightMargin">
-     <number>15</number>
+     <number>10</number>
     </property>
     <property name="bottomMargin">
-     <number>15</number>
+     <number>10</number>
     </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_0">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
@@ -66,6 +76,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_1">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
@@ -376,6 +389,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_16">
         <property name="text">
@@ -575,6 +591,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_31">
         <property name="text">
@@ -774,6 +793,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_46">
         <property name="text">
@@ -973,6 +995,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_61">
         <property name="text">
@@ -1172,6 +1197,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_76">
         <property name="text">
@@ -1371,6 +1399,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_91">
         <property name="text">
@@ -1570,6 +1601,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_106">
         <property name="text">
@@ -1769,6 +1803,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_121">
         <property name="text">
@@ -1968,8 +2005,11 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <property name="sizeConstraint">
-       <enum>QLayout::SetMaximumSize</enum>
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
       <item>
        <widget class="ClickableLabel" name="label_136">
@@ -2260,6 +2300,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_11">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_151">
         <property name="text">
@@ -2459,6 +2502,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_166">
         <property name="text">
@@ -2658,6 +2704,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_13">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_181">
         <property name="text">
@@ -2857,6 +2906,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_14">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_196">
         <property name="text">
@@ -3056,6 +3108,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_15">
+      <property name="spacing">
+       <number>2</number>
+      </property>
       <item>
        <widget class="ClickableLabel" name="label_211">
         <property name="text">
@@ -3255,7 +3310,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="menu_bar">
    <property name="geometry">
     <rect>
      <x>0</x>

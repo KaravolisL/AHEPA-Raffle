@@ -1,12 +1,14 @@
 """Module containing main user interface classes"""
 
+from datetime import datetime
+
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtCore import QRegExp
+from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFileDialog
 
 from Ui.custom_widgets import ClickableLabel
-from Ui.alerts import WarningAlert
+from Ui.alerts import WarningAlert, Alert
 import Ui.gui_manager as gm
 from raffle import raffle
 import file_management
@@ -20,6 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('src/Ui/main_window.ui', self)
+        self.setWindowTitle("AHEPA Raffle " + str(datetime.now().year))
 
         # Set up the ticket labels
         self.ticket_labels = self.findChildren(ClickableLabel, QRegExp("label_[0-9]"))
@@ -69,6 +72,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.edit_prize_alert_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.EDIT_PRIZE_ALERT)
         )
+        self.full_screen_action.triggered.connect(self.showFullScreen)
+        self.maximize_action.triggered.connect(self.showMaximized)
+        self.about_action.triggered.connect(
+            lambda: gm.gui_manager.create_window(gm.WindowType.ABOUT)
+        )
 
         # Connect to signals
         for ticket in raffle.tickets:
@@ -76,6 +84,12 @@ class MainWindow(QtWidgets.QMainWindow):
         raffle.signals.prize_next.connect(gm.gui_manager.create_prize_alert)
 
         self.showMaximized()
+
+        # Check if the save file was corrupted
+        if file_management.save_file_manager.save_file_corrupted:
+            alert = Alert("The save file was corrupted. The program has been reset")
+            alert.setWindowTitle("Corrupted Save File")
+            alert.exec()
 
     def refresh(self):
         """Method used to refresh gui based on backend data"""
@@ -170,7 +184,9 @@ class MainWindow(QtWidgets.QMainWindow):
         try:
             new_names = file_management.import_ticket_names(file_name)
         except file_management.FormatException:
-            pass
+            alert = Alert("Tickets failed to import! Check the formatting of your file.")
+            alert.setWindowTitle("Import Failed")
+            alert.exec()
         else:
             for ticket, new_name in zip(raffle.tickets, new_names):
                 ticket.name = new_name
@@ -191,7 +207,9 @@ class MainWindow(QtWidgets.QMainWindow):
         try:
             new_prizes = file_management.import_prizes(file_name)
         except file_management.FormatException:
-            pass
+            alert = Alert("Prizes failed to import! Check the formatting of your file.")
+            alert.setWindowTitle("Import Failed")
+            alert.exec()
         else:
             raffle.prizes = new_prizes
             file_management.save_file_manager.write_prizes_to_save_file(raffle.prizes)
@@ -208,4 +226,16 @@ class MainWindow(QtWidgets.QMainWindow):
         """Closes all windows and the application"""
         super().closeEvent(event)
         gm.gui_manager.clear_windows()
+
+    def showFullScreen(self) -> None:
+        """Makes the window full screen and removes the menu bar"""
+        super().showFullScreen()
+        self.menu_bar.hide()
+
+    def keyPressEvent(self, event) -> None:
+        """Handles key presses by the user"""
+        super().keyPressEvent(event)
+        if (event.key() == Qt.Key_Escape) and self.isFullScreen():
+            self.showMaximized()
+            self.menu_bar.show()
     # pylint: enable=invalid-name
