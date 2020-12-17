@@ -220,7 +220,7 @@ class MainWindow(QtWidgets.QMainWindow):
         super().resizeEvent(event)
 
         for label in self.ticket_labels:
-            label.setMaximumWidth(self.frameGeometry().width() / 15)
+            label.setMaximumWidth(int(self.frameGeometry().width() / 15))
 
     def closeEvent(self, event) -> None:
         """Closes all windows and the application"""
