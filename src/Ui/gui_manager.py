@@ -23,6 +23,7 @@ class WindowType(Enum):
     PRIZE_ALERT = 6
     ABOUT = 7
     CONTROL_PANEL = 8
+    INVALID = 9
 
 class GuiManager:
     """Class responsible for displaying windows and managing them"""
@@ -55,6 +56,9 @@ class GuiManager:
         elif window_type == WindowType.CONTROL_PANEL:
             self.window_list.append(view_windows.ControlPanel())
 
+        # Clean out closed windows
+        self.window_list = [window for window in self.window_list if window.isVisible()]
+
     def create_prize_alert(self, prize: Prize):
         """Creates a prize alert window with the given text
 
@@ -76,6 +80,9 @@ class GuiManager:
         window.move(frame_geometry.topLeft())
 
         window.show()
+
+        # Clean out closed windows
+        self.window_list = [window for window in self.window_list if window.isVisible()]
 
     def force_main_window_refresh(self):
         """Forces the main window to refresh itself"""
