@@ -141,7 +141,9 @@ class ControlPanel(QtWidgets.QMainWindow):
         # Updates the labels in the header
         self.update_header()
 
-        next_prize = min([prize for prize in raffle.prizes if prize.number > raffle.num_tickets_drawn], key=lambda x: x.number, default=None)
+        next_prize = min([prize for prize in raffle.prizes \
+                          if prize.number > raffle.num_tickets_drawn],
+                          key=lambda x: x.number, default=None)
         if next_prize is not None:
             self.next_prize_number_label.setText("Ticket Number: {}".format(next_prize.number))
             self.next_prize_description_label.setText(next_prize.description)
@@ -200,3 +202,15 @@ class ControlPanel(QtWidgets.QMainWindow):
 
         # Replace the ticket in the backend
         raffle.replace_ticket()
+
+    # pylint: disable=invalid-name
+    def keyPressEvent(self, event) -> None:
+        """Connects the enter key to draw_ticket
+
+        :param QKeyEvent event: Key that was pressed
+        """
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            self.draw_ticket()
+        else:
+            super().keyPressEvent()
+    # pylint: enable=invalid-name
