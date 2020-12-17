@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1643</width>
-    <height>891</height>
+    <width>1645</width>
+    <height>898</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,6 +44,11 @@
       </property>
       <item>
        <widget class="QLabel" name="tickets_remaining_label">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Tickets Remaining: 225</string>
         </property>
@@ -54,6 +59,11 @@
       </item>
       <item>
        <widget class="QLabel" name="tickets_drawn_label">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Tickets Drawn: 0</string>
         </property>
@@ -64,6 +74,11 @@
       </item>
       <item>
        <widget class="ClickableLabel" name="last_ticket_drawn_label">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Last Ticket Drawn: </string>
         </property>
@@ -3315,7 +3330,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1643</width>
+     <width>1645</width>
      <height>18</height>
     </rect>
    </property>
@@ -3345,6 +3360,7 @@
     <addaction name="separator"/>
     <addaction name="view_ticket_names_action"/>
     <addaction name="view_prizes_action"/>
+    <addaction name="control_panel_action"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -3415,6 +3431,11 @@
   <action name="about_action">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="control_panel_action">
+   <property name="text">
+    <string>Control Panel</string>
    </property>
   </action>
  </widget>

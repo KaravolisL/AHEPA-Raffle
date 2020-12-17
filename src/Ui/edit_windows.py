@@ -42,7 +42,7 @@ class TicketEdit(QtWidgets.QMainWindow):
 
     # pylint: disable=invalid-name
     def keyPressEvent(self, event):
-        """Connects the enter key to changeNameEvent
+        """Connects the enter key to apply
 
         :param QKeyEvent event: Key that was pressed
         """
