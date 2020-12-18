@@ -3,16 +3,16 @@
 175 The next ticket drawn will win $100 cash.
 200 The next ticket drawn will win $100 cash.
 216 The next ticket drawn will win $100 cash.
-50 The next ticket drawn will win $100 cash and a $25 gift certificate.Compliments of John and Carole Pankas.
-150 The next ticket drawn will win $100 cash and a $25 gift certificate.Compliments of John and Carole Pankas.
-100 The next ticket drawn will win $100 cash and a $25 gift certificate.Compliments of John and Carole Pankas.
+50 The next ticket drawn will win $100 cash and a $25 gift certificate. Compliments of John and Carole Pankas.
+150 The next ticket drawn will win $100 cash and a $25 gift certificate. Compliments of John and Carole Pankas.
+100 The next ticket drawn will win $100 cash and a $25 gift certificate. Compliments of John and Carole Pankas.
 156 The next ticket drawn will win $600 cash.This number must match the $5 envelope sold at the door.
-219 The next ticket drawn will win $100 cash and a chocolate basket.Compliments of Anna/David Berg of Paradise Candies.
-222 The next ticket drawn will win $100 cash and a VIP box of candy.Compliments of Sarris Candies.
-221 The next ticket drawn will win $100 cash and a VIP box of candy.Compliments of Sarris Candies.
-220 The next ticket drawn will win $100 cash and a VIP box of candy.Compliments of Sarris Candies.
-218 The next ticket drawn will win $100 cash and a VIP box of candy.Compliments of Sarris Candies.
-217 The next ticket drawn will win $100 cash and a VIP box of candy.Compliments of Sarris Candies.
-223 The next ticket drawn will win $250 cash and a golf foursome.Compliments of Washington Country Club.
-224 The next ticket drawn will win $500 cash and a golf foursome.Compliments of Southpointe Golf Club.
-225 The next ticket drawn will win $5000 cash and a centerpiece.Compliments of Malones Flower Shop.
+219 The next ticket drawn will win $100 cash and a chocolate basket. Compliments of Anna/David Berg of Paradise Candies.
+222 The next ticket drawn will win $100 cash and a VIP box of candy. Compliments of Sarris Candies.
+221 The next ticket drawn will win $100 cash and a VIP box of candy. Compliments of Sarris Candies.
+220 The next ticket drawn will win $100 cash and a VIP box of candy. Compliments of Sarris Candies.
+218 The next ticket drawn will win $100 cash and a VIP box of candy. Compliments of Sarris Candies.
+217 The next ticket drawn will win $100 cash and a VIP box of candy. Compliments of Sarris Candies.
+223 The next ticket drawn will win $250 cash and a golf foursome. Compliments of Washington Country Club.
+224 The next ticket drawn will win $500 cash and a golf foursome. Compliments of Southpointe Golf Club.
+225 The next ticket drawn will win $5000 cash and a centerpiece. Compliments of Malones Flower Shop.

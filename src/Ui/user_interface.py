@@ -36,8 +36,7 @@ class MainWindow(QtWidgets.QMainWindow):
             label.setFont(QFont(APPLICATION_FONT_FAMILY, 9))
 
             # We need to use a closure for i to ensure it copies it through the loop
-            label.clicked.connect((lambda ticket_number: \
-                                   lambda: self.ticket_label_clicked(ticket_number))(i + 1))
+            label.clicked.connect(lambda self, ticket_number=(i + 1): self.ticket_label_clicked(ticket_number))
 
         # Set up the header cells
         self.last_ticket_drawn_label.clicked.connect(MainWindow.undo_button_clicked)
@@ -47,7 +46,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.refresh()
 
         # Connect menu bar actions
-        self.restart_action.triggered.connect(MainWindow.restart_selected)
+        self.restart_action.triggered.connect(self.restart_selected)
         self.import_ticket_names_action.triggered.connect(self.import_ticket_names_selected)
         self.import_prizes_action.triggered.connect(self.import_prizes_selected)
         self.view_ticket_names_action.triggered.connect(
@@ -158,16 +157,24 @@ class MainWindow(QtWidgets.QMainWindow):
         # Replace the ticket in the backend
         raffle.replace_ticket()
 
-    @classmethod
-    def restart_selected(cls):
+    def restart_selected(self):
         """Method called when the restart option is selected"""
         warning = WarningAlert("Restarting the raffle will cause all progress to"
                           " be lost! Are you sure you want to continue?")
 
         if warning.exec():
             logger.debug("Restarting...")
+
+            for ticket in raffle.tickets:
+                ticket.signals.data_changed.disconnect(self.refresh)
+
             while raffle.num_tickets_drawn != 0:
                 MainWindow.undo_button_clicked()
+
+            for ticket in raffle.tickets:
+                ticket.signals.data_changed.connect(self.refresh)
+
+            self.refresh()
 
     def import_ticket_names_selected(self):
         """Method called when the import ticket names option is selected"""
@@ -189,7 +196,10 @@ class MainWindow(QtWidgets.QMainWindow):
             alert.exec()
         else:
             for ticket, new_name in zip(raffle.tickets, new_names):
+                ticket.signals.data_changed.disconnect(self.refresh)
                 ticket.name = new_name
+                ticket.signals.data_changed.connect(self.refresh)
+            self.refresh()
             file_management.save_file_manager.write_tickets_to_save_file(raffle.tickets)
 
     def import_prizes_selected(self):
@@ -220,11 +230,12 @@ class MainWindow(QtWidgets.QMainWindow):
         super().resizeEvent(event)
 
         for label in self.ticket_labels:
-            label.setMaximumWidth(self.frameGeometry().width() / 15)
+            label.setMaximumWidth(int(self.frameGeometry().width() / 15))
 
     def closeEvent(self, event) -> None:
         """Closes all windows and the application"""
         super().closeEvent(event)
+        raffle.signals.prize_next.disconnect()
         gm.gui_manager.clear_windows()
 
     def showFullScreen(self) -> None:

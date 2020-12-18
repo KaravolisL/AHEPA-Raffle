@@ -26,4 +26,4 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run Test Suite
-      run: pytest tests/ --setup-show
+      run: pytest tests/test_raffle.py --setup-show
