@@ -24,7 +24,7 @@ def get_file_handler():
     file_handler.setFormatter(FILE_FORMATTER)
     return file_handler
 
-def get_logger(logger_name):
+def get_logger(logger_name: str):
     """Obtains new logger object made with the given name
     :param str logger_name: Name of the logger to be made
     """

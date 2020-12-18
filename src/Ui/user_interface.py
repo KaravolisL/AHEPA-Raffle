@@ -36,7 +36,10 @@ class MainWindow(QtWidgets.QMainWindow):
             label.setFont(QFont(APPLICATION_FONT_FAMILY, 9))
 
             # We need to use a closure for i to ensure it copies it through the loop
-            label.clicked.connect(lambda self, ticket_number=(i + 1): self.ticket_label_clicked(ticket_number))
+            # pylint: disable=cell-var-from-loop
+            label.clicked.connect(lambda self, ticket_number=(i + 1): \
+                                    self.ticket_label_clicked(ticket_number))
+            # pylint: enable=cell-var-from-loop
 
         # Set up the header cells
         self.last_ticket_drawn_label.clicked.connect(MainWindow.undo_button_clicked)
