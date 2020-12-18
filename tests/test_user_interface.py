@@ -1,4 +1,5 @@
 """Suite of tests pertaining to the overall user interface"""
+# pylint: disable=wrong-import-order,wrong-import-position
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import Qt
 from pytestqt import qtbot
@@ -8,7 +9,6 @@ from random import shuffle
 import sys
 
 sys.path.insert(1, 'src')
-from Ui.user_interface import MainWindow
 from Ui.prize_alert import PrizeAlert
 from Ui.gui_manager import gui_manager, WindowType
 from raffle import raffle
