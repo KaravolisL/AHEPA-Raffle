@@ -27,19 +27,7 @@ class PrizeAlert(QtWidgets.QMainWindow):
         # Set the background color
         self.setStyleSheet('QWidget {background-color: ' + bg_color +  ';}')
 
-        # Fix the sizing
-        screen = QtWidgets.QApplication.primaryScreen()
-        screen_width = screen.size().width()
-        screen_height = screen.size().height()
-        self.setGeometry(0, 0, screen_width * 2/3, screen_height * 2/3)
-
-        # Center it
-        frame_geometry = self.frameGeometry()
-        center_point = QtWidgets.QDesktopWidget().availableGeometry().center()
-        frame_geometry.moveCenter(center_point)
-        self.move(frame_geometry.topLeft())
-
-        self.show()
+        # This window will be shown by the gui manager
 
         # Start a timer for closing the PrizeAlert
         self.delay_thread = threading.Timer(delay, self.close)
