@@ -15,16 +15,20 @@ from raffle import raffle
 
 def test_import_ticket_names(qtbot: qtbot.QtBot, mocker: MockerFixture):
     """Tests the import ticket names feature"""
+    gui_manager.clear_windows()
     mocker.patch('PyQt5.QtWidgets.QFileDialog.exec')
     mocker.patch('PyQt5.QtWidgets.QFileDialog.selectedFiles',
                  return_value=['examples/ticket_names.txt'])
 
-    main_window = MainWindow()
-    qtbot.addWidget(main_window)
+    gui_manager.initialize()
 
     for value in WindowType:
         gui_manager.create_window(value)
 
+    for window in gui_manager.window_list:
+        qtbot.addWidget(window)
+
+    main_window = gui_manager.window_list[0]
     main_window.import_ticket_names_action.trigger()
 
     with open("examples/ticket_names.txt", 'r') as names_file:
@@ -35,19 +39,20 @@ def test_import_ticket_names(qtbot: qtbot.QtBot, mocker: MockerFixture):
 
 def test_import_prizes(qtbot: qtbot.QtBot, mocker: MockerFixture):
     """Tests the import prizes feature"""
+    gui_manager.clear_windows()
     mocker.patch('PyQt5.QtWidgets.QFileDialog.exec')
     mocker.patch('PyQt5.QtWidgets.QFileDialog.selectedFiles',
                  return_value=['examples/prizes.txt'])
 
     # Open all windows
-    main_window = MainWindow()
+    gui_manager.initialize()
     for value in WindowType:
         gui_manager.create_window(value)
 
     for window in gui_manager.window_list:
         qtbot.addWidget(window)
 
-    main_window.import_prizes_action.trigger()
+    gui_manager.window_list[0].import_prizes_action.trigger()
 
     with open("examples/prizes.txt", 'r') as prize_file:
         for prize in raffle.prizes:
@@ -80,6 +85,7 @@ def test_prize_alerts(qtbot: qtbot.QtBot, mocker: MockerFixture):
             next_prize = raffle.get_prize_from_number(i + 2)
             assert next_prize.description == gui_manager.window_list[-1].prize_description.text()
             qtbot.mouseClick(gui_manager.window_list[-1], Qt.LeftButton)
+            qtbot.waitUntil(lambda: not gui_manager.window_list[-1].isVisible())
 
             # Force gui manager to do housekeeping
             gui_manager.create_window(WindowType.INVALID)

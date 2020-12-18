@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Control Panel</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/Icon.jpg</normaloff>../images/Icon.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout" rowstretch="2,4">
     <property name="leftMargin">
