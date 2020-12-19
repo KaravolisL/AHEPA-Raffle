@@ -35,6 +35,7 @@ class GuiManager:
 
     def initialize(self):
         """Initializes the user interface"""
+        logger.debug("GuiManager initializing")
         self.window_list.append(user_interface.MainWindow())
 
     def create_window(self, window_type: WindowType):

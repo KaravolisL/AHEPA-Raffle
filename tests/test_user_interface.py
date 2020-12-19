@@ -70,7 +70,7 @@ def test_prize_alerts(qtbot: qtbot.QtBot, mocker: MockerFixture):
     shuffle(ticket_numbers)
     prize_alert_count = 0
     for i, ticket_number in enumerate(ticket_numbers):
-        raffle.draw_ticket(ticket_number)
+        qtbot.mouseClick(gui_manager.window_list[0].ticket_labels[ticket_number - 1], Qt.LeftButton)
         QApplication.processEvents()
         sleep(0.05)
 

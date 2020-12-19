@@ -181,10 +181,10 @@ class BackgroundColorEdit(QtWidgets.QMainWindow):
         self.button_box.rejected.connect(self.close)
         self.button_box.accepted.connect(self.save_preferences)
         self.header_color_label.clicked.connect(
-            lambda self: self.show_color_picker(self.header_color_label)
+            lambda self=self: self.show_color_picker(self.header_color_label)
         )
         self.main_table_color_label.clicked.connect(
-            lambda self: self.show_color_picker(self.main_table_color_label)
+            lambda self=self: self.show_color_picker(self.main_table_color_label)
         )
 
         self.show()

@@ -37,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             # We need to use a closure for i to ensure it copies it through the loop
             # pylint: disable=cell-var-from-loop
-            label.clicked.connect(lambda self, ticket_number=(i + 1): \
+            label.clicked.connect(lambda self=self, ticket_number=(i + 1): \
                                     self.ticket_label_clicked(ticket_number))
             # pylint: enable=cell-var-from-loop
 

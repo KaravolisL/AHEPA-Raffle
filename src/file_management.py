@@ -106,9 +106,11 @@ class SaveFileManager:
         # Throw an exception if the file doesn't exist or is formatted incorrectly
         try:
             json.load(open(self.SAVE_FILE, 'r'))
-        except (IOError, ValueError) as exception:
+        except ValueError as exception:
             self.create_default_save()
             raise FormatException from exception
+        except IOError:
+            self.create_default_save()
 
     def create_default_save(self):
         """Creates a default save file"""

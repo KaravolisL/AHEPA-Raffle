@@ -1,0 +1,1 @@
+pyinstaller "AHEPA Raffle.spec"

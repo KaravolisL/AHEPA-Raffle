@@ -10,11 +10,15 @@ from PyQt5.QtGui import QIcon
 from Ui.gui_manager import gui_manager
 from raffle import raffle
 import file_management
+from debug_logger import get_logger
+
+logger = get_logger(__name__)
 
 EXIT_SUCCESS = 0
 
 def main():
     """Main entry point of the application"""
+    logger.info("Application launching")
     argument_parser = ArgumentParser(
         prog='python main.py'
     )
@@ -42,16 +46,18 @@ def main():
         raffle.prizes = new_prizes
 
     if args.no_gui:
+        logger.info("Program exiting")
         return EXIT_SUCCESS
 
     # Initialize the user interface
     app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
     app.setWindowIcon(QIcon(r'src/images/Icon.jpg'))
-
     gui_manager.initialize()
 
     app.exec_()
+
+    logger.info("Program exiting")
 
     return EXIT_SUCCESS
 
