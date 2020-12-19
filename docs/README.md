@@ -4,7 +4,11 @@
 
 Visit the following link to download a zipped folder containing the application:
 
+<<<<<<< HEAD
+[Download Link](https://github.com/KaravolisL/AHEPA-Raffle/releases)
+=======
 ![Download Link](https://github.com/KaravolisL/AHEPA-Raffle/releases)
+>>>>>>> origin/master
 
 ## Launching the Program
 
@@ -85,7 +89,7 @@ You might make a mistake and have to replace a ticket that was drawn. To do this
 
 Alternatively, you can use the control panel view on a separate display to operate the application. From this view, you can view the information in the header, remove and replace tickets, and see the next prize to be won.
 
-![Control Panel](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/ControlPanel.png)
+![Control Panel](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/ControlPanel.PNG)
 
 ### Restarting the Raffle
 
