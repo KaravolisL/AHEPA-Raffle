@@ -4,7 +4,11 @@
 
 Visit the following link to download a zipped folder containing the application:
 
+<<<<<<< HEAD
 [Download Link](https://github.com/KaravolisL/AHEPA-Raffle/releases)
+=======
+![Download Link](https://github.com/KaravolisL/AHEPA-Raffle/releases)
+>>>>>>> origin/master
 
 ## Launching the Program
 
