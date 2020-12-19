@@ -68,7 +68,8 @@ class Raffle:
         # Check if there is a prize next
         next_prize = self.get_prize_from_number(self.num_tickets_drawn + 1)
         if next_prize is not None:
-            logger.debug("Emitting prize_next signal for prize number %d", self.num_tickets_drawn + 1)
+            logger.debug("Emitting prize_next signal for prize number %d",
+                         self.num_tickets_drawn + 1)
             self.signals.prize_next.emit(next_prize)
 
         # Write to the save file
