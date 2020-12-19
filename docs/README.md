@@ -1,5 +1,11 @@
 # Help Documentation
 
+## Downloading the Application
+
+Visit the following link to download a zipped folder containing the application:
+
+![Download Link](https://github.com/KaravolisL/AHEPA-Raffle/releases)
+
 ## Launching the Program
 
 To launch the program, double-click Main.exe in the distributed src folder. It may take a minute or two to launch.
@@ -67,9 +73,7 @@ Full screen mode can be used to hide the window border and the menu bar. To ente
 
 ### Removing Tickets
 
-You can remove a ticket one of two ways. First, you can simply click any of the 225 tickets. The ticket will disappear, and the header will be updated with the new information. You also have the option to enter the ticket number. There is a hidden text box in the left most cell of the header labeled Tickets Remaining. Begin by clicking the cell and typing the number of the ticket. Again, the text will not be visible. Then, click enter and the ticket will disappear as if it were clicked.
-
-![Text Box](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/TextBox.png)
+You can remove a ticket simply by clicking any of the 225 tickets. The ticket will disappear, and the header will be updated with the new information.
 
 ### Undo
 
@@ -77,11 +81,16 @@ You might make a mistake and have to replace a ticket that was drawn. To do this
 
 ![Undo Button](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/UndoButton.png)
 
+### Control Panel
+
+Alternatively, you can use the control panel view on a separate display to operate the application. From this view, you can view the information in the header, remove and replace tickets, and see the next prize to be won.
+
+![Control Panel](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/ControlPanel.png)
+
 ### Restarting the Raffle
 
 All tickets can be replaced by hitting the Restart Raffle option under the File menu. This will cause all progress to be lost!
 
 ## Additional Features
 
-+ Clicking the middle cell of the header labeled Tickets Drawn will display the ticket names window
 + Closing the program will cause the current progress to be automatically saved. When the program is opened again, the progress will be restored.
