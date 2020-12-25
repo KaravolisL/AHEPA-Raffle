@@ -212,5 +212,5 @@ class ControlPanel(QtWidgets.QMainWindow):
         if event.key() in (Qt.Key_Return, Qt.Key_Enter):
             self.draw_ticket()
         else:
-            super().keyPressEvent()
+            super().keyPressEvent(event)
     # pylint: enable=invalid-name

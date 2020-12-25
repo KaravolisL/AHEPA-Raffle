@@ -34,7 +34,7 @@
     <item>
      <widget class="QLabel" name="description_label">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This program was made by Luke Karavolis. For more information or to report any bugs, visit &lt;a href=&quot;https://github.com/KaravolisL/AHEPA-Raffle&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt; or email karavolisl@gmail.com&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This program was made by Luke Karavolis with the help of Kenny Meier. For more information or to report any bugs, visit &lt;a href=&quot;https://github.com/KaravolisL/AHEPA-Raffle&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt; or email karavolisl@gmail.com&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::RichText</enum>

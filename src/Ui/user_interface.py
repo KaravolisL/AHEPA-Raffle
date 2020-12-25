@@ -249,6 +249,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def keyPressEvent(self, event) -> None:
         """Handles key presses by the user"""
         super().keyPressEvent(event)
+        logger.debug("User pressed %d", event.key())
         if (event.key() == Qt.Key_Escape) and self.isFullScreen():
             self.showMaximized()
             self.menu_bar.show()
