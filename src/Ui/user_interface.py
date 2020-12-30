@@ -50,6 +50,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Connect menu bar actions
         self.restart_action.triggered.connect(self.restart_selected)
+        self.clear_ticket_names_action.triggered.connect(self.clear_ticket_names)
+        self.clear_prizes_action.triggered.connect(self.clear_prizes)
         self.import_ticket_names_action.triggered.connect(self.import_ticket_names_selected)
         self.import_prizes_action.triggered.connect(self.import_prizes_selected)
         self.view_ticket_names_action.triggered.connect(
@@ -178,6 +180,30 @@ class MainWindow(QtWidgets.QMainWindow):
                 ticket.signals.data_changed.connect(self.refresh)
 
             self.refresh()
+
+    def clear_ticket_names(self):
+        """Clears the names of all the tickets"""
+        warning = WarningAlert("The names of all tickets will be deleted! "
+                               "Are you sure you want to continue?")
+
+        if warning.exec():
+            for ticket in raffle.tickets:
+                ticket.signals.data_changed.disconnect(self.refresh)
+                ticket.name = ""
+                ticket.signals.data_changed.connect(self.refresh)
+
+            self.refresh()
+            file_management.save_file_manager.write_tickets_to_save_file(raffle.tickets)
+
+    @classmethod
+    def clear_prizes(cls):
+        """Clears all the prizes in the list"""
+        warning = WarningAlert("All prizes will be deleted! Are you sure"
+                               " you want to continue?")
+
+        if warning.exec():
+            raffle.prizes.clear()
+            file_management.save_file_manager.write_prizes_to_save_file(raffle.prizes)
 
     def import_ticket_names_selected(self):
         """Method called when the import ticket names option is selected"""

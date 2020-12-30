@@ -3339,6 +3339,9 @@
      <string>File</string>
     </property>
     <addaction name="restart_action"/>
+    <addaction name="clear_ticket_names_action"/>
+    <addaction name="clear_prizes_action"/>
+    <addaction name="separator"/>
     <addaction name="import_ticket_names_action"/>
     <addaction name="import_prizes_action"/>
    </widget>
@@ -3436,6 +3439,16 @@
   <action name="control_panel_action">
    <property name="text">
     <string>Control Panel</string>
+   </property>
+  </action>
+  <action name="clear_ticket_names_action">
+   <property name="text">
+    <string>Clear Ticket Names</string>
+   </property>
+  </action>
+  <action name="clear_prizes_action">
+   <property name="text">
+    <string>Clear Prizes</string>
    </property>
   </action>
  </widget>

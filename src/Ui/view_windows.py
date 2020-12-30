@@ -145,7 +145,7 @@ class ControlPanel(QtWidgets.QMainWindow):
                           if prize.number > raffle.num_tickets_drawn],
                           key=lambda x: x.number, default=None)
         if next_prize is not None:
-            self.next_prize_number_label.setText("Ticket Number: {}".format(next_prize.number))
+            self.next_prize_number_label.setText("Prize Number: {}".format(next_prize.number))
             self.next_prize_description_label.setText(next_prize.description)
         else:
             self.next_prize_number_label.setText("-")
