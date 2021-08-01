@@ -53,6 +53,10 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
     app.setWindowIcon(QIcon(r'src/images/Icon.jpg'))
+
+    # Show the application's splash screen
+    # Warning: This method blocks for a period of time
+    gui_manager.show_splash_screen()
     gui_manager.initialize()
 
     app.exec_()
