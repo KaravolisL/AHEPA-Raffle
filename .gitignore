@@ -110,3 +110,6 @@ log_file.txt
 
 # VS Code
 .vscode/
+
+# Compiled Qt Classes
+.qt_for_python
