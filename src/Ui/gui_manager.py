@@ -1,6 +1,7 @@
 """Module providing overarching management of the user interfaces"""
 
 from enum import Enum
+import time
 from typing import List
 
 from PyQt5.QtWidgets import QMainWindow
@@ -10,6 +11,7 @@ import Ui.view_windows as view_windows
 import Ui.edit_windows as edit_windows
 import Ui.prize_alert as prize_alert
 import Ui.info_windows as info_windows
+import Ui.splash_screen as splash_screen
 from data_classes import Prize
 from debug_logger import get_logger
 
@@ -37,6 +39,13 @@ class GuiManager:
         """Initializes the user interface"""
         logger.debug("GuiManager initializing")
         self.window_list.append(user_interface.MainWindow())
+
+    def show_splash_screen(self):
+        """Shows the applications splash screen"""
+        logger.debug("Showing splash screen...")
+        self.window_list.append(splash_screen.SplashScreen())
+        time.sleep(splash_screen.SPLASH_SCREEN_DURATION)
+        self.window_list.clear()
 
     def create_window(self, window_type: WindowType):
         """Creates a window and adds it to the list
