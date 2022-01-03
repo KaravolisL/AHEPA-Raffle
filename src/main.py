@@ -24,6 +24,8 @@ def main():
     )
     argument_parser.add_argument('--no_gui', action='store_true',
                                  help='Launches application without the user interface')
+    argument_parser.add_argument('--skip_splashscreen', '-s', action='store_true',
+                                 help='Skips displaying the splash screen')
     argument_parser.add_argument('--import_names', '-n', action='store_true',
                                  help='Auto imports the example names')
     argument_parser.add_argument('--import_prizes', '-p', action='store_true',
@@ -54,9 +56,11 @@ def main():
     app.setApplicationName("AHEPA Raffle " + str(datetime.now().year))
     app.setWindowIcon(QIcon(r'src/images/Icon.jpg'))
 
-    # Show the application's splash screen
-    # Warning: This method blocks for a period of time
-    gui_manager.show_splash_screen()
+    if not args.skip_splashscreen:
+        # Show the application's splash screen
+        # Warning: This method blocks for a period of time
+        gui_manager.show_splash_screen()
+
     gui_manager.initialize()
 
     app.exec_()
