@@ -58,7 +58,7 @@ Christina Toras
 Jeff & Helen mcCracken
 HopLitie
 Georgia Diniaco
-Alex,Nick,Ari,Audrey
+AlexNickAriAudrey
 Tootsie
 Too Many Bills
 Steve alexas
@@ -162,7 +162,7 @@ Bristy
 John Gesselberty
 Sylvia
 Pain un Butt
-Ari,Nick,Audrey,Alex
+AriNickAudreyAlex
 All you need is money
 S.F.R.
 Tesla
