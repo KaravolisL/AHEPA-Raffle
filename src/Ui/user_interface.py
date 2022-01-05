@@ -1,11 +1,14 @@
 """Module containing main user interface classes"""
 
 from datetime import datetime
+import os
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFileDialog
+
+import openpyxl
 
 from Ui.custom_widgets import ClickableLabel
 from Ui.alerts import WarningAlert, Alert
@@ -54,6 +57,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.clear_prizes_action.triggered.connect(self.clear_prizes)
         self.import_ticket_names_action.triggered.connect(self.import_ticket_names_selected)
         self.import_prizes_action.triggered.connect(self.import_prizes_selected)
+        self.export_results_action.triggered.connect(self.export_results_selected)
         self.view_ticket_names_action.triggered.connect(
             lambda: gm.gui_manager.create_window(gm.WindowType.VIEW_TICKETS)
         )
@@ -252,6 +256,50 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             raffle.prizes = new_prizes
             file_management.save_file_manager.write_prizes_to_save_file(raffle.prizes)
+
+    def export_results_selected(self): # pylint: disable=too-many-locals
+        """Method called when user selects the export results action"""
+        save_file_name, extension = QtWidgets.QFileDialog.getSaveFileName(self,
+                                                                          "Save file name",
+                                                                          "",
+                                                                          "CSV files (*.csv);; \
+                                                                          Xlsx files (*.xlsx)")
+        if not save_file_name:
+            return
+
+        # Adjust the file extension if the user hasn't added it themselves
+        file_format = 'csv' if 'csv' in extension else 'xlsx'
+        if os.path.splitext(save_file_name)[1] not in ('.csv', '.xlsx'):
+            save_file_name += '.' + file_format
+        logger.debug("Writing results to %s", save_file_name)
+
+        # Gather results
+        results = ""
+        for i in range(1, raffle.num_tickets_drawn + 1):
+            for ticket in raffle.tickets:
+                if ticket.number_drawn == i:
+                    entry = ",".join(map(str, [i,
+                                               ticket.number,
+                                               ticket.name]))
+                    associated_prize = raffle.get_prize_from_number(ticket.number_drawn)
+                    if associated_prize is not None:
+                        entry += "," + associated_prize.description.strip('\n')
+
+                    results += entry + '\n'
+
+        # Write to file based on selected format
+        if file_format == 'csv':
+            with open(save_file_name, 'w', encoding='UTF-8') as save_file:
+                save_file.write(results)
+        else:
+            workbook = openpyxl.Workbook()
+            worksheet = workbook.active
+            lines = results.splitlines()
+            for row, line in enumerate(lines):
+                print(row)
+                for col, value in enumerate(line.split(',')):
+                    worksheet.cell(row + 1, col + 1, value)
+            workbook.save(save_file_name)
 
     # pylint: disable=invalid-name
     def resizeEvent(self, event) -> None:

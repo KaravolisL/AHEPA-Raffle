@@ -3344,6 +3344,8 @@
     <addaction name="separator"/>
     <addaction name="import_ticket_names_action"/>
     <addaction name="import_prizes_action"/>
+    <addaction name="separator"/>
+    <addaction name="export_results_action"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -3449,6 +3451,11 @@
   <action name="clear_prizes_action">
    <property name="text">
     <string>Clear Prizes</string>
+   </property>
+  </action>
+  <action name="export_results_action">
+   <property name="text">
+    <string>Export Results</string>
    </property>
   </action>
  </widget>

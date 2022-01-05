@@ -1,6 +1,8 @@
+openpyxl==3.0.9
 pylint>=2.6.0
 pytest==6.0.1
 pytest-qt==3.3.0
+pytest_mock==3.6.1
 pyqt5==5.15.1
 sphinx>=3.3.1
 pyinstaller==3.6
