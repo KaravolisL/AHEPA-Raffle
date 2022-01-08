@@ -8,7 +8,7 @@ Visit the following link to download a zipped folder containing the application:
 
 ## Launching the Program
 
-To launch the program, double-click Main.exe in the distributed src folder. It may take a minute or two to launch.
+To launch the program, double-click "AHEPA Raffle.exe" in the distributed src folder. It may take a minute or two to launch.
 
 ![Launching the Program](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/LaunchingProgram.PNG)
 
@@ -86,6 +86,10 @@ You might make a mistake and have to replace a ticket that was drawn. To do this
 Alternatively, you can use the control panel view on a separate display to operate the application. From this view, you can view the information in the header, remove and replace tickets, and see the next prize to be won.
 
 ![Control Panel](https://github.com/KaravolisL/AHEPA-Raffle/raw/master/docs/screenshots/ControlPanel.PNG)
+
+### Exporting Results
+
+At any point, you can export the current results of the raffle to either a .csv or .xlsx file. You can find this option under the File tab in the menu bar.
 
 ### Restarting the Raffle
 
