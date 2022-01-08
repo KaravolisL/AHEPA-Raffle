@@ -1,5 +1,6 @@
 """Module containing classes meant only for data"""
 
+from typing import Tuple, Union
 from PyQt5.QtCore import QObject, pyqtSignal
 
 class Prize:
@@ -76,6 +77,13 @@ class Ticket:
     def is_drawn(self) -> bool:
         """Returns whether this ticket has been drawn or not"""
         return self.number_drawn != 0
+
+    @staticmethod
+    def is_acceptable_name(name: str) -> str:
+        """Returns an invalid character if one was found"""
+        if ',' in name:
+            return ','
+        return ''
 
 class Signals(QObject):
     """Class to hold signals"""

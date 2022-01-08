@@ -3,10 +3,11 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIntValidator
+from Ui.alerts import Alert
 
 from constants import NUMBER_OF_TICKETS
 from raffle import raffle
-from data_classes import Prize
+from data_classes import Prize, Ticket
 import Ui.gui_manager
 import file_management
 
@@ -37,8 +38,15 @@ class TicketEdit(QtWidgets.QMainWindow):
         """Method to apply the name change to the ticket"""
         if self.ticket_number_line_edit.hasAcceptableInput():
             ticket_number = int(self.ticket_number_line_edit.text())
-            raffle.tickets[ticket_number - 1].name = self.ticket_name_line_edit.text()
-            file_management.save_file_manager.write_tickets_to_save_file(raffle.tickets)
+            invalid_char = Ticket.is_acceptable_name(self.ticket_name_line_edit.text())
+            if invalid_char:
+                alert = Alert(f"Invalid character {invalid_char} found in \
+                              ticket name {self.ticket_name_line_edit.text()}")
+                alert.setWindowTitle("Invalid Ticket Name")
+                alert.exec()
+            else:
+                raffle.tickets[ticket_number - 1].name = self.ticket_name_line_edit.text()
+                file_management.save_file_manager.write_tickets_to_save_file(raffle.tickets)
 
     # pylint: disable=invalid-name
     def keyPressEvent(self, event):

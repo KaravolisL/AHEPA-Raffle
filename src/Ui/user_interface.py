@@ -14,6 +14,7 @@ from Ui.custom_widgets import ClickableLabel
 from Ui.alerts import WarningAlert, Alert
 import Ui.gui_manager as gm
 from raffle import raffle
+from data_classes import Ticket
 import file_management
 from constants import NUMBER_OF_TICKETS, APPLICATION_FONT_FAMILY
 from debug_logger import get_logger
@@ -169,7 +170,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def restart_selected(self):
         """Method called when the restart option is selected"""
         warning = WarningAlert("Restarting the raffle will cause all progress to"
-                          " be lost! Are you sure you want to continue?")
+                               " be lost! Are you sure you want to continue?")
 
         if warning.exec():
             logger.debug("Restarting...")
@@ -228,6 +229,15 @@ class MainWindow(QtWidgets.QMainWindow):
             alert.setWindowTitle("Import Failed")
             alert.exec()
         else:
+            # Verify ticket name doesn't contain illegal characters
+            for new_name in new_names:
+                invalid_char = Ticket.is_acceptable_name(new_name)
+                if invalid_char:
+                    alert = Alert(f"Invalid character {invalid_char} found in ticket name {new_name}")
+                    alert.setWindowTitle("Import Failed")
+                    alert.exec()
+                    return
+
             for ticket, new_name in zip(raffle.tickets, new_names):
                 ticket.signals.data_changed.disconnect(self.refresh)
                 ticket.name = new_name
@@ -296,7 +306,6 @@ class MainWindow(QtWidgets.QMainWindow):
             worksheet = workbook.active
             lines = results.splitlines()
             for row, line in enumerate(lines):
-                print(row)
                 for col, value in enumerate(line.split(',')):
                     worksheet.cell(row + 1, col + 1, value)
             workbook.save(save_file_name)
